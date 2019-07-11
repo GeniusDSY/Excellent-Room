@@ -1,5 +1,16 @@
 # <center>优房</center>
 
+## 分支命名
+
+- 后端
+
+  - 每一个人新建自己的开发分支(例如：hsy-dev、sl-dev)
+  - 每隔一段时间向dev分支发起pull request，我审核通过后进行merge，否则打回
+  - commit要有意义
+前端
+
+  - 除了命名是 front-wss-dev之外 其他要求同上
+
 ## 项目结构
 
 ```$xslt
