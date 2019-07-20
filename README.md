@@ -1,5 +1,17 @@
 # <center>优房</center>
 
+## 分支命名
+
+- 后端
+
+  - 每一个人新建自己的开发分支(例如：hsy-dev、sl-dev)
+  - 每隔一段时间向dev分支发起pull request，我审核通过后进行merge，否则打回
+  - commit要有意义
+
+- 前端
+
+  - 除了命名是 front-wss-dev之外 其他要求同上
+
 ## 项目结构
 
 ```$xslt
@@ -49,8 +61,8 @@
 - 单元测试必须要写，使用MySQL回滚技术
 
     - dao层测试
-    - service层测试
-    - controller层 mock测试
+
+- 接口测试使用swagger2
 
 - 尽量做好日志的记录
 - 编码规范按照阿里巴巴编码规范进行(idea有一个阿里巴巴编码规范插件)
