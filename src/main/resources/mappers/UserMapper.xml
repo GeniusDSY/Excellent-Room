@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.cqupt.mislab.excellentroom.dao.UserDao">
+    <resultMap id="User" type="cn.edu.cqupt.mislab.excellentroom.domain.entity.User">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userName" column="userName" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+
+    </resultMap>
+
+    <sql id="user">
+        userName,password
+    </sql>
+
+    <select id="login" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.User">
+        SELECT <include refid="user"/>
+        FROM t_login
+        WHERE userName = #{userName} AND password = #{password}
+    </select>
+
+    <insert id="add" >
+        INSERT INTO t_login(userName, password)
+        VALUES (#{userName},#{password})
+    </insert>
+
+    <delete id="delete" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.User">
+        DELETE
+        FROM t_login
+        WHERE userName = #{userName}
+    </delete>
+</mapper>
