@@ -2,7 +2,6 @@ package cn.edu.cqupt.mislab.excellentroom.util;
 
 import cn.edu.cqupt.mislab.excellentroom.domain.entity.ResultJson;
 import cn.edu.cqupt.mislab.excellentroom.constant.ResultEnum;
-import java.util.Map;
 
 public class ResultUtil {
     /**
@@ -16,8 +15,8 @@ public class ResultUtil {
 
     public static ResultJson success(Object object) {
         ResultJson resultJson = new ResultJson();
-        resultJson.setStatus(ResultEnum.success.getStatus());
-        resultJson.setMsg(ResultEnum.success.getMsg());
+        resultJson.setStatus(ResultEnum.SUCCESS.getStatus());
+        resultJson.setMsg(ResultEnum.SUCCESS.getMsg());
         resultJson.setData(object);
         return resultJson;
     }
@@ -26,10 +25,31 @@ public class ResultUtil {
         return success(null);
     }
 
-    public static ResultJson error(int status, String msg) {
+    public static ResultJson error() {
         ResultJson resultJson = new ResultJson();
-        resultJson.setStatus(status);
-        resultJson.setMsg(msg);
+        resultJson.setStatus(ResultEnum.ERROR.getStatus());
+        resultJson.setMsg(ResultEnum.ERROR.getMsg());
+        return resultJson;
+    }
+
+    public static ResultJson isNull() {
+        ResultJson resultJson = new ResultJson();
+        resultJson.setStatus(ResultEnum.ISNULL.getStatus());
+        resultJson.setMsg(ResultEnum.ISNULL.getMsg());
+        return resultJson;
+    }
+
+    public static ResultJson isExist() {
+        ResultJson resultJson = new ResultJson();
+        resultJson.setStatus(ResultEnum.ISEXIST.getStatus());
+        resultJson.setMsg(ResultEnum.ISEXIST.getMsg());
+        return resultJson;
+    }
+
+    public static ResultJson notExist() {
+        ResultJson resultJson = new ResultJson();
+        resultJson.setStatus(ResultEnum.NOTEXIST.getStatus());
+        resultJson.setMsg(ResultEnum.NOTEXIST.getMsg());
         return resultJson;
     }
 }

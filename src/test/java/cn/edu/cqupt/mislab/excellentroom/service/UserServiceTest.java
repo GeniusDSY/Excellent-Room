@@ -20,7 +20,7 @@ public class UserServiceTest {
     private UserService userService;
 
     @Test
-    public void login() {
+    public void loginTest() {
         UserDto userDto = new UserDto();
         userDto.setUserName("hsy");
         userDto.setPassword("123456");
@@ -31,7 +31,7 @@ public class UserServiceTest {
 
     @Transactional
     @Test
-    public void add() {
+    public void addTest() {
         UserDto userDto = new UserDto();
         userDto.setUserName("sl");
         userDto.setPassword("234567");
@@ -41,7 +41,7 @@ public class UserServiceTest {
 
     @Transactional
     @Test
-    public void delete() {
+    public void deleteTest() {
         Boolean result = userService.delete("hsy");
         Assert.assertTrue(result);
     }

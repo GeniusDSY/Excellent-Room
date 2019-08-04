@@ -15,11 +15,11 @@ public enum ResultEnum {
      * 4----参数为空
      */
 
-    success(0,"成功"),
-    error(1,"失败"),
-    notExist(2,"不存在"),
-    isExist(3,"已存在"),
-    isNull(4,"参数为空"),
+    SUCCESS(0,"成功"),
+    ERROR(1,"失败"),
+    NOTEXIST(2,"不存在"),
+    ISEXIST(3,"已存在"),
+    ISNULL(4,"参数为空"),
     ;
     private Integer status;
     private String msg;

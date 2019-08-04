@@ -17,21 +17,21 @@ public class UserDaoTest {
     private UserDao userDao;
 
     @Test
-    public void login() {
+    public void loginTest() {
         User user = userDao.login("hsy","123456");
         Assert.assertNotNull(user);
     }
 
     @Transactional
     @Test
-    public void add() {
+    public void addTest() {
         Boolean result = userDao.add("sl","234567");
         Assert.assertTrue(result);
     }
 
     @Transactional
     @Test
-    public void delete() {
+    public void deleteTest() {
         Boolean result = userDao.delete("hsy");
         Assert.assertTrue(result);
     }

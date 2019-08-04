@@ -3,6 +3,7 @@ package cn.edu.cqupt.mislab.excellentroom.controller;
 import cn.edu.cqupt.mislab.excellentroom.constant.ResultEnum;
 import cn.edu.cqupt.mislab.excellentroom.domain.dto.UserDto;
 import cn.edu.cqupt.mislab.excellentroom.domain.entity.ResultJson;
+import cn.edu.cqupt.mislab.excellentroom.domain.po.UserPo;
 import cn.edu.cqupt.mislab.excellentroom.service.UserService;
 import cn.edu.cqupt.mislab.excellentroom.util.ResultUtil;
 import io.swagger.annotations.Api;
@@ -22,14 +23,14 @@ public class UserController {
     @PostMapping("login")
     @ApiOperation("用户登陆")
     public ResultJson login(@RequestBody UserDto userDto) {
+        if (userDto.getUserName() == null || userDto.getPassword() == null || userDto
+                .getVerifyCode() == null) {
+            return ResultUtil.isNull();
+        }
         try {
-            if ("".equals(userDto.getUserName()) || "".equals(userDto.getPassword()) || "".equals(userDto
-                    .getVerifyCode())) {
-                return ResultUtil.error(4, "参数为空");
-            }
-
+            UserPo userPo = userService.login(userDto);
         } catch (Exception e) {
-            return ResultUtil.error(1, e.getMessage());
+            return ResultUtil.error();
         }
         return ResultUtil.success();
     }
@@ -38,14 +39,14 @@ public class UserController {
     @PostMapping("add")
     @ApiOperation("添加管理员")
     public ResultJson add(@RequestBody UserDto userDto){
-        Boolean result = userService.add(userDto);
+        if (userDto.getUserName()==null || userDto.getPassword()==null || userDto
+            .getVerifyCode()==null) {
+        return ResultUtil.isNull();
+        }
         try {
-            if ("".equals(userDto.getUserName()) && "".equals(userDto.getPassword())&& "".equals(userDto
-                    .getVerifyCode())) {
-                return ResultUtil.error(4, "参数为空");
-            }
+           Boolean result = userService.add(userDto);
         } catch (Exception e) {
-            return ResultUtil.error(1, e.getMessage());
+            return ResultUtil.error();
         }
         return ResultUtil.success();
     }
@@ -54,17 +55,15 @@ public class UserController {
     @ApiOperation("删除管理员")
     @ApiImplicitParam(name = "userName",value = "用户名",dataType = "string",required = true)
     public ResultJson delete(String userName) {
-        try {
-            if ("".equals(userName)) {
-                return ResultUtil.error(ResultEnum.isNull.getStatus(), "参数为空");
-            }
-            if (userService.delete(userName)){
-                return ResultUtil.success();
-            }
-        }catch (Exception e){
-            return ResultUtil.error(1,e.getMessage());
+        if (userName==null) {
+            return ResultUtil.isNull();
         }
-        return null;
+        try {
+            Boolean result = userService.delete(userName);
+        }catch (Exception e){
+            return ResultUtil.error();
+        }
+        return ResultUtil.success() ;
     }
 
 }
