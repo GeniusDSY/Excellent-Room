@@ -6,6 +6,8 @@ public enum ResultEnum {
     UNKNOWN_ERROR(-1,"未知错误"),
     SUCCESS(200,"成功"),
     PPRJECT_EXISTED(401,"项目已存在"),
+    UPDATE_ERROR(402,"更新失败"),
+    DELETE_ERROR(403,"删除失败"),
     ;
     private Integer code;
     private String msg;

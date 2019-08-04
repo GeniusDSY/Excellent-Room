@@ -41,10 +41,10 @@ public interface ProjectDao {
 
     /**
      * 传入省份或者项目代号进行查询
-     * @param provinceOrProjectId
+     * @param provinceOrName
      * @return
      */
-    List<Project> searchProjectByOne(@Param("provinceOrProjectId")String provinceOrProjectId);
+    List<Project> searchProjectByOne(@Param("provinceOrProjectId")String provinceOrName);
 
     /**
      * 输入省份及城市进行查询
@@ -65,6 +65,6 @@ public interface ProjectDao {
      * @param QRcode
      * @return
      */
-    Result upDateProject(@Param("projectId")String projectId, @Param("province")String province, @Param("district")String district, @Param("name")String name, @Param("tel")String tel, @Param("QRcodename")String QRcodename, @Param("QRcode") String QRcode);
+    int updateProject(@Param("projectId")String projectId, @Param("province")String province, @Param("district")String district, @Param("name")String name, @Param("tel")String tel, @Param("QRcodename")String QRcodename, @Param("QRcode") String QRcode);
 
 }
