@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybaits.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.cqupt.mislab.excellentroom.dao.ProjectDao">
+    <sql id="project">
+        projectId,province,district,name,tel,QRcodename,QRcode
+    </sql>
+
+    <!--<sql id="addProject">
+
+     </sql>-->
+    <insert id="addProject" >
+        <if test="name != null">
+            and  name != #{name}
+        </if>
+        INSERT INTO t_project_information(projectId,province,district,name,tel,QRcodename,QRcode)
+        VALUE (#{projectId},#{province},#{district},#{name},#{tel},#{QRcodename},#{QRcode});
+
+    </insert>
+
+    <delete id="deleteProject">
+        DELETE FROM t_project_information
+        WHERE projectId = #{projectId}
+    </delete>
+
+    <select id="searchProjectByOne" parameterType="string" resultType="list">
+        SELECT project
+        FROM t_project_information
+        WHERE projectId = #{provinceOrProjectId} OR province = #{provinceOrProjectId}
+    </select>
+
+    <select id="searchProjectByTwo" parameterType="string" resultType="list">
+        SELECT project
+        FROM t_project_information
+        WHERE province = #{province} AND district = #{district}
+    </select>
+
+
+</mapper>
