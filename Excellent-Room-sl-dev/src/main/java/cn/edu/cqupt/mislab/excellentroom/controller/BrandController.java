@@ -1,7 +1,7 @@
 package cn.edu.cqupt.mislab.excellentroom.controller;
 
 import cn.edu.cqupt.mislab.excellentroom.domain.dto.ProjectId;
-import cn.edu.cqupt.mislab.excellentroom.domain.po.CompanyProfiles;
+import cn.edu.cqupt.mislab.excellentroom.domain.po.Result;
 import cn.edu.cqupt.mislab.excellentroom.service.impl.BrandService;
 import cn.edu.cqupt.mislab.excellentroom.util.ResultUtil;
 import io.swagger.annotations.Api;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.xml.transform.Result;
 
 /**
  * @program: Excellent-Room-sl-dev
@@ -36,7 +35,7 @@ public class BrandController {
     @RequestMapping(value = "/companyProfiles",method = RequestMethod.GET)
     public Result searchCompanyProfiles(@RequestBody ProjectId projectId){
         Result result = null;
-        result = (Result) ResultUtil.success(brandService.searchCompanyInformation(projectId));
+        result = ResultUtil.success(brandService.searchCompanyInformation(projectId));
         return result;
     }
 
