@@ -44,7 +44,7 @@ public class UserController {
         return ResultUtil.isNull();
         }
         try {
-           Boolean result = userService.add(userDto);
+           Boolean result = userService.addUser(userDto);
         } catch (Exception e) {
             return ResultUtil.error();
         }
@@ -59,7 +59,7 @@ public class UserController {
             return ResultUtil.isNull();
         }
         try {
-            Boolean result = userService.delete(userName);
+            Boolean result = userService.deleteUserByuserName(userName);
         }catch (Exception e){
             return ResultUtil.error();
         }

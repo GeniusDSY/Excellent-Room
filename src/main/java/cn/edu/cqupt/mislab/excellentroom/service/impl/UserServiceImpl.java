@@ -27,12 +27,12 @@ public class UserServiceImpl implements UserService {
         }
     }
     @Override
-    public Boolean add(UserDto userDto) {
+    public Boolean addUser(UserDto userDto) {
         Boolean result = userDao.add(userDto.getUserName(),userDto.getPassword());
         return true;
     }
     @Override
-    public Boolean delete(String userName) {
+    public Boolean deleteUserByuserName(String userName) {
         if (userDao.delete(userName)){
             return true;
         }else {

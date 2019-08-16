@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 @Service
 public interface UserService {
     /**
-     *
-     * */
+     * 用户登陆 添加管理员 删除管理员
+     *@param userDto,userName;
+     *@return UserPo,Boolean
+     */
 
     UserPo login(UserDto userDto);
-    Boolean add(UserDto userDto);
-    Boolean delete(String userName);
+    Boolean addUser(UserDto userDto);
+    Boolean deleteUserByuserName(String userName);
 }
