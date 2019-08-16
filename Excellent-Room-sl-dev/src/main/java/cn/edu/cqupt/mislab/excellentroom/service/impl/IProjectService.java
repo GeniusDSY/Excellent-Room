@@ -6,6 +6,10 @@ import cn.edu.cqupt.mislab.excellentroom.exception.MyException;
 
 import java.util.List;
 
+/**
+ * @author: 宋丽
+ * @create: 2019-08-16 9:59
+ */
 public interface IProjectService {
     /**
      * 新增项目
@@ -25,14 +29,17 @@ public interface IProjectService {
      * 单项查询
      * @param provinceOrName
      * @return
+     * @throws MyException
      */
     List<Project> searchProject(String provinceOrName) throws MyException;
+
 
     /**
      * 多项查询
      * @param province
      * @param district
      * @return
+     * @throws MyException
      */
     List<Project> searchProject(String province,String district) throws MyException;
 

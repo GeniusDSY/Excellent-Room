@@ -20,8 +20,11 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * @author sl
- */
+ * @program: Excellent-Room-sl-dev
+ * @description: 项目管理模块
+ * @author: 宋丽
+ * @create: 2019-08-16 06:59
+ **/
 @Api("项目管理模块")
 @RestController
 @RequestMapping("/projectManagement")
