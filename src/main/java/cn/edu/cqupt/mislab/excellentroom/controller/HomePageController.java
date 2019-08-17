@@ -1,18 +1,16 @@
 package cn.edu.cqupt.mislab.excellentroom.controller;
 
-import cn.edu.cqupt.mislab.excellentroom.util.ImageFileUtil;
+import cn.edu.cqupt.mislab.excellentroom.util.FileUtil;
 import cn.edu.cqupt.mislab.excellentroom.domain.po.HomePagePo;
 import cn.edu.cqupt.mislab.excellentroom.util.ResultUtil;
 import cn.edu.cqupt.mislab.excellentroom.domain.entity.ResultJson;
 import cn.edu.cqupt.mislab.excellentroom.service.HomePageService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -28,17 +26,20 @@ import java.io.File;
 public class HomePageController {
     @Autowired
     private HomePageService homePageService;
+    private String filePath = "/Users/mac/picture/pic";
 
     @PostMapping("updateHomePageBkground")
     @ApiOperation("修改首页背景图片")
-    @ApiImplicitParam(name = "imageFile",value = "背景图片",paramType = "form",dataType = "file",required = true)
-    public ResultJson updateHomePageBkground(@RequestParam MultipartFile imageFile){
-        String homePageBkgroundUrl = ImageFileUtil.storageImage(imageFile);
-        if (homePageBkgroundUrl == null){
-            return ResultUtil.isNull();
-        }
+    @ApiImplicitParam(name = "imageFile", value = "背景图片", paramType = "form", dataType = "file", required = true)
+    public ResultJson updateHomePageBkground(@RequestParam MultipartFile imageFile, @RequestParam String projecId){
         try {
-            HomePagePo homePagePo = homePageService.updateHomePageBkground(homePageBkgroundUrl);
+            if (imageFile.isEmpty()){
+            return ResultUtil.isNull();
+            }
+            String fileName = imageFile.getOriginalFilename();
+            FileUtil.upload(imageFile,filePath,fileName);
+            String homePageBkgroundUrl = FileUtil.fileUrl(imageFile,filePath,fileName);
+            HomePagePo homePagePo = homePageService.updateHomePageBkground(homePageBkgroundUrl,projecId);
         } catch (Exception e) {
             return ResultUtil.error();
         }
@@ -48,13 +49,15 @@ public class HomePageController {
     @PostMapping("updateHomePageLogo")
     @ApiOperation("修改首页Logo")
     @ApiImplicitParam(name = "imageFile",value = "首页Logo图片",paramType = "form",dataType = "file",required = true)
-    public ResultJson updateHomePageLogo(@RequestParam MultipartFile imageFile){
-        String homePageLogoUrl = ImageFileUtil.storageImage(imageFile);
-        if (homePageLogoUrl == null){
-            return ResultUtil.isNull();
-        }
+    public ResultJson updateHomePageLogo(@RequestParam MultipartFile imageFile, @RequestParam String projecId){
         try {
-            HomePagePo homePagePo = homePageService.updateHomePageLogo(homePageLogoUrl);
+            if (imageFile.isEmpty()){
+                return ResultUtil.isNull();
+            }
+            String fileName = imageFile.getOriginalFilename();
+            FileUtil.upload(imageFile,filePath,fileName);
+            String homePageLogoUrl = FileUtil.fileUrl(imageFile,filePath,fileName);
+            HomePagePo homePagePo = homePageService.updateHomePageLogo(homePageLogoUrl, projecId);
         } catch (Exception e) {
             return ResultUtil.error();
         }
@@ -64,13 +67,15 @@ public class HomePageController {
     @PostMapping("updateHomePageIcon")
     @ApiOperation("修改首页Icon")
     @ApiImplicitParam(name = "imageFile",value = "首页Icon图片",dataType = "form",required = true)
-    public ResultJson updateHomePageIcon(@RequestParam MultipartFile imageFile){
-        String homePageIconUrl = ImageFileUtil.storageImage(imageFile);
-        if (homePageIconUrl == null){
-            return ResultUtil.isNull();
-        }
+    public ResultJson updateHomePageIcon(@RequestParam MultipartFile imageFile, @RequestParam String projectId){
         try {
-            HomePagePo homePagePo = homePageService.updateHomePageIcon(homePageIconUrl);
+            if (imageFile.isEmpty()){
+                return ResultUtil.isNull();
+            }
+            String fileName = imageFile.getOriginalFilename();
+            FileUtil.upload(imageFile,filePath,fileName);
+            String homePageIconUrl = FileUtil.fileUrl(imageFile,filePath,fileName);
+            HomePagePo homePagePo = homePageService.updateHomePageIcon(homePageIconUrl,projectId);
         } catch (Exception e) {
             return ResultUtil.error();
         }

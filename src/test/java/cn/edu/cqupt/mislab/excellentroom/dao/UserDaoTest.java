@@ -25,14 +25,14 @@ public class UserDaoTest {
     @Transactional
     @Test
     public void addTest() {
-        Boolean result = userDao.add("sl","234567");
+        Boolean result = userDao.addUser("sl","234567");
         Assert.assertTrue(result);
     }
 
     @Transactional
     @Test
     public void deleteTest() {
-        Boolean result = userDao.delete("hsy");
+        Boolean result = userDao.deleteUserByuserName("hsy");
         Assert.assertTrue(result);
     }
 

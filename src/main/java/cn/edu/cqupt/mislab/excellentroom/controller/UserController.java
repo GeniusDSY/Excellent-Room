@@ -23,11 +23,11 @@ public class UserController {
     @PostMapping("login")
     @ApiOperation("用户登陆")
     public ResultJson login(@RequestBody UserDto userDto) {
-        if (userDto.getUserName() == null || userDto.getPassword() == null || userDto
-                .getVerifyCode() == null) {
-            return ResultUtil.isNull();
-        }
         try {
+            if (userDto.getUserName() == null || userDto.getPassword() == null || userDto
+                    .getVerifyCode() == null) {
+                return ResultUtil.isNull();
+            }
             UserPo userPo = userService.login(userDto);
         } catch (Exception e) {
             return ResultUtil.error();
@@ -55,10 +55,10 @@ public class UserController {
     @ApiOperation("删除管理员")
     @ApiImplicitParam(name = "userName",value = "用户名",dataType = "string",required = true)
     public ResultJson delete(String userName) {
-        if (userName==null) {
-            return ResultUtil.isNull();
-        }
         try {
+            if (userName==null) {
+                return ResultUtil.isNull();
+            }
             Boolean result = userService.deleteUserByuserName(userName);
         }catch (Exception e){
             return ResultUtil.error();

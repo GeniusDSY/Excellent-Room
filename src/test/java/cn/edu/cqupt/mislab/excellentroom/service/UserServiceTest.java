@@ -35,14 +35,14 @@ public class UserServiceTest {
         UserDto userDto = new UserDto();
         userDto.setUserName("sl");
         userDto.setPassword("234567");
-        Boolean result = userService.add(userDto);
+        Boolean result = userService.addUser(userDto);
         Assert.assertTrue(result);
     }
 
     @Transactional
     @Test
     public void deleteTest() {
-        Boolean result = userService.delete("hsy");
+        Boolean result = userService.deleteUserByuserName("hsy");
         Assert.assertTrue(result);
     }
 }

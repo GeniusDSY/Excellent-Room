@@ -6,7 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserDao {
+
     User login(@Param("userName") String userName,@Param("password") String password);
-    Boolean add(@Param("userName") String userName,@Param("password") String password);
-    Boolean delete(@Param("userName") String userName);
+    Boolean addUser(@Param("userName") String userName,@Param("password") String password);
+    Boolean deleteUserByuserName(@Param("userName") String userName);
 }

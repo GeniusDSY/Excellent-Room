@@ -15,8 +15,9 @@ public class HomePageServiceImpl implements HomePageService {
     @Resource
     private HomePageDao homePageDao;
 
-    public HomePagePo updateHomePageBkground(String homePageBkgroundUrl){
-        HomePage homePage = homePageDao.updateHomePageBkgound(homePageBkgroundUrl);
+    @Override
+    public HomePagePo updateHomePageBkground(String homePageBkgroundUrl,String projectId){
+        HomePage homePage = homePageDao.updateHomePageBkground(homePageBkgroundUrl,projectId);
         if (homePage != null){
             HomePagePo homePagePo = new HomePagePo();
             BeanUtils.copyProperties(homePage,homePagePo);
@@ -26,8 +27,9 @@ public class HomePageServiceImpl implements HomePageService {
         }
     }
 
-    public HomePagePo updateHomePageLogo(String homePageLogoUrl){
-        HomePage homePage = homePageDao.updateHomePageLogo(homePageLogoUrl);
+    @Override
+    public HomePagePo updateHomePageLogo(String homePageLogoUrl,String projectId){
+        HomePage homePage = homePageDao.updateHomePageLogo(homePageLogoUrl,projectId);
         if (homePage != null){
             HomePagePo homePagePo = new HomePagePo();
             BeanUtils.copyProperties(homePage,homePagePo);
@@ -37,8 +39,9 @@ public class HomePageServiceImpl implements HomePageService {
         }
     }
 
-    public HomePagePo updateHomePageIcon(String homePageIconUrl){
-        HomePage homePage = homePageDao.updateHomePageIcon(homePageIconUrl);
+    @Override
+    public HomePagePo updateHomePageIcon(String homePageIconUrl,String projectId){
+        HomePage homePage = homePageDao.updateHomePageIcon(homePageIconUrl,projectId);
         if (homePage != null){
             HomePagePo homePagePo = new HomePagePo();
             BeanUtils.copyProperties(homePage,homePagePo);

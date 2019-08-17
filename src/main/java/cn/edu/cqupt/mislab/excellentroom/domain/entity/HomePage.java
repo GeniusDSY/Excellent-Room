@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Data
 public class HomePage {
-    private Integer projectId;
+    private String projectId;
     private String homePageBkgroundUrl;
     private String homePageLogoUrl;
     private String homePageIconUrl;
