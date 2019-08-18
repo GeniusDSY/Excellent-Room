@@ -17,3 +17,5 @@ mybatis:
   configuration:
     cache-enabled: true
     call-setters-on-nulls: true
+
+filepath: "/Users/mac/picture/pic"

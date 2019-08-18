@@ -12,6 +12,11 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
+/**
+ * @author HanSiyue
+ */
+
 @RestController
 @RequestMapping("userSystem")
 @Api("登陆文档接口")
@@ -45,10 +50,13 @@ public class UserController {
         }
         try {
            Boolean result = userService.addUser(userDto);
+            if (result){
+                return ResultUtil.success();
+            }
         } catch (Exception e) {
             return ResultUtil.error();
         }
-        return ResultUtil.success();
+        return null;
     }
 
     @DeleteMapping("delete")
@@ -60,10 +68,13 @@ public class UserController {
                 return ResultUtil.isNull();
             }
             Boolean result = userService.deleteUserByuserName(userName);
+            if (result){
+                return ResultUtil.success();
+            }
         }catch (Exception e){
             return ResultUtil.error();
         }
-        return ResultUtil.success() ;
+        return null;
     }
 
 }

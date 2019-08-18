@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Boolean addUser(UserDto userDto) {
         Boolean result = userDao.addUser(userDto.getUserName(),userDto.getPassword());
-        return true;
+        return result;
     }
     @Override
     public Boolean deleteUserByuserName(String userName) {

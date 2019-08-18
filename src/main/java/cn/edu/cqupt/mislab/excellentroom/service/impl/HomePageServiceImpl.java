@@ -16,39 +16,21 @@ public class HomePageServiceImpl implements HomePageService {
     private HomePageDao homePageDao;
 
     @Override
-    public HomePagePo updateHomePageBkground(String homePageBkgroundUrl,String projectId){
-        HomePage homePage = homePageDao.updateHomePageBkground(homePageBkgroundUrl,projectId);
-        if (homePage != null){
-            HomePagePo homePagePo = new HomePagePo();
-            BeanUtils.copyProperties(homePage,homePagePo);
-            return homePagePo;
-        }else {
-            return null;
-        }
+    public Boolean updateHomePageBkground(String homePageBkgroundUrl,String projectId){
+        Boolean result = homePageDao.updateHomePageBkground(homePageBkgroundUrl,projectId);
+        return result;
     }
 
     @Override
-    public HomePagePo updateHomePageLogo(String homePageLogoUrl,String projectId){
-        HomePage homePage = homePageDao.updateHomePageLogo(homePageLogoUrl,projectId);
-        if (homePage != null){
-            HomePagePo homePagePo = new HomePagePo();
-            BeanUtils.copyProperties(homePage,homePagePo);
-            return homePagePo;
-        }else {
-            return null;
-        }
+    public Boolean updateHomePageLogo(String homePageLogoUrl,String projectId){
+        Boolean result = homePageDao.updateHomePageLogo(homePageLogoUrl,projectId);
+        return result;
     }
 
     @Override
-    public HomePagePo updateHomePageIcon(String homePageIconUrl,String projectId){
-        HomePage homePage = homePageDao.updateHomePageIcon(homePageIconUrl,projectId);
-        if (homePage != null){
-            HomePagePo homePagePo = new HomePagePo();
-            BeanUtils.copyProperties(homePage,homePagePo);
-            return homePagePo;
-        }else {
-            return null;
-        }
+    public Boolean updateHomePageIcon(String homePageIconUrl,String projectId){
+        Boolean result = homePageDao.updateHomePageIcon(homePageIconUrl,projectId);
+        return result;
     }
 
 

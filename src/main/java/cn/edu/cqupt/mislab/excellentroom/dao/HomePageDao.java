@@ -9,11 +9,11 @@ import java.io.File;
 public interface HomePageDao {
     /**
      * 修改首页背景图片
-     *@param homePageBkgoundUrl 首页背景图片地址
+     *@param homePageBkgroundUrl 首页背景图片地址
      *@param projectId 项目ID
      *@return HomePage
      */
-    HomePage updateHomePageBkground(@Param("homePageBkgound")String homePageBkgoundUrl,@Param("projectId") String projectId);
+    Boolean updateHomePageBkground(@Param("homePageBkgroundUrl")String homePageBkgroundUrl,@Param("projectId") String projectId);
 
     /**
      * 修改首页Logo
@@ -21,7 +21,7 @@ public interface HomePageDao {
      *@param projectId 项目ID
      *@return HomePage
      */
-    HomePage updateHomePageLogo(@Param("homePageLogo")String homePageLogoUrl,@Param("projectId") String projectId);
+    Boolean updateHomePageLogo(@Param("homePageLogoUrl")String homePageLogoUrl,@Param("projectId") String projectId);
 
     /**
      * 修改首页Icon
@@ -29,5 +29,5 @@ public interface HomePageDao {
      *@param projectId 项目ID
      *@return HomePage
      */
-    HomePage updateHomePageIcon(@Param("homePageIcon")String homePageIconUrl,@Param("projectId") String projectId);
+    Boolean updateHomePageIcon(@Param("homePageIconUrl")String homePageIconUrl,@Param("projectId") String projectId);
 }

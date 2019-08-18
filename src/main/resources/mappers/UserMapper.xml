@@ -19,12 +19,12 @@
         WHERE userName = #{userName} AND password = #{password}
     </select>
 
-    <insert id="add" >
+    <insert id="addUser" >
         INSERT INTO t_login(userName, password)
         VALUES (#{userName},#{password})
     </insert>
 
-    <delete id="delete" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.User">
+    <delete id="deleteUserByuserName" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.User">
         DELETE
         FROM t_login
         WHERE userName = #{userName}
