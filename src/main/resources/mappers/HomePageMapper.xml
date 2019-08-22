@@ -33,19 +33,19 @@
     </update>
 
     <select id="selectHomePageBkgroundById" resultMap="HomePage" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.HomePage">
-        select <include refid="projectId"/>
+        select projectId,homePageBkground
         from t_project_information
         where projectId = #{projectId}
     </select>
 
     <select id="selectHomePageLogoById" resultMap="HomePage" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.HomePage">
-        select <include refid="projectId"/>
+        select projectId,homePageLogo
         from t_project_information
         where projectId = #{projectId}
     </select>
 
     <select id="selectHomePageIconById" resultMap="HomePage" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.HomePage">
-        select <include refid="projectId"/>
+        select projectId,id,homePageIcon
         from t_homePageIcon
         where projectId = #{projectId} and id = #{id}
     </select>
