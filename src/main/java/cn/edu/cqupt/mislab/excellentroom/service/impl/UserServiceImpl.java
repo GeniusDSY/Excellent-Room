@@ -39,7 +39,8 @@ public class UserServiceImpl implements UserService {
             return false;
         }
     }
-    private List<UserPo> allUser(){
-        return null;
+    @Override
+    public List<User> findAll() {
+        return userDao.findAll();
     }
 }

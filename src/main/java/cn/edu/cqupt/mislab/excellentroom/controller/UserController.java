@@ -34,35 +34,37 @@ public class UserController {
                 return ResultUtil.isNull();
             }
             UserPo userPo = userService.login(userDto);
+            return ResultUtil.success(userPo);
         } catch (Exception e) {
+            e.printStackTrace();
             return ResultUtil.error();
         }
-        return ResultUtil.success();
     }
 
 
     @PostMapping("add")
     @ApiOperation("添加管理员")
-    public ResultJson add(@RequestBody UserDto userDto){
-        if (userDto.getUserName()==null || userDto.getPassword()==null || userDto
-            .getVerifyCode()==null) {
-        return ResultUtil.isNull();
-        }
+    public ResultJson addUser(@RequestBody UserDto userDto){
         try {
+            if (userDto.getUserName()==null || userDto.getPassword()==null || userDto
+                .getVerifyCode()==null) {
+            return ResultUtil.isNull();
+        }
            Boolean result = userService.addUser(userDto);
             if (result){
                 return ResultUtil.success();
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return ResultUtil.error();
         }
-        return null;
+        return ResultUtil.error();
     }
 
     @DeleteMapping("delete")
     @ApiOperation("删除管理员")
     @ApiImplicitParam(name = "userName",value = "用户名",dataType = "string",required = true)
-    public ResultJson delete(String userName) {
+    public ResultJson deleteUserByuserName(String userName) {
         try {
             if (userName==null) {
                 return ResultUtil.isNull();
@@ -72,9 +74,10 @@ public class UserController {
                 return ResultUtil.success();
             }
         }catch (Exception e){
+            e.printStackTrace();
             return ResultUtil.error();
         }
-        return null;
+        return ResultUtil.error();
     }
 
 }

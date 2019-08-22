@@ -7,7 +7,6 @@ import cn.edu.cqupt.mislab.excellentroom.domain.entity.ResultJson;
 import cn.edu.cqupt.mislab.excellentroom.service.HomePageService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -44,9 +43,10 @@ public class HomePageController {
                 return ResultUtil.success();
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return ResultUtil.error();
         }
-        return null;
+        return ResultUtil.error();
     }
 
     @PostMapping("updateHomePageLogo")
@@ -63,9 +63,10 @@ public class HomePageController {
                 return ResultUtil.success();
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return ResultUtil.error();
         }
-        return null;
+        return ResultUtil.error();
     }
 
     @PostMapping("updateHomePageIcon")
@@ -82,8 +83,57 @@ public class HomePageController {
                 return ResultUtil.success();
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return ResultUtil.error();
         }
-        return null;
+        return ResultUtil.error();
+    }
+
+    @GetMapping("displayHomePageBkground")
+    @ApiOperation("展示首页背景图片")
+    @ApiImplicitParam(name = "projectId", value = "项目ID", dataType = "string", required = true)
+    public ResultJson selectHomePageBkgroundById(@RequestParam String projectId){
+        try {
+            if (projectId == null){
+                return ResultUtil.isNull();
+            }
+            HomePagePo homePagePo = homePageService.selectHomePageBkgroundById(projectId);
+            return ResultUtil.success(homePagePo.getHomePageBkgroundUrl());
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultUtil.error();
+        }
+    }
+
+    @GetMapping("displayHomePageLogo")
+    @ApiOperation("展示首页Logo")
+    @ApiImplicitParam(name = "projectId", value = "项目ID", dataType = "string", required = true)
+    public ResultJson selectHomePageLogoById(@RequestParam String projectId){
+        try {
+            if (projectId == null){
+                return ResultUtil.isNull();
+            }
+            HomePagePo homePagePo = homePageService.selectHomePageLogoById(projectId);
+            return ResultUtil.success(homePagePo.getHomePageLogoUrl());
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultUtil.error();
+        }
+    }
+
+    @GetMapping("displayHomePageIcon")
+    @ApiOperation("展示首页Icon")
+    @ApiImplicitParam(name = "projectId", value = "项目ID", dataType = "string", required = true)
+    public ResultJson selectHomePageIconById(@RequestParam String projectId, @RequestParam String id){
+        try {
+            if (projectId == null){
+                return ResultUtil.isNull();
+            }
+            HomePagePo homePagePo = homePageService.selectHomePageIconById(projectId,id);
+            return ResultUtil.success(homePagePo.getHomePageIconUrl());
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultUtil.error();
+        }
     }
 }

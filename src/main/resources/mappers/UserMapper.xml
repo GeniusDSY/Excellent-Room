@@ -13,7 +13,7 @@
         userName,password
     </sql>
 
-    <select id="login" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.User">
+    <select id="login" resultMap="User" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.User">
         SELECT <include refid="user"/>
         FROM t_login
         WHERE userName = #{userName} AND password = #{password}
@@ -29,4 +29,9 @@
         FROM t_login
         WHERE userName = #{userName}
     </delete>
+
+    <select id="findAll" resultMap="User" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.User">
+        select *
+        from t_login
+    </select>
 </mapper>

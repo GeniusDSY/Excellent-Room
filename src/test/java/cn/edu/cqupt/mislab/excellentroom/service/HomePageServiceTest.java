@@ -28,20 +28,14 @@ public class HomePageServiceTest {
     @Transactional
     @Test
     public void updateHomePageBkgroundTest() {
-        HomePage homePage = new HomePage();
-        homePage.setHomePageBkgroundUrl("/Users/mac/picture/pic/12345.png");
-        homePage.setProjectId("123");
-        Boolean result = homePageService.updateHomePageBkground(homePage.getHomePageBkgroundUrl(),homePage.getProjectId());
+        Boolean result = homePageService.updateHomePageBkground("/Users/mac/picture/pic/12345.png","123");
         Assert.assertTrue(result);
     }
 
     @Transactional
     @Test
     public void updateHomePageLogoTest() {
-        HomePage homePage = new HomePage();
-        homePage.setHomePageLogoUrl("/Users/mac/picture/pic/12345.png");
-        homePage.setProjectId("123");
-        Boolean result = homePageService.updateHomePageLogo(homePage.getHomePageLogoUrl(),homePage.getProjectId());
+        Boolean result = homePageService.updateHomePageLogo("/Users/mac/picture/pic/12345.png","123");
         Assert.assertTrue(result);
     }
 
@@ -53,5 +47,24 @@ public class HomePageServiceTest {
         homePage.setProjectId("123");
         Boolean result = homePageService.updateHomePageIcon(homePage.getHomePageIconUrl(),homePage.getProjectId());
         Assert.assertTrue(result);
+    }
+
+    @Test
+    public void selectHomePageBkgroundByIdTest() {
+        HomePagePo homePagePo = homePageService.selectHomePageBkgroundById("123");
+        Assert.assertNotNull(homePagePo.getHomePageBkgroundUrl());
+
+    }
+
+    @Test
+    public void selectHomePageLogoByIdTest() {
+        HomePagePo homePagepo = homePageService.selectHomePageLogoById("123");
+        Assert.assertNotNull(homePagepo.getHomePageLogoUrl());
+    }
+
+    @Test
+    public void selectHomePageIconByIdTest() {
+        HomePagePo homePagepo = homePageService.selectHomePageIconById("123","1");
+        Assert.assertNotNull(homePagepo.getHomePageIconUrl());
     }
 }

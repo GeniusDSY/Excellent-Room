@@ -1,9 +1,14 @@
 package cn.edu.cqupt.mislab.excellentroom.util;
 
+import sun.misc.BASE64Encoder;
+
+import javax.imageio.ImageIO;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Random;
 
 public class VerifyUtil {
@@ -71,6 +76,7 @@ public class VerifyUtil {
 
     /**
      * 随机取色
+     * @return
      */
     public static Color getRandomColor() {
         Random ran = new Random();
@@ -79,6 +85,25 @@ public class VerifyUtil {
         return color;
     }
 
+    /**
+     * 将图片转正base64
+     * @param object
+     * @return
+     * @throws IOException
+     */
+    public static String getbase64(Object object) throws IOException {
+        BufferedImage image = (BufferedImage) object;
+        //转base64
+        BASE64Encoder encoder = new BASE64Encoder();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();//io流
+        ImageIO.write(image, "png", baos);//写入流中
+        byte[] bytes = baos.toByteArray();//转换成字节
+        String png_base64 =  encoder.encodeBuffer(bytes).trim();//转换成base64串
+        //删除 \r\n
+        png_base64 = png_base64.replaceAll("\n", "").replaceAll("\r", "");
+        return png_base64;
+
+    }
 }
 
 

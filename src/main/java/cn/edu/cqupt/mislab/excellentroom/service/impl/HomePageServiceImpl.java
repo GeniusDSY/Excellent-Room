@@ -17,21 +17,55 @@ public class HomePageServiceImpl implements HomePageService {
 
     @Override
     public Boolean updateHomePageBkground(String homePageBkgroundUrl,String projectId){
-        Boolean result = homePageDao.updateHomePageBkground(homePageBkgroundUrl,projectId);
+        Boolean result =homePageDao.updateHomePageBkground(homePageBkgroundUrl,projectId);
         return result;
     }
 
     @Override
     public Boolean updateHomePageLogo(String homePageLogoUrl,String projectId){
-        Boolean result = homePageDao.updateHomePageLogo(homePageLogoUrl,projectId);
+        Boolean result =homePageDao.updateHomePageLogo(homePageLogoUrl,projectId);
         return result;
     }
 
     @Override
     public Boolean updateHomePageIcon(String homePageIconUrl,String projectId){
-        Boolean result = homePageDao.updateHomePageIcon(homePageIconUrl,projectId);
+        Boolean result =homePageDao.updateHomePageIcon(homePageIconUrl,projectId);
         return result;
     }
 
+    @Override
+    public HomePagePo selectHomePageBkgroundById(String projectId){
+        HomePage homePage = homePageDao.selectHomePageBkgroundById(projectId);
+        if (homePage != null) {
+            HomePagePo homePagePo = new HomePagePo();
+            BeanUtils.copyProperties(homePage,homePagePo);
+            return homePagePo;
+        }else{
+            return null;
+        }
+    }
 
+    @Override
+    public HomePagePo selectHomePageLogoById(String projectId){
+        HomePage homePage = homePageDao.selectHomePageLogoById(projectId);
+        if (homePage != null) {
+            HomePagePo homePagePo = new HomePagePo();
+            BeanUtils.copyProperties(homePage,homePagePo);
+            return homePagePo;
+        }else{
+            return null;
+        }
+    }
+
+    @Override
+    public HomePagePo selectHomePageIconById(String projectId, String id){
+        HomePage homePage = homePageDao.selectHomePageIconById(projectId,id);
+        if (homePage != null) {
+            HomePagePo homePagePo = new HomePagePo();
+            BeanUtils.copyProperties(homePage,homePagePo);
+            return homePagePo;
+        }else{
+            return null;
+        }
+    }
 }

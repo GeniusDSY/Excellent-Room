@@ -18,21 +18,21 @@ public class UserDaoTest {
 
     @Test
     public void loginTest() {
-        User user = userDao.login("hsy","123456");
+        User user = userDao.login("you","6879");
         Assert.assertNotNull(user);
     }
 
     @Transactional
     @Test
-    public void addTest() {
+    public void addUserTest() {
         Boolean result = userDao.addUser("sl","234567");
         Assert.assertTrue(result);
     }
 
     @Transactional
     @Test
-    public void deleteTest() {
-        Boolean result = userDao.deleteUserByuserName("hsy");
+    public void deleteUserByuserNameTest() {
+        Boolean result = userDao.deleteUserByuserName("you");
         Assert.assertTrue(result);
     }
 

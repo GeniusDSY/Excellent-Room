@@ -42,4 +42,22 @@ public class HomePageDaoTest {
         Boolean result = homePageDao.updateHomePageIcon("/Users/mac/picture/pic/12345.png","123");
         Assert.assertTrue(result);
     }
+
+    @Test
+    public void selectHomePageBkgroundByIdTest() {
+        HomePage homePage = homePageDao.selectHomePageBkgroundById("123");
+        Assert.assertNotNull(homePage.getHomePageBkgroundUrl());
+    }
+
+    @Test
+    public void selectHomePageLogoByIdTest() {
+        HomePage homePage = homePageDao.selectHomePageLogoById("123");
+        Assert.assertNotNull(homePage.getHomePageLogoUrl());
+    }
+
+    @Test
+    public void selectHomePageIconByIdTest() {
+        HomePage homePage = homePageDao.selectHomePageIconById("123","1");
+        Assert.assertNotNull(homePage.getHomePageIconUrl());
+    }
 }

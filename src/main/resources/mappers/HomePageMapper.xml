@@ -4,10 +4,15 @@
 <mapper namespace="cn.edu.cqupt.mislab.excellentroom.dao.HomePageDao">
     <resultMap id="HomePage" type="cn.edu.cqupt.mislab.excellentroom.domain.entity.HomePage">
         <result property="projectId" column="projectId" jdbcType="VARCHAR"/>
+        <result property="id" column="id" jdbcType="VARCHAR"/>
         <result property="homePageBkgroundUrl" column="homePageBkground" jdbcType="VARCHAR"/>
         <result property="homePageLogoUrl" column="homePageLogo" jdbcType="VARCHAR"/>
         <result property="homePageIconUrl" column="homePageIcon" jdbcType="VARCHAR"/>
     </resultMap>
+
+    <sql id="projectId">
+        projectId
+    </sql>
 
     <update id="updateHomePageBkground">
         update t_project_information
@@ -27,5 +32,21 @@
         where projectId = #{projectId}
     </update>
 
+    <select id="selectHomePageBkgroundById" resultMap="HomePage" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.HomePage">
+        select <include refid="projectId"/>
+        from t_project_information
+        where projectId = #{projectId}
+    </select>
 
+    <select id="selectHomePageLogoById" resultMap="HomePage" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.HomePage">
+        select <include refid="projectId"/>
+        from t_project_information
+        where projectId = #{projectId}
+    </select>
+
+    <select id="selectHomePageIconById" resultMap="HomePage" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.HomePage">
+        select <include refid="projectId"/>
+        from t_homePageIcon
+        where projectId = #{projectId} and id = #{id}
+    </select>
 </mapper>
