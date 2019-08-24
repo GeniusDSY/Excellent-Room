@@ -5,6 +5,7 @@ import cn.edu.cqupt.mislab.excellentroom.domain.dto.UserDto;
 import cn.edu.cqupt.mislab.excellentroom.domain.entity.User;
 import cn.edu.cqupt.mislab.excellentroom.domain.po.UserPo;
 import cn.edu.cqupt.mislab.excellentroom.service.UserService;
+import cn.edu.cqupt.mislab.excellentroom.util.VerifyUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -42,5 +43,23 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAll() {
         return userDao.findAll();
+    }
+
+    @Override
+    public UserPo selectUserById(Integer id){
+        User user = userDao.selectUserById(id);
+        if (user != null) {
+            UserPo userPo = new UserPo();
+            BeanUtils.copyProperties(user, userPo);
+            return userPo;
+        }else{
+            return null;
+        }
+    }
+
+    @Override
+    public Object verifyCode(){
+        Object[] objects = VerifyUtil.createImage();
+        return objects[0];
     }
 }

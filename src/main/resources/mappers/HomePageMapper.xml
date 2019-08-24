@@ -10,10 +10,6 @@
         <result property="homePageIconUrl" column="homePageIcon" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <sql id="projectId">
-        projectId
-    </sql>
-
     <update id="updateHomePageBkground">
         update t_project_information
         set homePageBkground = #{homePageBkgroundUrl}

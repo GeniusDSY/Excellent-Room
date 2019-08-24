@@ -37,4 +37,11 @@ public interface UserDao {
      * @return
      */
     List<User> findAll();
+
+    /**
+     * 通过id查询人员
+     * @param id
+     * @return
+     */
+    User selectUserById(@Param("id") Integer id);
 }
