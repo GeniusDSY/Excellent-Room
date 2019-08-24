@@ -82,7 +82,7 @@ public class ProjectIntroduceController {
         return ResultUtil.error();
     }
 
-    @GetMapping("selecProjectIntroduceTextById")
+    @GetMapping("selectProjectIntroduceTextById")
     @ApiOperation("展示项目介绍文字描述")
     @ApiImplicitParam(name = "projectId", value = "项目ID", dataType = "string", required = true)
     public ResultJson selectProjectIntroduceTextById(@RequestParam String projectId) {
@@ -98,8 +98,8 @@ public class ProjectIntroduceController {
         }
     }
 
-    @PostMapping("updateProjectIntroduceText")
-    @ApiOperation("修改项目介绍文字描述")
+    @PostMapping("updateProjectIntroduceTitel")
+    @ApiOperation("修改项目介绍标题")
     @ApiImplicitParam(name = "titel", value = "标题", dataType = "string", required = true)
     public ResultJson updateProjectIntroduceTitel(@RequestParam String titel, @RequestParam String projecId) {
         try {
@@ -117,7 +117,7 @@ public class ProjectIntroduceController {
         return ResultUtil.error();
     }
 
-    @GetMapping("selecProjectIntroduceTextById")
+    @GetMapping("selecProjectIntroduceTitelById")
     @ApiOperation("展示项目介绍标题")
     @ApiImplicitParam(name = "projectId", value = "项目ID", dataType = "string", required = true)
     public ResultJson selectProjectIntroduceTitelById(@RequestParam String projectId) {
