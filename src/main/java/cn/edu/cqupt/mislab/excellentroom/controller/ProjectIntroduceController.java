@@ -1,13 +1,17 @@
 package cn.edu.cqupt.mislab.excellentroom.controller;
 
+import cn.edu.cqupt.mislab.excellentroom.domain.entity.ClientWant;
 import cn.edu.cqupt.mislab.excellentroom.domain.entity.ResultJson;
 import cn.edu.cqupt.mislab.excellentroom.domain.po.ProjectIntroducePo;
+import cn.edu.cqupt.mislab.excellentroom.service.ClientWantService;
 import cn.edu.cqupt.mislab.excellentroom.service.ProjectIntroduceService;
 import cn.edu.cqupt.mislab.excellentroom.util.FileUtil;
 import cn.edu.cqupt.mislab.excellentroom.util.ResultUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @Author HanSiyue
@@ -29,6 +34,10 @@ public class ProjectIntroduceController {
 
     @Autowired
     private ProjectIntroduceService projectIntroduceService;
+
+    @Autowired
+    private ClientWantService clientWantService;
+
     @Value("${filepath}")
     private String filePath;
 
@@ -136,6 +145,47 @@ public class ProjectIntroduceController {
             ProjectIntroducePo projectIntroducePo = projectIntroduceService.selectprojectIntroduceTitelById(projectId);
             return ResultUtil.success(projectIntroducePo.getProjectIntroduceTitel());
         } catch (Exception e) {
+            e.printStackTrace();
+            return ResultUtil.error();
+        }
+    }
+
+    @PostMapping("addClientWant")
+    @ApiOperation("我有意向填写")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "tel", value = "电话", dataType = "string", required = true),
+            @ApiImplicitParam(name = "price", value = "意向价格", dataType = "integer"),
+            @ApiImplicitParam(name = "type", value = "户型", dataType = "integer", required = true)
+    })
+    public ResultJson addClientWant(HttpServletRequest request, String tel, Integer price, Integer type){
+        try {
+            String projectId =(String) request.getSession().getAttribute("projectId");
+            if (projectId == null) {
+                return ResultUtil.isNull();
+            }
+            Boolean result = clientWantService.addClientWant(projectId,tel,price,type);
+            if (result){
+                return ResultUtil.success();
+            }else {
+                return ResultUtil.error();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultUtil.error();
+        }
+    }
+
+    @GetMapping("getClientWant")
+    @ApiOperation("展示所有意向")
+    public ResultJson findAll(HttpServletRequest request){
+        try {
+            String projectId =(String) request.getSession().getAttribute("projectId");
+            if (projectId == null) {
+                return ResultUtil.isNull();
+            }
+            List<ClientWant> clientWants = clientWantService.findAll(projectId);
+            return ResultUtil.success(clientWants);
+        }catch (Exception e){
             e.printStackTrace();
             return ResultUtil.error();
         }

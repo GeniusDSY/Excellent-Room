@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.cqupt.mislab.excellentroom.dao.ClientWantDao">
+    <resultMap id="ClientWant" type="cn.edu.cqupt.mislab.excellentroom.domain.entity.ClientWant">
+        <result property="projectId" column="projectId" jdbcType="VARCHAR"/>
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="tel" column="tel" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="INTEGER"/>
+        <result property="type" column="type" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <insert id="addClientWant">
+        insert into t_client_want(tel,price,type)
+        values (#{tel},#{price},#{type})
+        select projectId
+        from t_client_want
+        where projectId = #{projectId}
+    </insert>
+
+    <select id="findAll" resultMap="ClientWant" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.ClientWant">
+        select projectId,tel,price,type
+        from t_client_want
+        where projectId = #{projectId}
+    </select>
+
+
+</mapper>
