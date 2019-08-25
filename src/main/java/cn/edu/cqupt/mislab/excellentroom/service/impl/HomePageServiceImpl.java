@@ -16,25 +16,25 @@ public class HomePageServiceImpl implements HomePageService {
     private HomePageDao homePageDao;
 
     @Override
-    public Boolean updateHomePageBkground(String homePageBkgroundUrl,String projectId){
+    public Boolean updateHomePageBkground(String homePageBkgroundUrl,Object projectId){
         Boolean result =homePageDao.updateHomePageBkground(homePageBkgroundUrl,projectId);
         return result;
     }
 
     @Override
-    public Boolean updateHomePageLogo(String homePageLogoUrl,String projectId){
+    public Boolean updateHomePageLogo(String homePageLogoUrl,Object projectId){
         Boolean result =homePageDao.updateHomePageLogo(homePageLogoUrl,projectId);
         return result;
     }
 
     @Override
-    public Boolean updateHomePageIcon(String homePageIconUrl,String projectId){
+    public Boolean updateHomePageIcon(String homePageIconUrl,Object projectId){
         Boolean result =homePageDao.updateHomePageIcon(homePageIconUrl,projectId);
         return result;
     }
 
     @Override
-    public HomePagePo selectHomePageBkgroundById(String projectId){
+    public HomePagePo selectHomePageBkgroundById(Object projectId){
         HomePage homePage = homePageDao.selectHomePageBkgroundById(projectId);
         if (homePage != null) {
             HomePagePo homePagePo = new HomePagePo();
@@ -46,7 +46,7 @@ public class HomePageServiceImpl implements HomePageService {
     }
 
     @Override
-    public HomePagePo selectHomePageLogoById(String projectId){
+    public HomePagePo selectHomePageLogoById(Object projectId){
         HomePage homePage = homePageDao.selectHomePageLogoById(projectId);
         if (homePage != null) {
             HomePagePo homePagePo = new HomePagePo();
@@ -58,7 +58,7 @@ public class HomePageServiceImpl implements HomePageService {
     }
 
     @Override
-    public HomePagePo selectHomePageIconById(String projectId, String id){
+    public HomePagePo selectHomePageIconById(Object projectId, String id){
         HomePage homePage = homePageDao.selectHomePageIconById(projectId,id);
         if (homePage != null) {
             HomePagePo homePagePo = new HomePagePo();

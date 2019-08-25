@@ -12,6 +12,12 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: hansiyue1!
+  redis:
+    password:
+    host: 127.0.0.1
+    port: 6379
+  session:
+    store-type: redis
 mybatis:
   mapper-locations: classpath*:mappers/*.xml
   configuration:
@@ -19,3 +25,6 @@ mybatis:
     call-setters-on-nulls: true
 
 filepath: "/Users/mac/picture/pic"
+
+
+

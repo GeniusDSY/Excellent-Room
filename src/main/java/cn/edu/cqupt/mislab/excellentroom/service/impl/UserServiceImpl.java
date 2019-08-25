@@ -10,6 +10,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Service
@@ -55,11 +56,5 @@ public class UserServiceImpl implements UserService {
         }else{
             return null;
         }
-    }
-
-    @Override
-    public Object verifyCode(){
-        Object[] objects = VerifyUtil.createImage();
-        return objects[0];
     }
 }

@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class ProjectIntroduce {
     private String projectIntroduceBkgroundUrl;
-    private String projectId;
+    private Object projectId;
     private String projectIntroduceText;
     private String projectIntroduceTitel;
 }

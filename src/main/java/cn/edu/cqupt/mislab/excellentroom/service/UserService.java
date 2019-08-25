@@ -47,9 +47,4 @@ public interface UserService {
      */
     UserPo selectUserById(Integer id);
 
-    /**
-     * 生成验证码
-     * @return
-     */
-    Object verifyCode();
 }

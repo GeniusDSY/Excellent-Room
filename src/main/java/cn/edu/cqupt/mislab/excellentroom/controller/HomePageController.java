@@ -10,8 +10,12 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 
 /**
@@ -19,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @Date 2019/8/14 下午11:37
  */
 
+@EnableRedisHttpSession
 @RestController
 @RequestMapping("homePageManagement")
 @Api("首页管理接口文档")
@@ -28,16 +33,18 @@ public class HomePageController {
     @Value("${filepath}")
     private String filePath;
 
-    @PostMapping("updateHomePageBkground")
+    @PostMapping("updateBkground")
     @ApiOperation("修改首页背景图片")
     @ApiImplicitParam(name = "imageFile", value = "背景图片", paramType = "form", dataType = "file", required = true)
-    public ResultJson updateHomePageBkground(@RequestParam MultipartFile imageFile, @RequestParam String projecId){
+    public ResultJson updateHomePageBkground(HttpServletRequest request, @RequestParam MultipartFile imageFile){
         try {
             if (imageFile.isEmpty()){
                 return ResultUtil.isNull();
             }
+            Object projectId = request.getSession().getAttribute("projectId");
             FileUtil.upload(imageFile,filePath);
-            Boolean result = homePageService.updateHomePageBkground(FileUtil.fileUrl(imageFile,filePath),projecId);
+            Boolean result = homePageService.updateHomePageBkground(FileUtil.fileUrl(imageFile,filePath),projectId);
+
             if (result){
                 return ResultUtil.success();
             }
@@ -48,16 +55,17 @@ public class HomePageController {
         return ResultUtil.error();
     }
 
-    @PostMapping("updateHomePageLogo")
+    @PostMapping("updateLogo")
     @ApiOperation("修改首页Logo")
     @ApiImplicitParam(name = "imageFile",value = "首页Logo图片",paramType = "form",dataType = "file",required = true)
-    public ResultJson updateHomePageLogo(@RequestParam MultipartFile imageFile, @RequestParam String projecId){
+    public ResultJson updateHomePageLogo(HttpServletRequest request,@RequestParam MultipartFile imageFile){
         try {
             if (imageFile.isEmpty()){
                 return ResultUtil.isNull();
             }
+            Object projectId = request.getSession().getAttribute("projectId");
             FileUtil.upload(imageFile,filePath);
-            Boolean result = homePageService.updateHomePageLogo(FileUtil.fileUrl(imageFile,filePath), projecId);
+            Boolean result = homePageService.updateHomePageLogo(FileUtil.fileUrl(imageFile,filePath), projectId);
             if (result){
                 return ResultUtil.success();
             }
@@ -68,14 +76,15 @@ public class HomePageController {
         return ResultUtil.error();
     }
 
-    @PostMapping("updateHomePageIcon")
+    @PostMapping("updateIcon")
     @ApiOperation("修改首页Icon")
     @ApiImplicitParam(name = "imageFile",value = "首页Icon图片",dataType = "form",required = true)
-    public ResultJson updateHomePageIcon(@RequestParam MultipartFile imageFile, @RequestParam String projectId){
+    public ResultJson updateHomePageIcon(HttpServletRequest request,@RequestParam MultipartFile imageFile){
         try {
             if (imageFile.isEmpty()){
                 return ResultUtil.isNull();
             }
+            Object projectId = request.getSession().getAttribute("projectId");
             FileUtil.upload(imageFile,filePath);
             Boolean result = homePageService.updateHomePageIcon(FileUtil.fileUrl(imageFile,filePath),projectId);
             if (result){
@@ -88,11 +97,12 @@ public class HomePageController {
         return ResultUtil.error();
     }
 
-    @GetMapping("displayHomePageBkground")
+    @GetMapping("getBkground")
     @ApiOperation("展示首页背景图片")
     @ApiImplicitParam(name = "projectId", value = "项目ID", dataType = "string", required = true)
-    public ResultJson selectHomePageBkgroundById(@RequestParam String projectId){
+    public ResultJson selectHomePageBkgroundById(HttpServletRequest request){
         try {
+            Object projectId = request.getSession().getAttribute("projectId");
             if (projectId == null){
                 return ResultUtil.isNull();
             }
@@ -104,11 +114,12 @@ public class HomePageController {
         }
     }
 
-    @GetMapping("displayHomePageLogo")
+    @GetMapping("getLogo")
     @ApiOperation("展示首页Logo")
     @ApiImplicitParam(name = "projectId", value = "项目ID", dataType = "string", required = true)
-    public ResultJson selectHomePageLogoById(@RequestParam String projectId){
+    public ResultJson selectHomePageLogoById(HttpServletRequest request){
         try {
+            Object projectId = request.getSession().getAttribute("projectId");
             if (projectId == null){
                 return ResultUtil.isNull();
             }
@@ -120,11 +131,12 @@ public class HomePageController {
         }
     }
 
-    @GetMapping("displayHomePageIcon")
+    @GetMapping("getIcon")
     @ApiOperation("展示首页Icon")
     @ApiImplicitParam(name = "projectId", value = "项目ID", dataType = "string", required = true)
-    public ResultJson selectHomePageIconById(@RequestParam String projectId, @RequestParam String id){
+    public ResultJson selectHomePageIconById(HttpServletRequest request,@RequestParam String id){
         try {
+            Object projectId = request.getSession().getAttribute("projectId");
             if (projectId == null){
                 return ResultUtil.isNull();
             }

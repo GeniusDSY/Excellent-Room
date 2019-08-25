@@ -10,13 +10,18 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 
 /**
  * @author HanSiyue
  */
 
+@EnableRedisHttpSession
 @RestController
 @RequestMapping("userSystem")
 @Api("登陆文档接口")
@@ -27,22 +32,27 @@ public class UserController {
 
     @PostMapping("login")
     @ApiOperation("用户登陆")
-    public ResultJson login(@RequestBody UserDto userDto) {
+    public ResultJson login(HttpServletRequest request, @RequestBody UserDto userDto) {
         try {
             if (userDto.getUserName() == null || userDto.getPassword() == null || userDto
                     .getVerifyCode() == null) {
                 return ResultUtil.isNull();
             }
-            UserPo userPo = userService.login(userDto);
-            return ResultUtil.success(userPo);
+            Object verifyCode = request.getSession().getAttribute("verifyCode");
+            if (verifyCode.equals(userDto.getVerifyCode())){
+                UserPo userPo = userService.login(userDto);
+                request.getSession().setAttribute("userId",userPo.getId());
+                return ResultUtil.success(userPo);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return ResultUtil.error();
         }
+        return ResultUtil.error();
     }
 
 
-    @PostMapping("add")
+    @PostMapping("addUser")
     @ApiOperation("添加管理员")
     public ResultJson addUser(@RequestBody UserDto userDto){
         try {
@@ -61,7 +71,7 @@ public class UserController {
         return ResultUtil.error();
     }
 
-    @DeleteMapping("delete")
+    @DeleteMapping("deleteUser")
     @ApiOperation("删除管理员")
     @ApiImplicitParam(name = "userName",value = "用户名",dataType = "string",required = true)
     public ResultJson deleteUserByuserName(String userName) {

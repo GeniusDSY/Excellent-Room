@@ -15,7 +15,7 @@ public interface HomePageDao {
      *@param projectId 项目ID
      *@return true
      */
-    Boolean updateHomePageBkground(@Param("homePageBkgroundUrl")String homePageBkgroundUrl,@Param("projectId") String projectId);
+    Boolean updateHomePageBkground(@Param("homePageBkgroundUrl")String homePageBkgroundUrl,@Param("projectId") Object projectId);
 
     /**
      * 修改首页Logo
@@ -23,7 +23,7 @@ public interface HomePageDao {
      *@param projectId 项目ID
      *@return true
      */
-    Boolean updateHomePageLogo(@Param("homePageLogoUrl")String homePageLogoUrl,@Param("projectId") String projectId);
+    Boolean updateHomePageLogo(@Param("homePageLogoUrl")String homePageLogoUrl,@Param("projectId") Object projectId);
 
     /**
      * 修改首页Icon
@@ -31,21 +31,21 @@ public interface HomePageDao {
      *@param projectId 项目ID
      *@return true
      */
-    Boolean updateHomePageIcon(@Param("homePageIconUrl")String homePageIconUrl,@Param("projectId") String projectId);
+    Boolean updateHomePageIcon(@Param("homePageIconUrl")String homePageIconUrl,@Param("projectId") Object projectId);
 
     /**
      * 展示首页背景图片
      *@param projectId 项目ID
      *@return true
      */
-    HomePage selectHomePageBkgroundById(@Param("projectId") String projectId);
+    HomePage selectHomePageBkgroundById(@Param("projectId") Object projectId);
 
     /**
      * 展示首页Logo
      *@param projectId 项目ID
      *@return true
      */
-    HomePage selectHomePageLogoById(@Param("projectId") String projectId);
+    HomePage selectHomePageLogoById(@Param("projectId") Object projectId);
 
     /**
      * 展示首页Icon
@@ -53,5 +53,5 @@ public interface HomePageDao {
      *@param id 图片ID
      *@return true
      */
-    HomePage selectHomePageIconById(@Param("projectId") String projectId, @Param("id") String id);
+    HomePage selectHomePageIconById(@Param("projectId") Object projectId, @Param("id") String id);
 }
