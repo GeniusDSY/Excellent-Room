@@ -20,13 +20,13 @@ public class ProjectIntroduceServiceImpl implements ProjectIntroduceService {
     private ProjectIntroduceDao projectIntroduceDao;
 
     @Override
-    public Boolean updateProjectIntroduceBkgroundUrl(String projectIntroduceBkgroundUrl,Object projectId){
+    public Boolean updateProjectIntroduceBkgroundUrl(String projectIntroduceBkgroundUrl,String projectId){
         Boolean result = projectIntroduceDao.updateProjectIntroduceBkgroundUrl(projectIntroduceBkgroundUrl,projectId);
         return result;
     }
 
     @Override
-    public ProjectIntroducePo selectProjectIntroduceBkgroundById(Object projectId){
+    public ProjectIntroducePo selectProjectIntroduceBkgroundById(String projectId){
         ProjectIntroduce projectIntroduce = projectIntroduceDao.selectProjectIntroduceBkgroundById(projectId);
         if (projectIntroduce!=null){
             ProjectIntroducePo projectIntroducePo = new ProjectIntroducePo();
@@ -38,25 +38,25 @@ public class ProjectIntroduceServiceImpl implements ProjectIntroduceService {
     }
 
     @Override
-    public Boolean addProjectIntroduceBkgroundUrl(String projectIntroduceBkgroundUrl, Object projectId){
+    public Boolean addProjectIntroduceBkgroundUrl(String projectIntroduceBkgroundUrl, String projectId){
         Boolean result = projectIntroduceDao.addProjectIntroduceBkgroundUrl(projectIntroduceBkgroundUrl, projectId);
         return result;
     }
 
     @Override
-    public Boolean deleteProjectIntroduceBkgroundUrl(Object projectId){
+    public Boolean deleteProjectIntroduceBkgroundUrl(String projectId){
         Boolean result = projectIntroduceDao.deleteProjectIntroduceBkgroundUrl(projectId);
         return result;
     }
 
     @Override
-    public Boolean updateProjectIntroduceText(String projectIntroduceText,Object projectId){
+    public Boolean updateProjectIntroduceText(String projectIntroduceText,String projectId){
         Boolean result = projectIntroduceDao.updateProjectIntroduceText(projectIntroduceText, projectId);
         return result;
     }
 
     @Override
-    public ProjectIntroducePo selectProjectIntroduceTextById(Object projectId){
+    public ProjectIntroducePo selectProjectIntroduceTextById(String projectId){
         ProjectIntroduce projectIntroduce = projectIntroduceDao.selectprojectIntroduceTextById(projectId);
         if (projectIntroduce!=null){
             ProjectIntroducePo projectIntroducePo = new ProjectIntroducePo();
@@ -68,13 +68,13 @@ public class ProjectIntroduceServiceImpl implements ProjectIntroduceService {
     }
 
     @Override
-    public Boolean updateProjectIntroduceTitel(String projectIntroduceTitel, Object projectId){
+    public Boolean updateProjectIntroduceTitel(String projectIntroduceTitel, String projectId){
         Boolean result = projectIntroduceDao.updateProjectIntroduceTitel(projectIntroduceTitel, projectId);
         return result;
     }
 
     @Override
-    public ProjectIntroducePo selectprojectIntroduceTitelById(Object projectId){
+    public ProjectIntroducePo selectprojectIntroduceTitelById(String projectId){
         ProjectIntroduce projectIntroduce = projectIntroduceDao.selectprojectIntroduceTitelById(projectId);
         if (projectIntroduce!=null){
             ProjectIntroducePo projectIntroducePo = new ProjectIntroducePo();

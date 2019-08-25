@@ -40,7 +40,7 @@ public class ProjectIntroduceController {
             if (imageFile.isEmpty()) {
                 return ResultUtil.isNull();
             }
-            Object projectId = request.getSession().getAttribute("projectId");
+            String projectId =(String) request.getSession().getAttribute("projectId");
             FileUtil.upload(imageFile, filePath);
             Boolean result = projectIntroduceService.updateProjectIntroduceBkgroundUrl(FileUtil.fileUrl(imageFile, filePath), projectId);
             if (result) {
@@ -55,10 +55,9 @@ public class ProjectIntroduceController {
 
     @GetMapping("getBkground")
     @ApiOperation("展示项目介绍背景图片")
-    @ApiImplicitParam(name = "projectId", value = "项目ID", dataType = "string", required = true)
     public ResultJson selectProjectIntroduceBkgroundById(HttpServletRequest request) {
         try {
-            Object projectId = request.getSession().getAttribute("projectId");
+            String projectId =(String) request.getSession().getAttribute("projectId");
             if (projectId == null) {
                 return ResultUtil.isNull();
             }
@@ -75,7 +74,7 @@ public class ProjectIntroduceController {
     @ApiImplicitParam(name = "text", value = "文字描述", dataType = "string", required = true)
     public ResultJson updateProjectIntroduceText(@RequestParam String text,HttpServletRequest request) {
         try {
-            Object projectId = request.getSession().getAttribute("projectId");
+            String projectId =(String) request.getSession().getAttribute("projectId");
             if (text==null|| projectId==null) {
                 return ResultUtil.isNull();
             }
@@ -92,10 +91,9 @@ public class ProjectIntroduceController {
 
     @GetMapping("getText")
     @ApiOperation("展示项目介绍文字描述")
-    @ApiImplicitParam(name = "projectId", value = "项目ID", dataType = "string", required = true)
     public ResultJson selectProjectIntroduceTextById(HttpServletRequest request) {
         try {
-            Object projectId = request.getSession().getAttribute("projectId");
+            String projectId =(String) request.getSession().getAttribute("projectId");
             if (projectId == null) {
                 return ResultUtil.isNull();
             }
@@ -112,7 +110,7 @@ public class ProjectIntroduceController {
     @ApiImplicitParam(name = "titel", value = "标题", dataType = "string", required = true)
     public ResultJson updateProjectIntroduceTitel(@RequestParam String titel,HttpServletRequest request) {
         try {
-            Object projectId = request.getSession().getAttribute("projectId");
+            String projectId =(String) request.getSession().getAttribute("projectId");
             if (titel==null||projectId==null) {
                 return ResultUtil.isNull();
             }
@@ -129,10 +127,9 @@ public class ProjectIntroduceController {
 
     @GetMapping("getTitel")
     @ApiOperation("展示项目介绍标题")
-    @ApiImplicitParam(name = "projectId", value = "项目ID", dataType = "string", required = true)
     public ResultJson selectProjectIntroduceTitelById(HttpServletRequest request) {
         try {
-            Object projectId = request.getSession().getAttribute("projectId");
+            String projectId =(String) request.getSession().getAttribute("projectId");
             if (projectId == null) {
                 return ResultUtil.isNull();
             }

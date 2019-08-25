@@ -1,6 +1,7 @@
 package cn.edu.cqupt.mislab.excellentroom.service.impl;
 
 import cn.edu.cqupt.mislab.excellentroom.dao.ProjectDao;
+import cn.edu.cqupt.mislab.excellentroom.domain.entity.Project;
 import cn.edu.cqupt.mislab.excellentroom.service.ProjectService;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,12 @@ public class ProjectServiceImpl implements ProjectService {
     private ProjectDao projectDao;
 
     @Override
-    public Boolean selectProjectById(String projectId){
-        Boolean result = projectDao.selectProjectById(projectId);
-        return result;
+    public Project selectProjectById(String projectId){
+        Project project = projectDao.selectProjectById(projectId);
+        if (project!=null){
+            return project;
+        }else {
+            return null;
+        }
     }
 }

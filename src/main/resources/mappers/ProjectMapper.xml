@@ -9,6 +9,7 @@
     <select id="selectProjectById" resultMap="Project" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.Project">
         select projectId
         from t_project_information
+        where projectId = #{projectId}
     </select>
 
 

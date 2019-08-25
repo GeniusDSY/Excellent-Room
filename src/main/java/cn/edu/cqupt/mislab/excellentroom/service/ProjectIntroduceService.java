@@ -14,14 +14,14 @@ public interface ProjectIntroduceService {
      *@param projectId 项目ID
      *@return
      */
-    Boolean updateProjectIntroduceBkgroundUrl(@Param("projectIntroduceBkgroundUrl") String projectIntrduceBkgroundUrl, @Param("projectId") Object projectId);
+    Boolean updateProjectIntroduceBkgroundUrl(@Param("projectIntroduceBkgroundUrl") String projectIntrduceBkgroundUrl, @Param("projectId") String projectId);
 
     /**
      * 展示项目介绍背景图片
      *@param projectId 项目ID
      *@return HomePagePo
      */
-    ProjectIntroducePo selectProjectIntroduceBkgroundById(@Param("projectId") Object projectId);
+    ProjectIntroducePo selectProjectIntroduceBkgroundById(@Param("projectId") String projectId);
 
     /**
      * 增加项目介绍背景图片
@@ -29,14 +29,14 @@ public interface ProjectIntroduceService {
      * @param projectId 项目ID
      * @return true
      */
-    Boolean addProjectIntroduceBkgroundUrl(@Param("projectIntroduceBkgroundUrl") String projectIntroduceBkgroundUrl, @Param("projectId") Object projectId);
+    Boolean addProjectIntroduceBkgroundUrl(@Param("projectIntroduceBkgroundUrl") String projectIntroduceBkgroundUrl, @Param("projectId") String projectId);
 
     /**
      * 删除项目介绍背景图片
      * @param projectId 项目ID
      * @return true
      */
-    Boolean deleteProjectIntroduceBkgroundUrl(@Param("projectId") Object projectId);
+    Boolean deleteProjectIntroduceBkgroundUrl(@Param("projectId") String projectId);
 
     /**
      * 修改项目介绍描述
@@ -44,14 +44,14 @@ public interface ProjectIntroduceService {
      * @param projectId 项目ID
      * @return true
      */
-    Boolean updateProjectIntroduceText(@Param("projectIntroduceText") String projectIntroduceText, @Param("projectId") Object projectId);
+    Boolean updateProjectIntroduceText(@Param("projectIntroduceText") String projectIntroduceText, @Param("projectId") String projectId);
 
     /**
      * 展示项目介绍文字描述
      * @param projectId 项目ID
      * @return ...
      */
-    ProjectIntroducePo selectProjectIntroduceTextById(@Param("projectId") Object projectId);
+    ProjectIntroducePo selectProjectIntroduceTextById(@Param("projectId") String projectId);
 
     /**
      * 修改项目介绍标题
@@ -59,12 +59,12 @@ public interface ProjectIntroduceService {
      * @param projectId 项目ID
      * @return true
      */
-    Boolean updateProjectIntroduceTitel(@Param("projectIntroduceTitel") String projectIntroduceTitel, @Param("projectId") Object projectId);
+    Boolean updateProjectIntroduceTitel(@Param("projectIntroduceTitel") String projectIntroduceTitel, @Param("projectId") String projectId);
 
     /**
      * 展示项目介绍标题
      * @param projectId 项目ID
      * @return ...
      */
-    ProjectIntroducePo selectprojectIntroduceTitelById(@Param("projectId") Object projectId);
+    ProjectIntroducePo selectprojectIntroduceTitelById(@Param("projectId") String projectId);
 }

@@ -1,5 +1,6 @@
 package cn.edu.cqupt.mislab.excellentroom.controller;
 
+import cn.edu.cqupt.mislab.excellentroom.domain.entity.Project;
 import cn.edu.cqupt.mislab.excellentroom.domain.entity.ResultJson;
 import cn.edu.cqupt.mislab.excellentroom.service.ProjectService;
 import cn.edu.cqupt.mislab.excellentroom.util.ResultUtil;
@@ -32,12 +33,13 @@ public class ProjectController {
     @PostMapping("updateProject")
     @ApiOperation("切换项目")
     @ApiImplicitParam(name = "projectId", value = "项目ID", dataType = "string", required = true)
-    public ResultJson updateProject(HttpServletRequest request,  @RequestParam String projecId){
+    public ResultJson updateProject(HttpServletRequest request,String projectId){
         try {
-            if (projectService.selectProjectById(projecId)) {
-                request.getSession().setAttribute("projectId",projecId);
-                return ResultUtil.success(projecId);
-            }else {
+            if (projectId!=null){
+                Project project = projectService.selectProjectById(projectId);
+                request.getSession().setAttribute("projectId",projectId);
+                return ResultUtil.success(project.getProjectId());
+            }else{
                 return ResultUtil.isNull();
             }
         }catch (Exception e){

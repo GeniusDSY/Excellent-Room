@@ -38,7 +38,7 @@ public class UserController {
                     .getVerifyCode() == null) {
                 return ResultUtil.isNull();
             }
-            Object verifyCode = request.getSession().getAttribute("verifyCode");
+            String verifyCode = (String)request.getSession().getAttribute("verifyCode");
             if (verifyCode.equals(userDto.getVerifyCode())){
                 UserPo userPo = userService.login(userDto);
                 request.getSession().setAttribute("userId",userPo.getId());

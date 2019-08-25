@@ -1,5 +1,6 @@
 package cn.edu.cqupt.mislab.excellentroom.service;
 
+import cn.edu.cqupt.mislab.excellentroom.domain.entity.Project;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +17,5 @@ public interface ProjectService {
      * @param projectId 项目ID
      * @return true
      */
-    Boolean selectProjectById(@Param("projectId") String projectId);
+    Project selectProjectById(@Param("projectId") String projectId);
 }

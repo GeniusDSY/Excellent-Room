@@ -41,7 +41,7 @@ public class HomePageController {
             if (imageFile.isEmpty()){
                 return ResultUtil.isNull();
             }
-            Object projectId = request.getSession().getAttribute("projectId");
+            String projectId =(String) request.getSession().getAttribute("projectId");
             FileUtil.upload(imageFile,filePath);
             Boolean result = homePageService.updateHomePageBkground(FileUtil.fileUrl(imageFile,filePath),projectId);
 
@@ -63,7 +63,7 @@ public class HomePageController {
             if (imageFile.isEmpty()){
                 return ResultUtil.isNull();
             }
-            Object projectId = request.getSession().getAttribute("projectId");
+            String projectId =(String) request.getSession().getAttribute("projectId");
             FileUtil.upload(imageFile,filePath);
             Boolean result = homePageService.updateHomePageLogo(FileUtil.fileUrl(imageFile,filePath), projectId);
             if (result){
@@ -84,7 +84,7 @@ public class HomePageController {
             if (imageFile.isEmpty()){
                 return ResultUtil.isNull();
             }
-            Object projectId = request.getSession().getAttribute("projectId");
+            String projectId =(String) request.getSession().getAttribute("projectId");
             FileUtil.upload(imageFile,filePath);
             Boolean result = homePageService.updateHomePageIcon(FileUtil.fileUrl(imageFile,filePath),projectId);
             if (result){
@@ -99,10 +99,9 @@ public class HomePageController {
 
     @GetMapping("getBkground")
     @ApiOperation("展示首页背景图片")
-    @ApiImplicitParam(name = "projectId", value = "项目ID", dataType = "string", required = true)
     public ResultJson selectHomePageBkgroundById(HttpServletRequest request){
         try {
-            Object projectId = request.getSession().getAttribute("projectId");
+            String projectId =(String) request.getSession().getAttribute("projectId");
             if (projectId == null){
                 return ResultUtil.isNull();
             }
@@ -116,10 +115,9 @@ public class HomePageController {
 
     @GetMapping("getLogo")
     @ApiOperation("展示首页Logo")
-    @ApiImplicitParam(name = "projectId", value = "项目ID", dataType = "string", required = true)
     public ResultJson selectHomePageLogoById(HttpServletRequest request){
         try {
-            Object projectId = request.getSession().getAttribute("projectId");
+            String projectId =(String) request.getSession().getAttribute("projectId");
             if (projectId == null){
                 return ResultUtil.isNull();
             }
@@ -133,10 +131,9 @@ public class HomePageController {
 
     @GetMapping("getIcon")
     @ApiOperation("展示首页Icon")
-    @ApiImplicitParam(name = "projectId", value = "项目ID", dataType = "string", required = true)
     public ResultJson selectHomePageIconById(HttpServletRequest request,@RequestParam String id){
         try {
-            Object projectId = request.getSession().getAttribute("projectId");
+            String projectId =(String) request.getSession().getAttribute("projectId");
             if (projectId == null){
                 return ResultUtil.isNull();
             }
