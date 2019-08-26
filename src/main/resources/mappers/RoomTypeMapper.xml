@@ -19,7 +19,7 @@
     <delete id="deleteRoomTypeById" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.RoomType">
         delete
         from t_room_type
-        where projectId = #{projectId} and  type = #{type}
+        where projectId = #{projectId} and  id = #{id}
     </delete>
 
     <insert id="addSimplePic">

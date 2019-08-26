@@ -43,7 +43,7 @@ public interface RoomTypeDao {
      * @param id id
      * @return true
      */
-    Boolean deleteSimplePicById(@Param("prpjectId") String projectId, @Param("id") Integer id);
+    Boolean deleteSimplePicById(@Param("projectId") String projectId, @Param("id") Integer id);
 
     /**
      * 修改户型图片
