@@ -32,7 +32,7 @@ public class BrandController {
      * @return
      */
     @ApiOperation(value = "企业简介",notes = "查询对应项目的企业相关信息的接口")
-    @RequestMapping(value = "/companyProfiles",method = RequestMethod.GET)
+    @RequestMapping(value = "/companyProfiles",method = RequestMethod.POST)
     public Result searchCompanyProfiles(@RequestBody ProjectId projectId){
         Result result = null;
         result = ResultUtil.success(brandService.searchCompanyInformation(projectId));

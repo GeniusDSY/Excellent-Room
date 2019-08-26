@@ -1,5 +1,6 @@
 package cn.edu.cqupt.mislab.excellentroom.dao;
 
+import cn.edu.cqupt.mislab.excellentroom.domain.dto.ProjectId;
 import cn.edu.cqupt.mislab.excellentroom.domain.entity.Project;
 import org.junit.Assert;
 import org.junit.Test;
@@ -21,8 +22,15 @@ public class ProjectDaoTest {
     @Transactional
     @Test
     public void addProject(){
-        String file = "C:\\Users\\ASUS-PC\\Desktop\\乱\\5.jpg";
-        Boolean project = projectDao.addProject("123","123","123","123","123","123",file);
-        Assert.assertTrue(project);
+        Boolean flag = projectDao.addProject("123","123","123","123","123","123");
+        Assert.assertTrue(flag);
+    }
+
+    @Transactional
+    @Test
+    public void deleteProject(){
+        ProjectId projectId = new ProjectId("123");
+        Boolean flag = projectDao.deleteProject(projectId);
+        Assert.assertTrue(flag);
     }
 }

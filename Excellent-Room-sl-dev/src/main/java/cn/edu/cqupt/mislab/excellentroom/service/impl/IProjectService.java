@@ -1,9 +1,11 @@
 package cn.edu.cqupt.mislab.excellentroom.service.impl;
 
+import cn.edu.cqupt.mislab.excellentroom.domain.dto.ProjectId;
 import cn.edu.cqupt.mislab.excellentroom.domain.entity.Project;
 import cn.edu.cqupt.mislab.excellentroom.domain.po.Result;
 import cn.edu.cqupt.mislab.excellentroom.exception.MyException;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -20,10 +22,10 @@ public interface IProjectService {
 
     /**
      * 删除项目
-     * @param projectId
+     * @param id
      * @return
      */
-    Boolean deleteProject(String projectId);
+    Boolean deleteProject(ProjectId id);
 
     /**
      * 单项查询

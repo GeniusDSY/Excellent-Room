@@ -1,6 +1,7 @@
 package cn.edu.cqupt.mislab.excellentroom.controller;
 
 import cn.edu.cqupt.mislab.excellentroom.constant.ResultEnum;
+import cn.edu.cqupt.mislab.excellentroom.domain.dto.ProjectId;
 import cn.edu.cqupt.mislab.excellentroom.domain.entity.Project;
 import cn.edu.cqupt.mislab.excellentroom.domain.po.Result;
 import cn.edu.cqupt.mislab.excellentroom.exception.MyException;
@@ -99,24 +100,25 @@ public class ProjectController {
     @ApiOperation(value = "新增项目",notes = "录入新增项目的有效信息")
     @RequestMapping(value = "/addProject",method = RequestMethod.POST)
     public Result addProject(@RequestBody Project project){
+        Result result = null;
         try {
-            iProjectService.newProject(project);
+            result = iProjectService.newProject(project);
         }catch (RuntimeException e){
             e.printStackTrace();
             return ResultUtil.error(ResultEnum.PPRJECT_EXISTED);
         }
-        return ResultUtil.success();
+        return result;
     }
 
     /**
      * 删除项目
-     * @param projectId
+     * @param id
      * @return
      */
     @ApiOperation(value = "删除项目",notes = "删除一个项目")
     @RequestMapping(value = "/deleteProject",method = RequestMethod.DELETE)
-    public Result deletProject(@RequestBody String projectId){
-        Boolean flag = iProjectService.deleteProject(projectId);
+    public Result deletProject(@RequestBody ProjectId id){
+        Boolean flag = iProjectService.deleteProject(id);
         if (!flag){
             return ResultUtil.error(ResultEnum.DELETE_ERROR);
         }

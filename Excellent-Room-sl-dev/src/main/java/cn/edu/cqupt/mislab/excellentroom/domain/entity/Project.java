@@ -1,5 +1,6 @@
 package cn.edu.cqupt.mislab.excellentroom.domain.entity;
 
+import org.apache.tomcat.jni.File;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.Entity;
@@ -22,28 +23,16 @@ public class Project {
     private String name;
     private String tel;
     private String QRcodeName;
-    private String QRcode;
 
     public Project(){}
 
-    public Project(String projectId){
-        this.projectId = projectId;
-        this.province = "";
-        this.district = "";
-        this.name = "";
-        this.QRcode = "";
-        this.tel = "";
-        this.QRcodeName = "";
-    }
-
-    public Project(String projectId,String province, String district, String name, String tel, String QRcodeName, String QRcode) {
+    public Project(String projectId,String province, String district, String name, String tel, String QRcodeName) {
         this.projectId = projectId;
         this.province = province;
         this.district = district;
         this.name = name;
         this.tel = tel;
         this.QRcodeName = QRcodeName;
-        this.QRcode = QRcode;
     }
 
     public String getProjectId() {
@@ -94,14 +83,6 @@ public class Project {
         this.QRcodeName = QRcodeName;
     }
 
-    public String getQRcode() {
-        return QRcode;
-    }
-
-    public void setQRcode(String QRcode) {
-        this.QRcode = QRcode;
-    }
-
     @Override
     public String toString() {
         return "Project{" +
@@ -111,7 +92,6 @@ public class Project {
                 ", name='" + name + '\'' +
                 ", tel='" + tel + '\'' +
                 ", QRcodeName='" + QRcodeName + '\'' +
-                ", QRcode=" + QRcode +
                 '}';
     }
 }

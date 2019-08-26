@@ -1,5 +1,6 @@
 package cn.edu.cqupt.mislab.excellentroom.dao;
 
+import cn.edu.cqupt.mislab.excellentroom.domain.dto.ProjectId;
 import cn.edu.cqupt.mislab.excellentroom.domain.entity.Project;
 import cn.edu.cqupt.mislab.excellentroom.domain.po.Result;
 import org.apache.ibatis.annotations.Mapper;
@@ -27,24 +28,23 @@ public interface ProjectDao {
      * @param name
      * @param tel
      * @param QRcodename
-     * @param QRcode
      * @return
      */
-    Boolean addProject(@Param("projectId")String projectId, @Param("province")String province, @Param("district")String district, @Param("name")String name, @Param("tel")String tel, @Param("QRcodename")String QRcodename, @Param("QRcode") String QRcode);
+    Boolean addProject(@Param("projectId")String projectId, @Param("province")String province, @Param("district")String district, @Param("name")String name, @Param("tel")String tel, @Param("QRcodename")String QRcodename);
 
     /**
      * 删除项目
      * @param projectId
      * @return
      */
-    Boolean deleteProject(@Param("projectId")String projectId);
+    Boolean deleteProject(@Param("projectId") ProjectId projectId);
 
     /**
      * 传入省份或者项目代号进行查询
      * @param provinceOrName
      * @return
      */
-    List<Project> searchProjectByOne(@Param("provinceOrProjectId")String provinceOrName);
+    List<Project> searchProjectByOne(@Param("provinceOrName")String provinceOrName);
 
     /**
      * 输入省份及城市进行查询
@@ -62,9 +62,8 @@ public interface ProjectDao {
      * @param name
      * @param tel
      * @param QRcodename
-     * @param QRcode
      * @return
      */
-    int updateProject(@Param("projectId")String projectId, @Param("province")String province, @Param("district")String district, @Param("name")String name, @Param("tel")String tel, @Param("QRcodename")String QRcodename, @Param("QRcode") String QRcode);
+    int updateProject(@Param("projectId")String projectId, @Param("province")String province, @Param("district")String district, @Param("name")String name, @Param("tel")String tel, @Param("QRcodename")String QRcodename);
 
 }

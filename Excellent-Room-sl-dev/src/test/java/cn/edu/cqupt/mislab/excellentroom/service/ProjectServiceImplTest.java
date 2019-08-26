@@ -24,7 +24,7 @@ public class ProjectServiceImplTest {
     @Transactional
     @Test
     public void newProjectTest(){
-        Project project = new Project("111","111","111","111","111","111","111");
+        Project project = new Project("111","111","111","111","111","111");
         projectService.newProject(project);
     }
 }
