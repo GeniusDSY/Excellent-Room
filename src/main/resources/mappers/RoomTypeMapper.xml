@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.cqupt.mislab.excellentroom.dao.RoomTypeDao">
+    <resultMap id="RoomType" type="cn.edu.cqupt.mislab.excellentroom.domain.entity.RoomType">
+        <result property="projectId" column="projectId" jdbcType="VARCHAR"/>
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="type" column="type" jdbcType="INTEGER"/>
+        <result property="layoutUrl" column="layout" jdbcType="VARCHAR"/>
+        <result property="panoramaUrl" column="panorama" jdbcType="VARCHAR"/>
+        <result property="simplePicUrl" column="simplePic" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="addRoomType">
+        insert into t_room_type(projectId,type)
+        values (#{projectId},#{type})
+    </insert>
+
+    <delete id="deleteRoomTypeById" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.RoomType">
+        delete
+        from t_room_type
+        where projectId = #{projectId} and  type = #{type}
+    </delete>
+
+    <insert id="addSimplePic">
+        insert into t_room_simple(projectId, type, simplePic)
+        values (#{projectId},#{type},#{simplePicUrl})
+    </insert>
+
+    <delete id="deleteSimplePicById" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.RoomType">
+        delete
+        from t_room_simple
+        where projectId = #{projectId} and id = #{id}
+    </delete>
+
+    <update id="updateLayout" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.RoomType">
+        update t_room_type
+        set layout = #{layoutUrl}
+        where projectId = #{projectId} and id = #{id}
+    </update>
+
+    <update id="pdatePanorama" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.RoomType">
+        update t_room_type
+        set panorama = #{panoramaUrl}
+        where projectId = #{projectId} and id = #{id}
+    </update>
+
+    <select id="selectRoomTypeById" resultMap="RoomType" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.RoomType">
+        select *
+        from t_room_type
+        where projectId = #{projectId} and type =#{type}
+    </select>
+
+    <select id="selectSimplePicById" resultMap="RoomType" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.RoomType">
+        select projectId,id,simplePic
+        from t_room_simple
+        where projectId = #{projectId} and id =#{id}
+    </select>
+
+</mapper>

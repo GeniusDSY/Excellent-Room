@@ -10,16 +10,19 @@
         <result property="type" column="type" jdbcType="INTEGER"/>
     </resultMap>
 
-    <insert id="addClientWant">
-        insert into t_client_want(tel,price,type)
-        values (#{tel},#{price},#{type})
+    <select id="selectClientWantByProjectId" resultMap="ClientWant" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.ClientWant">
         select projectId
         from t_client_want
         where projectId = #{projectId}
+    </select>
+
+    <insert id="addClientWant">
+        insert into t_client_want(projectId,tel,price,type)
+        values (#{projectId},#{tel},#{price},#{type})
     </insert>
 
     <select id="findAll" resultMap="ClientWant" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.ClientWant">
-        select projectId,tel,price,type
+        select projectId,id,tel,price,type
         from t_client_want
         where projectId = #{projectId}
     </select>

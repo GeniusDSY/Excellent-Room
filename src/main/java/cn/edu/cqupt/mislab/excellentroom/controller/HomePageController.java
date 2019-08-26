@@ -38,10 +38,10 @@ public class HomePageController {
     @ApiImplicitParam(name = "imageFile", value = "背景图片", paramType = "form", dataType = "file", required = true)
     public ResultJson updateHomePageBkground(HttpServletRequest request, @RequestParam MultipartFile imageFile){
         try {
-            if (imageFile.isEmpty()){
+            String projectId =(String) request.getSession().getAttribute("projectId");
+            if (imageFile.isEmpty()||projectId==null){
                 return ResultUtil.isNull();
             }
-            String projectId =(String) request.getSession().getAttribute("projectId");
             FileUtil.upload(imageFile,filePath);
             Boolean result = homePageService.updateHomePageBkground(FileUtil.fileUrl(imageFile,filePath),projectId);
 
@@ -60,10 +60,10 @@ public class HomePageController {
     @ApiImplicitParam(name = "imageFile",value = "首页Logo图片",paramType = "form",dataType = "file",required = true)
     public ResultJson updateHomePageLogo(HttpServletRequest request,@RequestParam MultipartFile imageFile){
         try {
-            if (imageFile.isEmpty()){
+            String projectId =(String) request.getSession().getAttribute("projectId");
+            if (imageFile.isEmpty()||projectId==null){
                 return ResultUtil.isNull();
             }
-            String projectId =(String) request.getSession().getAttribute("projectId");
             FileUtil.upload(imageFile,filePath);
             Boolean result = homePageService.updateHomePageLogo(FileUtil.fileUrl(imageFile,filePath), projectId);
             if (result){
@@ -81,10 +81,10 @@ public class HomePageController {
     @ApiImplicitParam(name = "imageFile",value = "首页Icon图片",dataType = "form",required = true)
     public ResultJson updateHomePageIcon(HttpServletRequest request,@RequestParam MultipartFile imageFile){
         try {
-            if (imageFile.isEmpty()){
+            String projectId =(String) request.getSession().getAttribute("projectId");
+            if (imageFile.isEmpty()||projectId==null){
                 return ResultUtil.isNull();
             }
-            String projectId =(String) request.getSession().getAttribute("projectId");
             FileUtil.upload(imageFile,filePath);
             Boolean result = homePageService.updateHomePageIcon(FileUtil.fileUrl(imageFile,filePath),projectId);
             if (result){

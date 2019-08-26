@@ -15,6 +15,13 @@ import java.util.List;
 public interface ClientWantDao {
 
     /**
+     * 通过项目ID查询意向
+     * @param projectId
+     * @return
+     */
+    ClientWant selectClientWantByProjectId(@Param("projectId") String projectId);
+
+    /**
      * 我有意向填写
      * @param projectId 项目ID
      * @param tel 客户电话

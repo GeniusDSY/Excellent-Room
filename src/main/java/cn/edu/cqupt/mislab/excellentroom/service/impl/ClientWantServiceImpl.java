@@ -3,6 +3,7 @@ package cn.edu.cqupt.mislab.excellentroom.service.impl;
 import cn.edu.cqupt.mislab.excellentroom.dao.ClientWantDao;
 import cn.edu.cqupt.mislab.excellentroom.domain.entity.ClientWant;
 import cn.edu.cqupt.mislab.excellentroom.service.ClientWantService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,6 +18,17 @@ import java.util.List;
 public class ClientWantServiceImpl implements ClientWantService {
     @Resource
     private ClientWantDao clientWantDao;
+
+    @Override
+    public ClientWant selectClientWantByProjectId(String projectId){
+        ClientWant clientWant = clientWantDao.selectClientWantByProjectId(projectId);
+        if (clientWant!=null){
+            return clientWant;
+        }else {
+            return null;
+        }
+    }
+
 
     @Override
     public Boolean addClientWant(String projectId, String tel, Integer price, Integer type){

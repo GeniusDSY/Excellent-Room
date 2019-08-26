@@ -46,10 +46,10 @@ public class ProjectIntroduceController {
     @ApiImplicitParam(name = "imageFile", value = "背景图片", paramType = "form", dataType = "file", required = true)
     public ResultJson updateProjectIntroduceBkground(HttpServletRequest request, @RequestParam MultipartFile imageFile) {
         try {
-            if (imageFile.isEmpty()) {
+            String projectId =(String) request.getSession().getAttribute("projectId");
+            if (imageFile.isEmpty()||projectId==null) {
                 return ResultUtil.isNull();
             }
-            String projectId =(String) request.getSession().getAttribute("projectId");
             FileUtil.upload(imageFile, filePath);
             Boolean result = projectIntroduceService.updateProjectIntroduceBkgroundUrl(FileUtil.fileUrl(imageFile, filePath), projectId);
             if (result) {
@@ -155,7 +155,7 @@ public class ProjectIntroduceController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "tel", value = "电话", dataType = "string", required = true),
             @ApiImplicitParam(name = "price", value = "意向价格", dataType = "integer"),
-            @ApiImplicitParam(name = "type", value = "户型", dataType = "integer", required = true)
+            @ApiImplicitParam(name = "type", value = "户型", dataType = "integer")
     })
     public ResultJson addClientWant(HttpServletRequest request, String tel, Integer price, Integer type){
         try {
