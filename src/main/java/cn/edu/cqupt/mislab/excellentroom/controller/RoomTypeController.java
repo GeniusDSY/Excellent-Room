@@ -95,7 +95,7 @@ public class RoomTypeController {
 
     @PostMapping("addSimplePic")
     @ApiOperation("增加样板间图片")
-    public ResultJson addSimplePic(HttpServletRequest request, @RequestParam MultipartFile imageFile){
+    public ResultJson addSimplePic(HttpServletRequest request, @RequestParam(value = "file") MultipartFile imageFile){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             Integer type = (Integer) request.getSession().getAttribute("RoomType");
@@ -139,7 +139,7 @@ public class RoomTypeController {
 
     @PostMapping("updateLayout")
     @ApiOperation("修改户型图片")
-    public ResultJson updateLayout(HttpServletRequest request, @RequestParam MultipartFile imageFile){
+    public ResultJson updateLayout(HttpServletRequest request,@RequestParam(value = "file") MultipartFile imageFile){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             Integer type = (Integer) request.getSession().getAttribute("RoomType");
@@ -158,7 +158,7 @@ public class RoomTypeController {
 
     @PostMapping("updatePanorama")
     @ApiOperation("修改全景图图片")
-    public ResultJson updatePanorama(HttpServletRequest request, @RequestParam MultipartFile vrFile){
+    public ResultJson updatePanorama(HttpServletRequest request, @RequestParam(value = "file") MultipartFile vrFile){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             Integer type = (Integer) request.getSession().getAttribute("RoomType");

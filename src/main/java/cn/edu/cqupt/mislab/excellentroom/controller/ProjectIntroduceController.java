@@ -43,8 +43,7 @@ public class ProjectIntroduceController {
 
     @PostMapping("updateBkground")
     @ApiOperation("修改项目介绍背景图片")
-    @ApiImplicitParam(name = "imageFile", value = "背景图片", paramType = "form", dataType = "file", required = true)
-    public ResultJson updateProjectIntroduceBkground(HttpServletRequest request, MultipartFile imageFile) {
+    public ResultJson updateProjectIntroduceBkground(HttpServletRequest request, @RequestParam(value = "file") MultipartFile imageFile) {
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (imageFile.isEmpty()||projectId==null) {
@@ -53,7 +52,7 @@ public class ProjectIntroduceController {
             FileUtil.upload(imageFile, filePath);
             Boolean result = projectIntroduceService.updateProjectIntroduceBkgroundUrl(FileUtil.fileUrl(imageFile, filePath), projectId);
             if (result) {
-                return ResultUtil.success();
+                return ResultUtil.success(FileUtil.fileUrl(imageFile,filePath));
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -35,8 +35,7 @@ public class HomePageController {
 
     @PostMapping("updateBkground")
     @ApiOperation("修改首页背景图片")
-    @ApiImplicitParam(name = "imageFile", value = "背景图片", paramType = "form", dataType = "file", required = true)
-    public ResultJson updateHomePageBkground(HttpServletRequest request, @RequestParam MultipartFile imageFile){
+    public ResultJson updateHomePageBkground(HttpServletRequest request,@RequestParam(value = "file") MultipartFile imageFile){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (imageFile.isEmpty()||projectId==null){
@@ -46,7 +45,7 @@ public class HomePageController {
             Boolean result = homePageService.updateHomePageBkground(FileUtil.fileUrl(imageFile,filePath),projectId);
 
             if (result){
-                return ResultUtil.success();
+                return ResultUtil.success(FileUtil.fileUrl(imageFile,filePath));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,8 +56,7 @@ public class HomePageController {
 
     @PostMapping("updateLogo")
     @ApiOperation("修改首页Logo")
-    @ApiImplicitParam(name = "imageFile",value = "首页Logo图片",paramType = "form",dataType = "file",required = true)
-    public ResultJson updateHomePageLogo(HttpServletRequest request,@RequestParam MultipartFile imageFile){
+    public ResultJson updateHomePageLogo(HttpServletRequest request,@RequestParam(value = "file") MultipartFile imageFile){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (imageFile.isEmpty()||projectId==null){
@@ -67,7 +65,7 @@ public class HomePageController {
             FileUtil.upload(imageFile,filePath);
             Boolean result = homePageService.updateHomePageLogo(FileUtil.fileUrl(imageFile,filePath), projectId);
             if (result){
-                return ResultUtil.success();
+                return ResultUtil.success(FileUtil.fileUrl(imageFile,filePath));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,8 +76,7 @@ public class HomePageController {
 
     @PostMapping("updateIcon")
     @ApiOperation("修改首页Icon")
-    @ApiImplicitParam(name = "imageFile",value = "首页Icon图片",dataType = "form",required = true)
-    public ResultJson updateHomePageIcon(HttpServletRequest request,@RequestParam MultipartFile imageFile){
+    public ResultJson updateHomePageIcon(HttpServletRequest request,@RequestParam(value = "file")MultipartFile imageFile){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (imageFile.isEmpty()||projectId==null){
@@ -88,7 +85,7 @@ public class HomePageController {
             FileUtil.upload(imageFile,filePath);
             Boolean result = homePageService.updateHomePageIcon(FileUtil.fileUrl(imageFile,filePath),projectId);
             if (result){
-                return ResultUtil.success();
+                return ResultUtil.success(FileUtil.fileUrl(imageFile,filePath));
             }
         } catch (Exception e) {
             e.printStackTrace();

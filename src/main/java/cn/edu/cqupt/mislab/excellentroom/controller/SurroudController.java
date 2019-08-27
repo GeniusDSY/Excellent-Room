@@ -35,7 +35,7 @@ public class SurroudController {
 
     @PostMapping("addLandscape")
     @ApiOperation("增加园林景观图片")
-    public ResultJson addLandscape(HttpServletRequest request, @RequestParam MultipartFile imageFile, @RequestParam String text) {
+    public ResultJson addLandscape(HttpServletRequest request,@RequestParam(value = "file") MultipartFile imageFile, @RequestParam String text) {
         try {
             String projectId = (String) request.getSession().getAttribute("projectId");
             if (projectId == null || imageFile.isEmpty() || text == null) {
@@ -44,7 +44,7 @@ public class SurroudController {
                 FileUtil.upload(imageFile, filePath);
                 Boolean result = surroundService.addLandscape(projectId, FileUtil.fileUrl(imageFile, filePath), text);
                 if (result) {
-                    return ResultUtil.success();
+                    return ResultUtil.success(FileUtil.fileUrl(imageFile,filePath));
                 } else {
                     return ResultUtil.error();
                 }
@@ -78,7 +78,7 @@ public class SurroudController {
 
     @PostMapping("addPublicUtility")
     @ApiOperation("增加园林景观图片")
-    public ResultJson addPublicUtility(HttpServletRequest request, @RequestParam MultipartFile imageFile, @RequestParam String text) {
+    public ResultJson addPublicUtility(HttpServletRequest request, @RequestParam(value = "file") MultipartFile imageFile, @RequestParam String text) {
         try {
             String projectId = (String) request.getSession().getAttribute("projectId");
             if (projectId == null || imageFile.isEmpty() || text == null) {
@@ -87,7 +87,7 @@ public class SurroudController {
                 FileUtil.upload(imageFile, filePath);
                 Boolean result = surroundService.addPublicUtility(projectId, FileUtil.fileUrl(imageFile, filePath), text);
                 if (result) {
-                    return ResultUtil.success();
+                    return ResultUtil.success(FileUtil.fileUrl(imageFile,filePath));
                 } else {
                     return ResultUtil.error();
                 }
