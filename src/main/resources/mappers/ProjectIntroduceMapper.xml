@@ -6,6 +6,7 @@
         <result property="projectId" column="projectId" jdbcType="VARCHAR"/>
         <result property="projectIntroduceBkgroundUrl" column="projectIntroduceBkground" jdbcType="VARCHAR"/>
         <result property="projectIntroduceText" column="projectIntroduceText" jdbcType="VARCHAR"/>
+        <result property="projectIntroduceTitle" column="projectIntroduceTitle" jdbcType="VARCHAR"/>
     </resultMap>
 
     <update id="updateProjectIntroduceBkgroundUrl">
@@ -27,19 +28,19 @@
     </update>
 
     <select id="selectProjectIntroduceTextById" resultMap="ProjectIntroduce" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.ProjectIntroduce">
-        select projectId,projectIntroduceText
+        select projectIntroduceText,projectId
         from t_project_information
         where projectId = #{projectId}
     </select>
 
-    <update id="updateProjectIntroduceTitel">
+    <update id="updateProjectIntroduceTitle">
         update t_project_information
-        set projectIntroduceTitle = #{projectIntroduceTitel}
+        set projectIntroduceTitle = #{projectIntroduceTitle}
         where projectId = #{projectId}
     </update>
 
-    <select id="selectProjectIntroduceTitelById" resultMap="ProjectIntroduce" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.ProjectIntroduce">
-        select projectId,projectIntroduceTitle
+    <select id="selectProjectIntroduceTitleById" resultMap="ProjectIntroduce" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.ProjectIntroduce">
+        select projectIntroduceTitle,projectId
         from t_project_information
         where projectId = #{projectId}
     </select>

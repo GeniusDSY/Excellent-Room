@@ -44,7 +44,7 @@ public class ProjectIntroduceController {
     @PostMapping("updateBkground")
     @ApiOperation("修改项目介绍背景图片")
     @ApiImplicitParam(name = "imageFile", value = "背景图片", paramType = "form", dataType = "file", required = true)
-    public ResultJson updateProjectIntroduceBkground(HttpServletRequest request, @RequestParam MultipartFile imageFile) {
+    public ResultJson updateProjectIntroduceBkground(HttpServletRequest request, MultipartFile imageFile) {
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (imageFile.isEmpty()||projectId==null) {
@@ -123,7 +123,7 @@ public class ProjectIntroduceController {
             if (titel==null||projectId==null) {
                 return ResultUtil.isNull();
             }
-            Boolean result = projectIntroduceService.updateProjectIntroduceTitel(titel, projectId);
+            Boolean result = projectIntroduceService.updateProjectIntroduceTitle(titel, projectId);
             if (result) {
                 return ResultUtil.success();
             }
@@ -142,8 +142,8 @@ public class ProjectIntroduceController {
             if (projectId == null) {
                 return ResultUtil.isNull();
             }
-            ProjectIntroducePo projectIntroducePo = projectIntroduceService.selectprojectIntroduceTitelById(projectId);
-            return ResultUtil.success(projectIntroducePo.getProjectIntroduceTitel());
+            ProjectIntroducePo projectIntroducePo = projectIntroduceService.selectProjectIntroduceTitleById(projectId);
+            return ResultUtil.success(projectIntroducePo.getProjectIntroduceTitle());
         } catch (Exception e) {
             e.printStackTrace();
             return ResultUtil.error();
@@ -160,7 +160,7 @@ public class ProjectIntroduceController {
     public ResultJson addClientWant(HttpServletRequest request, String tel, Integer price, Integer type){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
-            if (projectId == null) {
+            if (projectId == null||tel==null) {
                 return ResultUtil.isNull();
             }
             Boolean result = clientWantService.addClientWant(projectId,tel,price,type);

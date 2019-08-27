@@ -19,5 +19,5 @@ public class ProjectIntroducePo {
     @ApiModelProperty(name = "projectIntroduceText", value = "项目介绍文字描述", dataType = "string")
     private String projectIntroduceText;
     @ApiModelProperty(name = "projectIntroduceTitel", value = "项目介绍标题", dataType = "string")
-    private String projectIntroduceTitel;
+    private String projectIntroduceTitle;
 }

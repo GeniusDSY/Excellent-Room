@@ -57,7 +57,7 @@ public class ProjectIntroduceServiceImpl implements ProjectIntroduceService {
 
     @Override
     public ProjectIntroducePo selectProjectIntroduceTextById(String projectId){
-        ProjectIntroduce projectIntroduce = projectIntroduceDao.selectprojectIntroduceTextById(projectId);
+        ProjectIntroduce projectIntroduce = projectIntroduceDao.selectProjectIntroduceTextById(projectId);
         if (projectIntroduce!=null){
             ProjectIntroducePo projectIntroducePo = new ProjectIntroducePo();
             BeanUtils.copyProperties(projectIntroduce,projectIntroducePo);
@@ -68,14 +68,14 @@ public class ProjectIntroduceServiceImpl implements ProjectIntroduceService {
     }
 
     @Override
-    public Boolean updateProjectIntroduceTitel(String projectIntroduceTitel, String projectId){
-        Boolean result = projectIntroduceDao.updateProjectIntroduceTitel(projectIntroduceTitel, projectId);
+    public Boolean updateProjectIntroduceTitle(String projectIntroduceTitle, String projectId){
+        Boolean result = projectIntroduceDao.updateProjectIntroduceTitle(projectIntroduceTitle, projectId);
         return result;
     }
 
     @Override
-    public ProjectIntroducePo selectprojectIntroduceTitelById(String projectId){
-        ProjectIntroduce projectIntroduce = projectIntroduceDao.selectprojectIntroduceTitelById(projectId);
+    public ProjectIntroducePo selectProjectIntroduceTitleById(String projectId){
+        ProjectIntroduce projectIntroduce = projectIntroduceDao.selectProjectIntroduceTitleById(projectId);
         if (projectIntroduce!=null){
             ProjectIntroducePo projectIntroducePo = new ProjectIntroducePo();
             BeanUtils.copyProperties(projectIntroduce,projectIntroducePo);

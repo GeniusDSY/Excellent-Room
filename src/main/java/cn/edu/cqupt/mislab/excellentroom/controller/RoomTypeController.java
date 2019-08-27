@@ -75,7 +75,7 @@ public class RoomTypeController {
         }
     }
 
-    @GetMapping("updateRoomType")
+    @PostMapping("updateRoomType")
     @ApiOperation("切换户型")
     public ResultJson updateRoomType(HttpServletRequest request, @RequestParam Integer type){
         try {

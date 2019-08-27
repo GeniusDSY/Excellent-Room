@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.cqupt.mislab.excellentroom.dao.SurroundDao">
+    <resultMap id="Landscape" type="cn.edu.cqupt.mislab.excellentroom.domain.entity.Landscape">
+        <result property="projectId" column="projectId" jdbcType="VARCHAR"/>
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="landscapeUrl" column="beautifulPic" jdbcType="VARCHAR"/>
+        <result property="text" column="text" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="PublicUtility" type="cn.edu.cqupt.mislab.excellentroom.domain.entity.PublicUtility">
+        <result property="projectId" column="projectId" jdbcType="VARCHAR"/>
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="publicUtilityUrl" column="publicPic" jdbcType="VARCHAR"/>
+        <result property="text" column="text" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="addLandscape">
+        insert into t_building_surroundbeautifulpic(projectId, beautifulPic, text)
+        values (#{projectId}, #{landscapeUrl}, #{text})
+    </insert>
+
+    <delete id="deleteLandscapeById" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.Landscape">
+        delete
+        from t_building_surroundbeautifulpic
+        where projectId = #{projectId} and id = #{id}
+    </delete>
+
+    <select id="findAllLandscape" resultMap="Landscape" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.Landscape">
+        select *
+        from t_building_surroundbeautifulpic
+        where projectId = #{projectId}
+    </select>
+
+    <select id="selectLandscapeById" resultMap="Landscape" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.Landscape">
+        select projectId,id
+        from t_building_surroundbeautifulpic
+        where projectId = #{projectId} and id = #{id}
+    </select>
+
+    <insert id="addPublicUtility">
+        insert into t_building_publicpic(projectId, publicPic, text)
+        values (#{projectId}, #{publicUtilityUrl}, #{text})
+    </insert>
+
+    <delete id="deletePublicUtilityById" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.PublicUtility">
+        delete
+        from t_building_publicpic
+        where projectId = #{projectId} and id = #{id}
+    </delete>
+
+    <select id="findAllPublicUtility" resultMap="PublicUtility" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.PublicUtility">
+        select *
+        from t_building_publicpic
+        where projectId = #{projectId}
+    </select>
+
+    <select id="selectPublicUtilityById" resultMap="PublicUtility" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.PublicUtility">
+        select projectId,id
+        from t_building_publicpic
+        where projectId = #{projectId} and id = #{id}
+    </select>
+
+
+</mapper>

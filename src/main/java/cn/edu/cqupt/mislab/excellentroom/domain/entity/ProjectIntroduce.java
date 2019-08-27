@@ -12,5 +12,5 @@ public class ProjectIntroduce {
     private String projectIntroduceBkgroundUrl;
     private String projectId;
     private String projectIntroduceText;
-    private String projectIntroduceTitel;
+    private String projectIntroduceTitle;
 }

@@ -54,20 +54,20 @@ public interface ProjectIntroduceDao {
      * @param projectId 项目ID
      * @return ...
      */
-    ProjectIntroduce selectprojectIntroduceTextById(@Param("projectId") String projectId);
+    ProjectIntroduce selectProjectIntroduceTextById(@Param("projectId") String projectId);
 
     /**
      * 修改项目介绍标题
-     * @param projectIntroduceTitel 项目介绍标题
+     * @param projectIntroduceTitle 项目介绍标题
      * @param projectId 项目ID
      * @return true
      */
-    Boolean updateProjectIntroduceTitel(@Param("projectIntroduceTitel") String projectIntroduceTitel, @Param("projectId") String projectId);
+    Boolean updateProjectIntroduceTitle(@Param("projectIntroduceTitle") String projectIntroduceTitle, @Param("projectId") String projectId);
 
     /**
      * 展示项目介绍标题
      * @param projectId 项目ID
      * @return ...
      */
-    ProjectIntroduce selectprojectIntroduceTitelById(@Param("projectId") String projectId);
+    ProjectIntroduce selectProjectIntroduceTitleById(@Param("projectId") String projectId);
 }
