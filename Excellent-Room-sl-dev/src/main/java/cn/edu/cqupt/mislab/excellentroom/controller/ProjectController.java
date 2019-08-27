@@ -11,11 +11,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.hibernate.sql.Update;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -87,7 +86,7 @@ public class ProjectController {
      */
     @ApiOperation(value = "更改项目",notes = "更改项目信息")
     @RequestMapping(value = "/updateProject",method = RequestMethod.POST)
-    public Result updateProject(@RequestBody Project project){
+    public Result updateProject(@RequestBody Project project) throws MyException {
         Result result = iProjectService.updateProject(project);
         return result;
     }
@@ -123,5 +122,12 @@ public class ProjectController {
             return ResultUtil.error(ResultEnum.DELETE_ERROR);
         }
         return ResultUtil.success();
+    }
+
+    @ApiOperation(value = "上传二维码图片",notes = "上传指定项目的二维码图片")
+    @RequestMapping(value = "/QRcodeUpload",method = RequestMethod.POST)
+    public Result QRcodeUpload(@RequestParam(value="file",required=false) MultipartFile file, HttpServletRequest request){
+        String url = iProjectService.QRcodeUpload(file,request);
+        return ResultUtil.success(url);
     }
 }

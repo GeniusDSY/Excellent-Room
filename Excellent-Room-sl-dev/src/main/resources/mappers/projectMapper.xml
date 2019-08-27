@@ -6,15 +6,12 @@
         projectId,province,district,name,tel,QRcodename
     </sql>
 
-    <!--<sql id="addProject">
-
-     </sql>-->
-    <insert id="addProject" >
+    <insert id="addProject" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.Project">
             INSERT INTO t_project_information(projectId,province,district,name,tel,QRcodename)
             VALUE (#{projectId},#{province},#{district},#{name},#{tel},#{QRcodename});
     </insert>
 
-    <delete id="deleteProject">
+    <delete id="deleteProject" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.dto.ProjectId" >
         DELETE FROM t_project_information
         WHERE projectId = #{projectId}
     </delete>
@@ -28,7 +25,8 @@
     </select>
 
     <select id="searchProjectByTwo" parameterType="string" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.Project">
-        SELECT project
+        SELECT
+        <include refid="project"/>
         FROM t_project_information
         WHERE province = #{province} AND district = #{district}
         ORDER BY id
@@ -40,5 +38,10 @@
         WHERE projectId = #{projectId}
     </update>
 
+    <update id="QRcodeUpload" parameterType="string">
+        UPDATE t_project_information
+        SET QRcode = #{QRcode}
+        WHERE projectId = #{projectId}
+    </update>
 
 </mapper>

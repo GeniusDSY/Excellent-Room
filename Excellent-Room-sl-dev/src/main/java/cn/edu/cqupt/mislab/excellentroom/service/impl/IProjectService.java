@@ -4,6 +4,7 @@ import cn.edu.cqupt.mislab.excellentroom.domain.dto.ProjectId;
 import cn.edu.cqupt.mislab.excellentroom.domain.entity.Project;
 import cn.edu.cqupt.mislab.excellentroom.domain.po.Result;
 import cn.edu.cqupt.mislab.excellentroom.exception.MyException;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -50,6 +51,13 @@ public interface IProjectService {
      * @param project
      * @return
      */
-    Result updateProject(Project project);
+    Result updateProject(Project project) throws MyException;
+
+    /**
+     * 二维码图片上传
+     * @param file
+     * @return
+     */
+    String QRcodeUpload(MultipartFile file,HttpServletRequest request);
 
 }

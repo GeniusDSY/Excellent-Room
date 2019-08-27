@@ -1,13 +1,11 @@
 package cn.edu.cqupt.mislab.excellentroom.dao;
 
-import cn.edu.cqupt.mislab.excellentroom.domain.dto.ProjectId;
 import cn.edu.cqupt.mislab.excellentroom.domain.entity.Project;
-import cn.edu.cqupt.mislab.excellentroom.domain.po.Result;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.util.List;
 
 /**
@@ -37,7 +35,7 @@ public interface ProjectDao {
      * @param projectId
      * @return
      */
-    Boolean deleteProject(@Param("projectId") ProjectId projectId);
+    Boolean deleteProject(@Param("projectId") String projectId);
 
     /**
      * 传入省份或者项目代号进行查询
@@ -66,4 +64,5 @@ public interface ProjectDao {
      */
     int updateProject(@Param("projectId")String projectId, @Param("province")String province, @Param("district")String district, @Param("name")String name, @Param("tel")String tel, @Param("QRcodename")String QRcodename);
 
+    boolean QRcodeUpload(@Param("projectId")String projectId,@Param("QRcode")String Qrcode);
 }
