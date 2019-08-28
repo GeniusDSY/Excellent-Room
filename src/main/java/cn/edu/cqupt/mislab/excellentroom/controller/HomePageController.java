@@ -43,7 +43,6 @@ public class HomePageController {
             }
             FileUtil.upload(imageFile,filePath);
             Boolean result = homePageService.updateHomePageBkground(FileUtil.fileUrl(imageFile,filePath),projectId);
-
             if (result){
                 return ResultUtil.success(FileUtil.fileUrl(imageFile,filePath));
             }

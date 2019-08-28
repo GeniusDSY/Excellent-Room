@@ -56,7 +56,7 @@ public class SurroudController {
     }
 
     @DeleteMapping("deleteLandscape")
-    @ApiOperation("删除样板间图片")
+    @ApiOperation("删除园林景观图片")
     public ResultJson deleteLandscapeById(HttpServletRequest request,@RequestParam Integer id){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
@@ -77,7 +77,7 @@ public class SurroudController {
     }
 
     @PostMapping("addPublicUtility")
-    @ApiOperation("增加园林景观图片")
+    @ApiOperation("增加公共设施图片")
     public ResultJson addPublicUtility(HttpServletRequest request, @RequestParam(value = "file") MultipartFile imageFile, @RequestParam String text) {
         try {
             String projectId = (String) request.getSession().getAttribute("projectId");
@@ -99,7 +99,7 @@ public class SurroudController {
     }
 
     @DeleteMapping("deletePublicUtility")
-    @ApiOperation("删除样板间图片")
+    @ApiOperation("删除公共设施图片")
     public ResultJson deletePublicUtilityById(HttpServletRequest request,@RequestParam Integer id){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
