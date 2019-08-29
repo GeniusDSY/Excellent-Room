@@ -30,7 +30,8 @@ public class UploadUtil {
                 throw new  MyException(404,"查无此文件");
             }
             //文件储存位置
-            String realPath = request.getSession().getServletContext().getRealPath("/")+projectId;
+            String realPath = request.getSession().getServletContext().getRealPath("/")+projectId+"\\pic";
+            url = realPath+"\\"+fileName;
             //文件目录不存在，就创建一个
             File dir = new File(realPath);
             if (!dir.isDirectory()) {
@@ -42,7 +43,42 @@ public class UploadUtil {
             File targetFile = new File(file1,fileName);
             //将上传的文件写到服务器上指定的文件。
             file.transferTo(targetFile);
-            return realPath;
+            return url;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new MyException(405,"系统异常，操作失败");
+        }
+    }
+
+    public static String video(MultipartFile file, HttpServletRequest request) throws MyException {
+        //项目代号
+        String projectId = GetUtil.getProjectId(request);
+        //文件名+后缀
+        String fileName = file.getOriginalFilename();
+        //储存路径
+        String url = "";
+        try {
+            if(file.isEmpty()){
+                throw new  MyException(403,"文件为空");
+            }
+            if (fileName == null || "".equals(fileName)){
+                throw new  MyException(404,"查无此文件");
+            }
+            //文件储存位置
+            String realPath = request.getSession().getServletContext().getRealPath("/")+projectId+"\\video";
+            url = realPath+"\\"+fileName;
+            //文件目录不存在，就创建一个
+            File dir = new File(realPath);
+            if (!dir.isDirectory()) {
+                dir.mkdirs();
+            }
+            //获取文件夹路径
+            File file1 = new File(realPath);
+            //将图片存入文件夹
+            File targetFile = new File(file1,fileName);
+            //将上传的文件写到服务器上指定的文件。
+            file.transferTo(targetFile);
+            return url;
         } catch (Exception e) {
             e.printStackTrace();
             throw new MyException(405,"系统异常，操作失败");
