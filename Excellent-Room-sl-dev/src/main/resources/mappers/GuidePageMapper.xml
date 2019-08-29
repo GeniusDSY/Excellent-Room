@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybaits.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.cqupt.mislab.excellentroom.dao.GuidePageDao">
+    <!--修改引导页背景图片（无删除）-->
+    <update id="updateGuidePageBkground" parameterType="string">
+        UPDATE t_project_information
+        SET guidePageBkground = #{bkground}
+        WHERE projectId = #{projectId}
+    </update>
+    <!--查找品牌荣誉背景图片-->
+    <select id="searchGuidePageBkground" parameterType="string" resultType="java.lang.String">
+        SELECT guidePageBkground
+        FROM t_project_information
+        WHERE projectId = #{projectId}
+    </select>
+    <!--修改引导页Logo-->
+    <update id="updateGuidePageLogo"parameterType="string">
+        UPDATE t_project_information
+        SET logo = #{logo}
+        WHERE projectId = #{projectId}
+    </update>
+    <!--查找引导页Logo-->
+    <select id="searchGuidePageLogo" parameterType="string">
+        SELECT logo
+        FROM t_project_information
+        WHERE projectId = #{projectId}
+    </select>
+    <!--修改引导页底部信息-->
+    <update id="updateGuidePageInfo" parameterType="string">
+        UPDATE t_project_information
+        SET  developer = #{developer},adress = #{adress},telephone = #{telephone}
+        WHERE projectId = #{projectId}
+    </update>
+    <!--查找引导页底部信息-->
+    <sql id="info">
+        developer,adress,telephone
+    </sql>
+    <select id="searchGuidePageInfo" parameterType="string" resultType="cn.edu.cqupt.mislab.excellentroom.domain.po.GuidePage">
+        SELECT
+              <include refid="info"/>
+        FROM t_project_information
+        WHERE projectId = #{projectId}
+    </select>
+</mapper>
