@@ -7,8 +7,8 @@
     </sql>
 
     <insert id="addProject" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.Project">
-            INSERT INTO t_project_information(projectId,province,district,name,tel,QRcodename)
-            VALUE (#{projectId},#{province},#{district},#{name},#{tel},#{QRcodename});
+        INSERT INTO t_project_information(projectId,province,district,name,tel,QRcodename)
+        VALUE (#{projectId},#{province},#{district},#{name},#{tel},#{QRcodename});
     </insert>
 
     <delete id="deleteProject" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.dto.ProjectId" >
