@@ -1,4 +1,4 @@
-package cn.edu.cqupt.mislab.excellentroom.service;
+package cn.edu.cqupt.mislab.excellentroom.service.impl;
 
 import cn.edu.cqupt.mislab.excellentroom.constant.ResultEnum;
 import cn.edu.cqupt.mislab.excellentroom.domain.dto.ProjectId;
@@ -6,8 +6,7 @@ import cn.edu.cqupt.mislab.excellentroom.domain.entity.Project;
 import cn.edu.cqupt.mislab.excellentroom.dao.ProjectDao;
 import cn.edu.cqupt.mislab.excellentroom.domain.po.Result;
 import cn.edu.cqupt.mislab.excellentroom.exception.MyException;
-import cn.edu.cqupt.mislab.excellentroom.service.impl.IProjectService;
-import cn.edu.cqupt.mislab.excellentroom.util.GetUtil;
+import cn.edu.cqupt.mislab.excellentroom.service.IProjectService;
 import cn.edu.cqupt.mislab.excellentroom.util.ResultUtil;
 import cn.edu.cqupt.mislab.excellentroom.util.UploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybaits.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.cqupt.mislab.excellentroom.dao.CompanyDao">
+    <!-- 修改企业简介视频链接-->
+    <update id="updateCompanyProfilesVideo" parameterType="string">
+        UPDATE t_project_information
+        SET companyIntroduceVideo = #{video}
+        WHERE projectId = #{projectId}
+    </update>
+    <!-- 查询企业简介视频链接-->
+    <select id="searchCompanyProfilesVideo" parameterType="string" resultType="java.lang.String">
+        SELECT companyIntroduceVideo
+        FROM t_project_information
+        WHERE projectId = #{projectId}
+    </select>
+    <!-- 修改企业简介文本介绍-->
+    <update id="updateCompanyProfilesText" parameterType="string">
+        UPDATE t_project_information
+        SET companyIntroduceText = #{text}
+        WHERE projectId = #{projectId}
+    </update>
+    <!-- 查询企业简介介绍文本-->
+    <select id="searchCompanyProfilesText" parameterType="string" resultType="string">
+        SELECT companyIntroduceText
+        FROM t_project_information
+        WHERE projectId = #{projectId}
+    </select>
+    <!-- 新增企业简介背景图片-->
+    <insert id="addCompanyProfilesPic" parameterType="string">
+        INSERT INTO t_brand_company(projectId,pic)
+        VALUE (#{projectId},#{pic})
+    </insert>
+    <!-- 查询企业简介背景图片-->
+    <select id="searchCompanyProfilesPic" parameterType="string" resultType="string">
+        SELECT pic
+        FROM t_brand_company
+        WHERE projectId = #{projectId}
+        ORDER BY id
+    </select>
+    <!-- 删除企业简介背景图片（单张）-->
+    <delete id="deleteCompanyProfilesPic" parameterType="string">
+        DELETE pic
+        FROM t_brand_company
+        WHERE projectId = #{projectId} AND pic = #{pic}
+    </delete>
+    <!-- -->
+</mapper>

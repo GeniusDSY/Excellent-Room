@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybaits.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.cqupt.mislab.excellentroom.dao.HistoryDao">
+    <!-- 修改发展历程背景（无删除）-->
+    <update id="updateHistoryBkground" parameterType="string">
+        UPDATE  t_project_information
+        SET brandHistoryBkground = #{bkground}
+        WHERE projectId = #{projectId}
+    </update>
+    <!-- 查找发展历程背景（无删除）-->
+    <select id="searchHistoryBkground" parameterType="string" resultType="string">
+        SELECT brandHistoryBkground
+        FROM t_project_information
+        WHERE projectId = #{projectId}
+    </select>
+    <!-- 查找轮播历程-->
+    <sql id="history">
+        id,pic,time,simple,text
+    </sql>
+    <select id="searchHistory" resultType="cn.edu.cqupt.mislab.excellentroom.domain.po.History" >
+        SELECT
+            <include refid="history"/>
+        FROM t_brand_history
+        WHERE projectId = #{projectId}
+    </select>
+    <!-- 新增轮播历程-->
+    <insert id="addHistory" parameterType="string">
+        INSERT INTO t_brand_history(projectId,pic,time,simple,text)
+        VALUE (#{projectId},#{pic},#{time},#{simple},#{text})
+    </insert>
+    <!-- 修改轮播历程-->
+    <update id="updateHistory" parameterType="string">
+        UPDATE t_brand_history
+        SET pic = #{pic},time = #{time},simple = #{simple},text = #{text}
+        WHERE projectId = #{projectId} AND id = #{id}
+    </update>
+    <!-- 删除指定历程-->
+    <delete id="deleteHistory" parameterType="string">
+        DELETE pic
+        FROM t_brand_history
+        WHERE projectId = #{projectId} AND pic = #{pic} AND simple = #{simple} AND time = #{time}
+    </delete>
+</mapper>

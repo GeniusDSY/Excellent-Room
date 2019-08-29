@@ -1,4 +1,4 @@
-package cn.edu.cqupt.mislab.excellentroom.service.impl;
+package cn.edu.cqupt.mislab.excellentroom.service;
 
 import cn.edu.cqupt.mislab.excellentroom.domain.dto.ProjectId;
 import cn.edu.cqupt.mislab.excellentroom.domain.entity.Project;

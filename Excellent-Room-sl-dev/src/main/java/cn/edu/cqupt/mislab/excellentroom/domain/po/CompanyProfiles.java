@@ -10,21 +10,34 @@ import java.util.List;
  **/
 public class CompanyProfiles {
 
-    private String title;
+    private String Bkground;
     private String text;
     private String video;
-    private List<String> pic;
 
     public CompanyProfiles() {
     }
 
-    public CompanyProfiles(String title,String text, String video, List<String> pic) {
-        this.title = title;
+    public CompanyProfiles(String bkground, String text, String video) {
+        Bkground = bkground;
         this.text = text;
         this.video = video;
-        this.pic = pic;
     }
 
+    public String getBkground() {
+        return Bkground;
+    }
+
+    public void setBkground(String bkground) {
+        Bkground = bkground;
+    }
+
+    public String getVideo() {
+        return video;
+    }
+
+    public void setVideo(String video) {
+        this.video = video;
+    }
 
     public String getText() {
         return text;
@@ -34,27 +47,14 @@ public class CompanyProfiles {
         this.text = text;
     }
 
-    public String getViedio() {
-        return video;
+
+    @Override
+    public String toString() {
+        return "CompanyProfiles{" +
+                "Bkground='" + Bkground + '\'' +
+                ", text='" + text + '\'' +
+                ", video='" + video + '\'' +
+                '}';
     }
 
-    public void setViedio(String viedio) {
-        this.video = viedio;
-    }
-
-    public List<String> getPic() {
-        return pic;
-    }
-
-    public void setPic(List<String> pic) {
-        this.pic = pic;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 }

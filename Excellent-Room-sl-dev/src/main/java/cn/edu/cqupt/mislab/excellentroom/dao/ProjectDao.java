@@ -1,11 +1,8 @@
 package cn.edu.cqupt.mislab.excellentroom.dao;
-
 import cn.edu.cqupt.mislab.excellentroom.domain.entity.Project;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.util.List;
 
 /**
@@ -64,5 +61,11 @@ public interface ProjectDao {
      */
     int updateProject(@Param("projectId")String projectId, @Param("province")String province, @Param("district")String district, @Param("name")String name, @Param("tel")String tel, @Param("QRcodename")String QRcodename);
 
+    /**
+     * 上传项目二维码
+     * @param projectId
+     * @param Qrcode
+     * @return
+     */
     boolean QRcodeUpload(@Param("projectId")String projectId,@Param("QRcode")String Qrcode);
 }
