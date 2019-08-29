@@ -3,6 +3,7 @@ package cn.edu.cqupt.mislab.excellentroom.service;
 import cn.edu.cqupt.mislab.excellentroom.domain.dto.ProjectId;
 import cn.edu.cqupt.mislab.excellentroom.domain.entity.Project;
 import cn.edu.cqupt.mislab.excellentroom.exception.MyException;
+import cn.edu.cqupt.mislab.excellentroom.service.impl.ProjectServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.apache.http.entity.ContentType;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
