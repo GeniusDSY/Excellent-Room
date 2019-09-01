@@ -38,18 +38,6 @@ public class ProjectIntroduceServiceImpl implements ProjectIntroduceService {
     }
 
     @Override
-    public Boolean addProjectIntroduceBkgroundUrl(String projectIntroduceBkgroundUrl, String projectId){
-        Boolean result = projectIntroduceDao.addProjectIntroduceBkgroundUrl(projectIntroduceBkgroundUrl, projectId);
-        return result;
-    }
-
-    @Override
-    public Boolean deleteProjectIntroduceBkgroundUrl(String projectId){
-        Boolean result = projectIntroduceDao.deleteProjectIntroduceBkgroundUrl(projectId);
-        return result;
-    }
-
-    @Override
     public Boolean updateProjectIntroduceText(String projectIntroduceText,String projectId){
         Boolean result = projectIntroduceDao.updateProjectIntroduceText(projectIntroduceText, projectId);
         return result;

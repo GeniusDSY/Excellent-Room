@@ -51,7 +51,7 @@ public interface RoomTypeService {
      * @param layoutUrl 户型图
      * @return
      */
-    RoomType updateLayout(@Param("projectId") String projectId, @Param("type") Integer type, @Param("layoutUrl") String layoutUrl);
+    Boolean updateLayout(@Param("projectId") String projectId, @Param("type") Integer type, @Param("layoutUrl") String layoutUrl);
 
     /**
      * 修改全景图片
@@ -60,7 +60,7 @@ public interface RoomTypeService {
      * @param panoramaUrl 全景图
      * @return
      */
-    RoomType updatePanorama(@Param("projectId") String projectId, @Param("type") Integer type, @Param("panoramaUrl") String panoramaUrl);
+    Boolean updatePanorama(@Param("projectId") String projectId, @Param("type") Integer type, @Param("panoramaUrl") String panoramaUrl);
 
     /**
      * 展示户型

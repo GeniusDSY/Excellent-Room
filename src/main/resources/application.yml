@@ -24,7 +24,7 @@ mybatis:
     cache-enabled: true
     call-setters-on-nulls: true
 
-filepath: "/Users/mac/picture/pic"
+filepath: "/User/mac/picture1"
 
 
 

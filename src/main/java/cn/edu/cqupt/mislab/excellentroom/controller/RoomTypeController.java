@@ -147,8 +147,8 @@ public class RoomTypeController {
                 return ResultUtil.isNull();
             }else {
                 FileUtil.upload(imageFile, filePath);
-                RoomType roomType = roomTypeService.updateLayout(projectId,type,FileUtil.fileUrl(imageFile, filePath));
-                return ResultUtil.success(roomType.getLayoutUrl());
+                Boolean result = roomTypeService.updateLayout(projectId,type,FileUtil.fileUrl(imageFile, filePath));
+                return ResultUtil.success(result);
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -166,8 +166,8 @@ public class RoomTypeController {
                 return ResultUtil.isNull();
             }else {
                 FileUtil.upload(vrFile, filePath);
-                RoomType roomType = roomTypeService.updatePanorama(projectId,type,FileUtil.fileUrl(vrFile, filePath));
-                return ResultUtil.success(roomType.getPanoramaUrl());
+                Boolean result = roomTypeService.updatePanorama(projectId,type,FileUtil.fileUrl(vrFile, filePath));
+                return ResultUtil.success(result);
             }
         }catch (Exception e){
             e.printStackTrace();

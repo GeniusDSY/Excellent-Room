@@ -49,21 +49,15 @@ public class RoomTypeServiceImpl implements RoomTypeService {
     }
 
     @Override
-    public RoomType updateLayout(String projectId, Integer type, String layoutUrl) {
-        RoomType roomType = roomTypeDao.updateLayout(projectId, type, layoutUrl);
-        if (roomType!=null){
-            return roomType;
-        }
-        return null;
+    public Boolean updateLayout(String projectId, Integer type, String layoutUrl) {
+        Boolean result = roomTypeDao.updateLayout(projectId, type, layoutUrl);
+        return result;
     }
 
     @Override
-    public RoomType updatePanorama(String projectId, Integer type, String panoramaUrl){
-        RoomType roomType = roomTypeDao.updatePanorama(projectId,type,panoramaUrl);
-        if (roomType!=null){
-            return roomType;
-        }
-        return null;
+    public Boolean updatePanorama(String projectId, Integer type, String panoramaUrl){
+        Boolean result = roomTypeDao.updatePanorama(projectId,type,panoramaUrl);
+        return result;
     }
 
     @Override

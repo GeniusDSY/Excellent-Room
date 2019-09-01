@@ -36,13 +36,13 @@
     <update id="updateLayout" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.RoomType">
         update t_room_type
         set layout = #{layoutUrl}
-        where projectId = #{projectId} and id = #{id}
+        where projectId = #{projectId} and type = #{type}
     </update>
 
-    <update id="pdatePanorama" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.RoomType">
+    <update id="updatePanorama" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.RoomType">
         update t_room_type
         set panorama = #{panoramaUrl}
-        where projectId = #{projectId} and id = #{id}
+        where projectId = #{projectId} and type = #{type}
     </update>
 
     <select id="selectRoomTypeById" resultMap="RoomType" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.RoomType">

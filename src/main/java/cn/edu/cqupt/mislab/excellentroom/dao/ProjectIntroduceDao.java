@@ -27,21 +27,6 @@ public interface ProjectIntroduceDao {
     ProjectIntroduce selectProjectIntroduceBkgroundById(@Param("projectId") String projectId);
 
     /**
-     * 增加项目介绍背景图片
-     * @param projectIntroduceBkgroundUrl 项目介绍背景图片地址
-     * @param projectId 项目ID
-     * @return true
-     */
-    Boolean addProjectIntroduceBkgroundUrl(@Param("projectIntroduceBkgroundUrl") String projectIntroduceBkgroundUrl, @Param("projectId") String projectId);
-
-    /**
-     * 删除项目介绍背景图片
-     * @param projectId 项目ID
-     * @return true
-     */
-    Boolean deleteProjectIntroduceBkgroundUrl(@Param("projectId") String projectId);
-
-    /**
      * 修改项目介绍描述
      * @param projectIntroduceText 文字描述
      * @param projectId 项目ID
