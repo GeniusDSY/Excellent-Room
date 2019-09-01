@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.cqupt.mislab.excellentroom.dao.HomePageDao">
+    <resultMap id="HomePage" type="cn.edu.cqupt.mislab.excellentroom.domain.entity.HomePage">
+        <result property="projectId" column="projectId" jdbcType="VARCHAR"/>
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="homePageBkgroundUrl" column="homePageBkground" jdbcType="VARCHAR"/>
+        <result property="homePageLogoUrl" column="homePageLogo" jdbcType="VARCHAR"/>
+        <result property="homePageIconUrl" column="homePageIcon" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <update id="updateHomePageBkground">
+        update t_project_information
+        set homePageBkground = #{homePageBkgroundUrl}
+        where projectId = #{projectId}
+    </update>
+
+    <update id="updateHomePageLogo">
+        update t_project_information
+        set homePageLogo = #{homePageLogoUrl}
+        where projectId = #{projectId}
+    </update>
+
+    <update id="updateHomePageIcon">
+        update t_homePageIcon
+        set homePageIcon = #{homePageIconUrl}
+        where projectId = #{projectId}
+    </update>
+
+    <select id="selectHomePageBkgroundById" resultMap="HomePage" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.HomePage">
+        select projectId,homePageBkground
+        from t_project_information
+        where projectId = #{projectId}
+    </select>
+
+    <select id="selectHomePageLogoById" resultMap="HomePage" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.HomePage">
+        select projectId,homePageLogo
+        from t_project_information
+        where projectId = #{projectId}
+    </select>
+
+    <select id="selectHomePageIconById" resultMap="HomePage" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.HomePage">
+        select projectId,id,homePageIcon
+        from t_homePageIcon
+        where projectId = #{projectId} and id = #{id}
+    </select>
+</mapper>

@@ -11,9 +11,20 @@ spring:
     url: jdbc:mysql://localhost:3306/room?characterEncoding=utf-8&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: root
+    password: hansiyue1!
+  redis:
+    password:
+    host: 127.0.0.1
+    port: 6379
+  session:
+    store-type: redis
 mybatis:
   mapper-locations: classpath*:mappers/*.xml
   configuration:
     cache-enabled: true
     call-setters-on-nulls: true
+
+filepath: "/User/mac/picture1"
+
+
+
