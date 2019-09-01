@@ -9,6 +9,7 @@ import cn.edu.cqupt.mislab.excellentroom.exception.MyException;
 import cn.edu.cqupt.mislab.excellentroom.service.IProjectService;
 import cn.edu.cqupt.mislab.excellentroom.util.ResultUtil;
 import cn.edu.cqupt.mislab.excellentroom.util.UploadUtil;
+import cn.edu.cqupt.mislab.excellentroom.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,7 +28,19 @@ public class ProjectServiceImpl implements IProjectService {
 
     @Autowired
     private ProjectDao projectDao;
+  
+    @Resource
+    private ProjectDao projectDao;
 
+    @Override
+    public Project selectProjectById(String projectId){
+        Project project = projectDao.selectProjectById(projectId);
+        if (project!=null){
+            return project;
+        }else {
+            return null;
+        }
+    }
     @Override
     public Result newProject(Project project) {
         Boolean flag = projectDao.addProject(project.getProjectId(), project.getProvince(), project.getDistrict(), project.getName(), project.getTel(), project.getQRcodeName());
@@ -101,3 +114,4 @@ public class ProjectServiceImpl implements IProjectService {
         return url;
     }
 }
+

@@ -4,6 +4,7 @@ import cn.edu.cqupt.mislab.excellentroom.domain.dto.ProjectId;
 import cn.edu.cqupt.mislab.excellentroom.domain.entity.Project;
 import cn.edu.cqupt.mislab.excellentroom.util.GetUtil;
 import org.apache.http.entity.ContentType;
+import cn.edu.cqupt.mislab.excellentroom.domain.entity.Project;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,6 +22,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
+import org.springframework.test.context.junit4.SpringRunner;
+
+import static org.junit.Assert.*;
+
+/**
+ * @Author HanSiyue
+ * @Date 2019/9/1 上午9:59
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ProjectDaoTest {
@@ -78,5 +87,11 @@ public class ProjectDaoTest {
         String QRcode = "D:\\英雄时刻\\ac4_Wallpaper3_1280x720.jpg";
         boolean flag = projectDao.QRcodeUpload(projectId,QRcode);
 
+    }
+}
+    @Test
+    public void selectProjectById() {
+        Project project = projectDao.selectProjectById("123");
+        Assert.assertNotNull(project);
     }
 }

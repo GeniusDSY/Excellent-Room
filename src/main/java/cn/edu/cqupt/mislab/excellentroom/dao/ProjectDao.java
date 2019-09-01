@@ -1,4 +1,5 @@
 package cn.edu.cqupt.mislab.excellentroom.dao;
+
 import cn.edu.cqupt.mislab.excellentroom.domain.entity.Project;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -68,4 +69,11 @@ public interface ProjectDao {
      * @return
      */
     boolean QRcodeUpload(@Param("projectId")String projectId,@Param("QRcode")String Qrcode);
+
+    /**
+     * 通过项目ID查询项目
+     * @param projectId 项目ID
+     * @return true
+     */
+      Project selectProjectById(@Param("projectId") String projectId);
 }

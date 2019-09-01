@@ -1,5 +1,6 @@
 package cn.edu.cqupt.mislab.excellentroom.domain.entity;
 
+import lombok.Data;
 import org.apache.tomcat.jni.File;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
@@ -13,6 +14,7 @@ import javax.persistence.Id;
  * @author 宋丽
  * @date 2019/8/4
  */
+@Data
 @Entity
 public class Project {
     @Id
@@ -23,6 +25,7 @@ public class Project {
     private String name;
     private String tel;
     private String QRcodeName;
+    private String projectId;
 
     public Project(){}
 

@@ -7,6 +7,9 @@ import cn.edu.cqupt.mislab.excellentroom.domain.po.Result;
 import cn.edu.cqupt.mislab.excellentroom.exception.MyException;
 import cn.edu.cqupt.mislab.excellentroom.service.IProjectService;
 import cn.edu.cqupt.mislab.excellentroom.util.ResultUtil;
+import cn.edu.cqupt.mislab.excellentroom.domain.entity.Project;
+import cn.edu.cqupt.mislab.excellentroom.domain.entity.ResultJson;
+import cn.edu.cqupt.mislab.excellentroom.service.ProjectService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +24,19 @@ import java.util.List;
 /**
  * @program: Excellent-Room-sl-dev
  * @description: 项目管理模块
- * @author: 宋丽
+ * @author: 宋丽 hsy
  * @create: 2019-08-16 06:59
  **/
+@EnableRedisHttpSession
 @Api("项目管理模块")
 @RestController
 @RequestMapping("/projectManagement")
 public class ProjectController {
     @Autowired
     private IProjectService iProjectService;
+
+    @Autowired
+    private ProjectService projectService;
 
     /**
      * 单项查询项目
@@ -127,6 +134,22 @@ public class ProjectController {
     @RequestMapping(value = "/QRcodeUpload",method = RequestMethod.POST)
     public Result QRcodeUpload(@RequestParam(value="file",required=false) MultipartFile file, HttpServletRequest request){
         String url = iProjectService.QRcodeUpload(file,request);
-        return ResultUtil.success(url);
+    }
+    @PostMapping("updateProject")
+    @ApiOperation("切换项目")
+    @ApiImplicitParam(name = "projectId", value = "项目ID", dataType = "string", required = true)
+    public ResultJson updateProject(HttpServletRequest request,String projectId){
+        try {
+            if (projectId!=null){
+                Project project = projectService.selectProjectById(projectId);
+                request.getSession().setAttribute("projectId",projectId);
+                return ResultUtil.success(project.getProjectId());
+            }else{
+                return ResultUtil.isNull();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultUtil.error();
+        }
     }
 }
