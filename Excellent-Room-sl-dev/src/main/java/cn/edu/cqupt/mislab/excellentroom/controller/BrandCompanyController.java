@@ -22,12 +22,8 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping("/Company")
 public class BrandCompanyController {
-    private final ICompanyService iCompanyService;
-
     @Autowired
-    public BrandCompanyController(ICompanyService iCompanyService) {
-        this.iCompanyService = iCompanyService;
-    }
+    private ICompanyService iCompanyService;
 
     /**
      * 修改企业简介的视频链接

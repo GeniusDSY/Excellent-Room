@@ -1,5 +1,6 @@
 package cn.edu.cqupt.mislab.excellentroom.service.impl;
 
+import cn.edu.cqupt.mislab.excellentroom.constant.ResultEnum;
 import cn.edu.cqupt.mislab.excellentroom.dao.HistoryDao;
 import cn.edu.cqupt.mislab.excellentroom.domain.po.History;
 import cn.edu.cqupt.mislab.excellentroom.domain.po.Result;
@@ -21,79 +22,103 @@ import java.util.Map;
  * @author: 宋丽
  * @create: 2019-08-28 04:10
  **/
-@Service
+@Service("History")
 public class HistroyImpl implements IHistoryService {
     @Autowired
     private HistoryDao historyDao;
 
     @Override
     public Result updateHistoryBkground(String projectId, String pic) {
-        Map<String, String> map = new HashMap<>(2);
         try {
+            Map<String, String> map = new HashMap<>(2);
             ServiceUtil.updateSuccess(historyDao.updateHistoryBkground(projectId,pic));
             map.put("pic",pic);
+            return ResultUtil.success(map);
         } catch (MyException e) {
             e.printStackTrace();
+            return ResultUtil.error(ResultEnum.UPDATE_ERROR);
         }
-        return ResultUtil.success(map);
+
     }
 
     @Override
     public Result searchHistoryBkground(String projectId) {
-        String bkground = historyDao.searchHistoryBkground(projectId);
-        return ResultUtil.success(bkground);
+        try {
+            String bkground = historyDao.searchHistoryBkground(projectId);
+            if (bkground == null){
+                throw new MyException(ResultEnum.SEARCH_ERROR);
+            }
+            return ResultUtil.success(bkground);
+        } catch (MyException e) {
+            e.printStackTrace();
+            return ResultUtil.error(ResultEnum.SEARCH_ERROR);
+        }
+
     }
 
     @Override
     public Result searchHistory(String projectId) {
-        List<History> list;
-        list = historyDao.searchHistory(projectId);
-        return ResultUtil.success(list);
+        try {
+            List<History> list;
+            list = historyDao.searchHistory(projectId);
+            if (list.isEmpty()){
+                throw new MyException(ResultEnum.SEARCH_ERROR);
+            }
+            return ResultUtil.success(list);
+        } catch (MyException e) {
+            return ResultUtil.error(ResultEnum.SEARCH_ERROR);
+        }
+
     }
 
     @Override
     public Result addHistory(String projectId, String pic, String time, String simple, String text) {
-        Map<String, String> map = new HashMap<>(6);
+
         try {
+            Map<String, String> map = new HashMap<>(6);
             ServiceUtil.insertSuccess(historyDao.addHistory(projectId, pic, time, simple, text));
             map.put("projectId",projectId);
             map.put("pic",pic);
             map.put("time",time);
             map.put("simple",simple);
             map.put("text",text);
+            return ResultUtil.success(map);
         } catch (MyException e) {
             e.printStackTrace();
+            return ResultUtil.error(ResultEnum.UPDATE_ERROR);
         }
-        return ResultUtil.success(map);
+
     }
 
     @Override
     public Result deleteHistory(String projectId, String id) {
-        Map<String, String> map = new HashMap<>(3);
         try {
+            Map<String, String> map = new HashMap<>(3);
             ServiceUtil.deleteSuccess(historyDao.deleteHistory(projectId,id));
             map.put("projectId",projectId);
             map.put("id",id);
+            return ResultUtil.success(map);
         } catch (MyException e) {
             e.printStackTrace();
+            return ResultUtil.error(ResultEnum.DELETE_ERROR);
         }
-        return ResultUtil.success(map);
     }
 
     @Override
     public Result updateHistory(String projectId, String id, String pic, String time, String simple, String text) {
-        Map<String, String> map = new HashMap<>(7);
         try {
+            Map<String, String> map = new HashMap<>(7);
             ServiceUtil.updateSuccess(historyDao.updateHistory(projectId, id, pic, time, simple, text));
-            map.put("projectId",projectId);
-            map.put("id",id);
-            map.put("pic",pic);
-            map.put("time",time);
-            map.put("simple",simple);
-            map.put("text",text);
+            map.put("projectId", projectId);
+            map.put("id", id);
+            map.put("pic", pic);
+            map.put("time", time);
+            map.put("simple", simple);
+            map.put("text", text);
+            return ResultUtil.success(map);
         } catch (MyException e) {
             e.printStackTrace();
+            return ResultUtil.error(ResultEnum.UPDATE_ERROR);
         }
-        return ResultUtil.success(map);
     }
 }

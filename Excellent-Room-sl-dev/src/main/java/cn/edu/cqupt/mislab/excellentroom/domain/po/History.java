@@ -14,6 +14,17 @@ public class History {
     private String simple;
     private String text;
 
+    @Override
+    public String toString() {
+        return "History{" +
+                "id='" + id + '\'' +
+                ", pic='" + pic + '\'' +
+                ", time='" + time + '\'' +
+                ", simple='" + simple + '\'' +
+                ", text='" + text + '\'' +
+                '}';
+    }
+
     public String getId() {
         return id;
     }
@@ -65,13 +76,4 @@ public class History {
         this.text = text;
     }
 
-    @Override
-    public String toString() {
-        return "History{" +
-                "pic='" + pic + '\'' +
-                ", time='" + time + '\'' +
-                ", simple='" + simple + '\'' +
-                ", text='" + text + '\'' +
-                '}';
-    }
 }

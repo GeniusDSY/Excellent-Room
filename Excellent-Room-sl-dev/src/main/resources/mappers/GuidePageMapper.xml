@@ -15,7 +15,7 @@
         WHERE projectId = #{projectId}
     </select>
     <!--修改引导页Logo-->
-    <update id="updateGuidePageLogo"parameterType="string">
+    <update id="updateGuidePageLogo" parameterType="string">
         UPDATE t_project_information
         SET logo = #{logo}
         WHERE projectId = #{projectId}
@@ -29,12 +29,12 @@
     <!--修改引导页底部信息-->
     <update id="updateGuidePageInfo" parameterType="string">
         UPDATE t_project_information
-        SET  developer = #{developer},adress = #{adress},telephone = #{telephone}
+        SET  developer = #{developer},address = #{address},telephone = #{telephone}
         WHERE projectId = #{projectId}
     </update>
     <!--查找引导页底部信息-->
     <sql id="info">
-        developer,adress,telephone
+        developer,address,telephone
     </sql>
     <select id="searchGuidePageInfo" parameterType="string" resultType="cn.edu.cqupt.mislab.excellentroom.domain.po.GuidePage">
         SELECT

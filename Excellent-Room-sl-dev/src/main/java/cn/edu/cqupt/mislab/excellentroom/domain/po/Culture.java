@@ -11,6 +11,14 @@ public class Culture {
     private String title;
     private String text;
 
+    @Override
+    public String toString() {
+        return "Culture{" +
+                "title='" + title + '\'' +
+                ", text='" + text + '\'' +
+                '}';
+    }
+
     public Culture(String title, String text) {
         this.title = title;
         this.text = text;

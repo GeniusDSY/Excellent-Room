@@ -1,5 +1,7 @@
 package cn.edu.cqupt.mislab.excellentroom.exception;
 
+import cn.edu.cqupt.mislab.excellentroom.constant.ResultEnum;
+
 /**
  * @program: Excellent-Room-sl-dev
  * @description: 自定义异常类
@@ -14,6 +16,11 @@ public class MyException extends Exception {
     public MyException(int code) {
         super();
         this.code = code;
+    }
+    public MyException(ResultEnum resultEnum){
+        super();
+        this.code = resultEnum.getCode();
+        this.message = resultEnum.getMsg();
     }
 
     @Override

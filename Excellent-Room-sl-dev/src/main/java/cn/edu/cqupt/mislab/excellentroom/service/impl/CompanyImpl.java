@@ -1,4 +1,5 @@
 package cn.edu.cqupt.mislab.excellentroom.service.impl;
+import cn.edu.cqupt.mislab.excellentroom.constant.ResultEnum;
 import cn.edu.cqupt.mislab.excellentroom.dao.CompanyDao;
 import cn.edu.cqupt.mislab.excellentroom.domain.po.Result;
 import cn.edu.cqupt.mislab.excellentroom.exception.MyException;
@@ -7,8 +8,10 @@ import cn.edu.cqupt.mislab.excellentroom.util.ResultUtil;
 import cn.edu.cqupt.mislab.excellentroom.util.ServiceUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @program: Excellent-Room-sl-dev
@@ -16,17 +19,30 @@ import java.util.HashMap;
  * @author: 宋丽
  * @create: 2019-08-16 07:04
  **/
-@Service
+@Service("Company")
 public class CompanyImpl implements ICompanyService {
     @Autowired
     private CompanyDao companyDao;
 
     @Override
     public Result searchCompanyProfilesPic(String projectId) {
-        String pic = companyDao.searchCompanyProfilesPic(projectId);
         HashMap<String, String> map = new HashMap<>(2);
-        map.put("pic",pic);
-        return ResultUtil.success(map);
+        try {
+            List<String> pic = companyDao.searchCompanyProfilesPic(projectId);
+            for (String p:pic
+            ) {
+                map.put("pic",p);
+            }
+            if (pic.isEmpty()){
+                throw new MyException(ResultEnum.SEARCH_ERROR);
+            }
+            return ResultUtil.success(map);
+        }catch (MyException e) {
+            e.printStackTrace();
+            return ResultUtil.error(ResultEnum.SEARCH_ERROR);
+        }
+
+
     }
 
     @Override
@@ -43,21 +59,24 @@ public class CompanyImpl implements ICompanyService {
 
     @Override
     public Result deleteCompanyProfilesPic(String projectId, String pic) {
-        HashMap<String, String> map = new HashMap<>(2);
+
         try {
+            HashMap<String, String> map = new HashMap<>(2);
             ServiceUtil.deleteSuccess(companyDao.addCompanyProfilesPic(projectId,pic));
             map.put("pic",pic);
+            return ResultUtil.success(map);
         } catch (MyException e) {
             e.printStackTrace();
+            return ResultUtil.error(ResultEnum.DELETE_ERROR);
         }
-        return ResultUtil.success(map);
+
     }
 
     @Override
     public Result updateCompanyProfilesText(String projectId, String text) {
         HashMap<String, String> map = new HashMap<>(2);
         try {
-            ServiceUtil.updateSuccess(companyDao.addCompanyProfilesPic(projectId,text));
+            ServiceUtil.updateSuccess(companyDao.updateCompanyProfilesText(projectId,text));
             map.put("text",text);
         } catch (MyException e) {
             e.printStackTrace();
@@ -67,22 +86,50 @@ public class CompanyImpl implements ICompanyService {
 
     @Override
     public Result searchCompanyProfilesText(String projectId) {
-        String text = companyDao.searchCompanyProfilesText(projectId);
-        HashMap<String, String> map = new HashMap<>(2);
-        map.put("text",text);
-        return ResultUtil.success(map);
+        try{
+            String text = companyDao.searchCompanyProfilesText(projectId);
+            HashMap<String, String> map = new HashMap<>(2);
+            map.put("text",text);
+            if (text == null){
+                throw new MyException(ResultEnum.SEARCH_ERROR);
+            }
+            return ResultUtil.success(map);
+        } catch (MyException e) {
+            e.printStackTrace();
+            return ResultUtil.error(ResultEnum.SEARCH_ERROR);
+        }
+
     }
 
     @Override
     public Result updateCompanyProfilesVideo(String projectId, String video) {
-        return null;
+        try {
+            HashMap<String, String> map = new HashMap<>(2);
+            ServiceUtil.updateSuccess(companyDao.updateCompanyProfilesVideo(projectId,video));
+            map.put("video",video);
+            return ResultUtil.success(map);
+        } catch (MyException e) {
+            e.printStackTrace();
+        }
+        return ResultUtil.error(ResultEnum.UPDATE_ERROR);
+
     }
 
     @Override
     public Result searchCompanyProfilesVideo(String projectId) {
-        String video = companyDao.searchCompanyProfilesVideo(projectId);
-        HashMap<String, String> map = new HashMap<>(2);
-        map.put("video",video);
-        return ResultUtil.success(map);
+        try {
+            String video = companyDao.searchCompanyProfilesVideo(projectId);
+            HashMap<String, String> map = new HashMap<>(2);
+            map.put("video",video);
+            if (video == null){
+                throw new MyException(ResultEnum.SEARCH_ERROR);
+            }
+            return ResultUtil.success(map);
+        } catch (MyException e) {
+            e.printStackTrace();
+            return ResultUtil.error(ResultEnum.SEARCH_ERROR);
+        }
+
+
     }
 }

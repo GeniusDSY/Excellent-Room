@@ -1,5 +1,6 @@
 package cn.edu.cqupt.mislab.excellentroom.util;
 
+import cn.edu.cqupt.mislab.excellentroom.constant.ResultEnum;
 import cn.edu.cqupt.mislab.excellentroom.exception.MyException;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class ServiceUtil {
      */
     public static void updateSuccess(boolean flag) throws MyException {
         if(!flag){
-            throw new MyException(401,"无匹配项，更新失败");
+            throw new MyException(ResultEnum.UPDATE_ERROR);
         }
     }
 
@@ -30,7 +31,7 @@ public class ServiceUtil {
      */
     public static void deleteSuccess(boolean flag) throws MyException {
         if(!flag){
-            throw new MyException(402,"无匹配项，删除失败");
+            throw new MyException(ResultEnum.DELETE_ERROR);
         }
     }
 
@@ -41,7 +42,7 @@ public class ServiceUtil {
      */
     public static void insertSuccess(boolean flag) throws MyException {
         if(!flag){
-            throw new MyException(403,"无匹配项，新建失败");
+            throw new MyException(ResultEnum.ADD_ERROR);
         }
     }
 

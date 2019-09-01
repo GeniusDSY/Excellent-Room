@@ -7,14 +7,23 @@ package cn.edu.cqupt.mislab.excellentroom.domain.po;
  * @create: 2019-08-30 04:22
  **/
 public class GuidePage {
-
     private String developer;
-    private String adress;
+    private String address;
     private String telephone;
 
-    public GuidePage(String developer, String adress, String telephone) {
+    @Override
+    public String toString() {
+        return "GuidePage{" +
+                "developer='" + developer + '\'' +
+                ", adress='" + address + '\'' +
+                ", telephone='" + telephone + '\'' +
+                '}';
+    }
+
+
+    public GuidePage(String developer, String address, String telephone) {
         this.developer = developer;
-        this.adress = adress;
+        this.address = address;
         this.telephone = telephone;
     }
 
@@ -27,11 +36,11 @@ public class GuidePage {
     }
 
     public String getAdress() {
-        return adress;
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAdress(String address) {
+        this.address = address;
     }
 
     public String getTelephone() {

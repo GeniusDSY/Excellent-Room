@@ -37,8 +37,7 @@
     </update>
     <!-- 删除指定历程-->
     <delete id="deleteHistory" parameterType="string">
-        DELETE pic
-        FROM t_brand_history
-        WHERE projectId = #{projectId} AND pic = #{pic} AND simple = #{simple} AND time = #{time}
+        DELETE FROM t_brand_history
+        WHERE projectId = #{projectId} AND id = #{id}
     </delete>
 </mapper>

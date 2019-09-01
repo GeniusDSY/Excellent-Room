@@ -1,4 +1,5 @@
 package cn.edu.cqupt.mislab.excellentroom.service.impl;
+import cn.edu.cqupt.mislab.excellentroom.constant.ResultEnum;
 import cn.edu.cqupt.mislab.excellentroom.dao.HonorDao;
 import cn.edu.cqupt.mislab.excellentroom.domain.po.Result;
 import cn.edu.cqupt.mislab.excellentroom.exception.MyException;
@@ -17,94 +18,130 @@ import java.util.Map;
  * @author: 宋丽
  * @create: 2019-08-28 04:10
  **/
-@Service
+@Service("Honor")
 public class HonorImpl implements IHonorService {
     @Autowired
     private HonorDao honorDao;
 
     @Override
     public Result updateHonorBkground(String projectId, String bkground) {
-        Map<String, String> map = new HashMap<>(2);
         try {
+            Map<String, String> map = new HashMap<>(2);
             ServiceUtil.updateSuccess(honorDao.updateHonorBkground(projectId,bkground));
             map.put("bkground",bkground);
+            return ResultUtil.success(map);
         } catch (MyException e) {
             e.printStackTrace();
+            return ResultUtil.error(ResultEnum.UPDATE_ERROR);
         }
-        return ResultUtil.success(map);
+
     }
 
     @Override
     public Result searchHonorBkground(String projectId) {
-        String pic = honorDao.searchHonorBkground(projectId);
-        Map<String, String> map = new HashMap<>(2);
-        map.put("pic",pic);
-        return ResultUtil.success(map);
+        try {
+            String pic = honorDao.searchHonorBkground(projectId);
+            Map<String, String> map = new HashMap<>(2);
+            map.put("pic",pic);
+            if (pic == null){
+                throw new MyException(ResultEnum.SEARCH_ERROR);
+            }
+            return ResultUtil.success(map);
+        } catch (MyException e) {
+            e.printStackTrace();
+            return ResultUtil.error(ResultEnum.SEARCH_ERROR);
+        }
     }
 
     @Override
     public Result searchHonorPic(String projectId) {
-        List<String> list;
-        list = honorDao.searchHonorPic(projectId);
-        return ResultUtil.success(list);
+        try {
+            List<String> list;
+            list = honorDao.searchHonorPic(projectId);
+            if (list.isEmpty()){
+                throw new MyException(ResultEnum.SEARCH_ERROR);
+            }
+            return ResultUtil.success(list);
+        } catch (MyException e) {
+            e.printStackTrace();
+            return ResultUtil.error(ResultEnum.SEARCH_ERROR);
+        }
+
     }
 
     @Override
     public Result searchHonorText(String projectId) {
-        List<String> list;
-        list = honorDao.searchHonorText(projectId);
-        return ResultUtil.success(list);
+        try {
+            List<String> list;
+            list = honorDao.searchHonorText(projectId);
+            if (list.isEmpty()){
+                throw new MyException(ResultEnum.SEARCH_ERROR);
+            }
+            return ResultUtil.success(list);
+        } catch (MyException e) {
+            e.printStackTrace();
+            return ResultUtil.error(ResultEnum.SEARCH_ERROR);
+        }
+
     }
 
     @Override
     public Result deleteHonorPic(String projectId, String pic) {
-        Map<String, String> map = new HashMap<>(10);
         try {
+            Map<String, String> map = new HashMap<>(10);
             ServiceUtil.deleteSuccess(honorDao.deleteHonorPic(projectId,pic));
             map.put("projectId",projectId);
             map.put("pic",pic);
+            return ResultUtil.success(map);
         } catch (MyException e) {
             e.printStackTrace();
+            return ResultUtil.error(ResultEnum.DELETE_ERROR);
         }
-        return ResultUtil.success(map);
+
     }
 
     @Override
     public Result addHonorPic(String projectId,String pic) {
-        Map<String, String> map = new HashMap<>(4);
         try {
+            Map<String, String> map = new HashMap<>(4);
             ServiceUtil.insertSuccess(honorDao.addHonorPic(projectId,pic));
             map.put("projectId",projectId);
             map.put("pic",pic);
+            return ResultUtil.success(map);
         } catch (MyException e) {
             e.printStackTrace();
+            return ResultUtil.error(ResultEnum.ADD_ERROR);
         }
-        return ResultUtil.success(map);
+
     }
 
     @Override
     public Result deleteHonorText(String projectId, String text) {
-        Map<String, String> map = new HashMap<>(10);
         try {
+            Map<String, String> map = new HashMap<>(10);
             ServiceUtil.deleteSuccess(honorDao.deleteHonorPic(projectId,text));
             map.put("projectId",projectId);
             map.put("text",text);
+            return ResultUtil.success(map);
         } catch (MyException e) {
             e.printStackTrace();
+            return ResultUtil.error(ResultEnum.DELETE_ERROR);
         }
-        return ResultUtil.success(map);
+
     }
 
     @Override
     public Result addHonorText(String projectId, String text) {
-        Map<String, String> map = new HashMap<>(4);
         try {
+            Map<String, String> map = new HashMap<>(4);
             ServiceUtil.insertSuccess(honorDao.addHonorText(projectId,text));
             map.put("projectId",projectId);
             map.put("text",text);
+            return ResultUtil.success(map);
         } catch (MyException e) {
             e.printStackTrace();
+            return ResultUtil.error(ResultEnum.ADD_ERROR);
         }
-        return ResultUtil.success(map);
+
     }
 }

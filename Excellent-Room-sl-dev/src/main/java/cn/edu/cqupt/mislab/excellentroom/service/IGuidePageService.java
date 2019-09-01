@@ -3,7 +3,6 @@ package cn.edu.cqupt.mislab.excellentroom.service;
 import cn.edu.cqupt.mislab.excellentroom.domain.po.Result;
 import org.springframework.stereotype.Service;
 
-@Service
 public interface IGuidePageService {
     /**
      * 修改背景

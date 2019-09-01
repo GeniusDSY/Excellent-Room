@@ -38,7 +38,7 @@ public class ProjectDaoTest {
     @Transactional
     @Test
     public void deleteProject(){
-        ProjectId projectId = new ProjectId("string1");
+        ProjectId projectId = new ProjectId("string2");
         Boolean flag = projectDao.deleteProject(projectId.getProjectId());
         Assert.assertTrue(flag);
     }

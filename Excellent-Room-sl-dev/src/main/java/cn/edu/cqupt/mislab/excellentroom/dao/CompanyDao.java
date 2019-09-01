@@ -4,6 +4,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * 企业简介接口
  * 查询对应项目的企业相关信息
@@ -57,7 +59,7 @@ public interface CompanyDao {
      * @param projectId
      * @return
      */
-    String searchCompanyProfilesPic(@Param("projectId")String projectId);
+    List<String> searchCompanyProfilesPic(@Param("projectId")String projectId);
 
     /**
      * 删除企业简介的轮播背景图片（单张）

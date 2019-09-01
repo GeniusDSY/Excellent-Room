@@ -99,7 +99,7 @@ public class BrandHonorController {
     }
 
     @ApiOperation(value = "删除指定品牌荣誉文本")
-    @RequestMapping(value = "/deletePic",method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteText",method = RequestMethod.POST)
     public Result deleteText(@Param("text")String text,HttpServletRequest request){
         String projectId = GetUtil.getProjectId(request);
         return iHonorService.deleteHonorText(projectId,text);

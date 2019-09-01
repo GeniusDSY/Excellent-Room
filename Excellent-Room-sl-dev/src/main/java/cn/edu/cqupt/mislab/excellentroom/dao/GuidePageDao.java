@@ -48,11 +48,11 @@ public interface GuidePageDao {
      * 修改引导页底部信息
      * @param projectId
      * @param developer
-     * @param adress
+     * @param address
      * @param telephone
      * @return
      */
-    boolean updateGuidePageInfo(@Param("projectId")String projectId,@Param("developer")String developer,@Param("adress")String adress,@Param("telephone")String telephone);
+    boolean updateGuidePageInfo(@Param("projectId")String projectId,@Param("developer")String developer,@Param("address")String address,@Param("telephone")String telephone);
 
     /**
      * 查找引导页底部信息

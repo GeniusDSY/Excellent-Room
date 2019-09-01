@@ -28,8 +28,7 @@
     </select>
     <!-- 删除指定品牌荣誉轮播图片-->
     <delete id="deleteHonorPic" parameterType="string">
-        DELETE pic
-        FROM t_brand_honor_pic
+        DELETE FROM t_brand_honor_pic
         WHERE projectId = #{projectId} AND pic = #{pic}
     </delete>
     <!-- 新增品牌荣誉轮播图片-->
@@ -39,8 +38,7 @@
     </insert>
     <!-- 删除指定品牌荣誉文本-->
     <delete id="deleteHonorText" parameterType="string">
-        DELETE text
-        FROM t_brand_honor_text
+        DELETE FROM t_brand_honor_text
         WHERE projectId = #{projectId} AND text = #{text}
     </delete>
     <!-- 新增品牌荣誉文本-->

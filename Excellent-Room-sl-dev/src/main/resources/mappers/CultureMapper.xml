@@ -18,6 +18,7 @@
     <update id="updateCulturePic" parameterType="string">
         UPDATE t_project_information
         SET brandCulturePic = #{pic}
+        WHERE projectId = #{projectId}
     </update>
     <!-- 查找企业文化图片（无删除）-->
     <select id="searchCulturePic" parameterType="string" resultType="java.lang.String">
@@ -38,8 +39,7 @@
     </select>
     <!-- 删除指定企业文化（无修改）-->
     <delete id="deleteCulture" parameterType="string">
-        DELETE title
-        FROM t_brand_culture
+        DELETE FROM t_brand_culture
         WHERE projectId = #{projectId} AND title = #{title} AND text = #{text}
     </delete>
     <!-- 增加文化-->

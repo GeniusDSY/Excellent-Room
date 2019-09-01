@@ -103,7 +103,7 @@ public class ProjectController {
             result = iProjectService.newProject(project);
         }catch (RuntimeException e){
             e.printStackTrace();
-            return ResultUtil.error(ResultEnum.PPRJECT_EXISTED);
+            return ResultUtil.error(ResultEnum.ADD_ERROR);
         }
         return result;
     }
