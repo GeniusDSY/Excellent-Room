@@ -10,30 +10,30 @@ import cn.edu.cqupt.mislab.excellentroom.constant.ResultEnum;
  **/
 public class MyException extends Exception {
 
-    private int code;
+    private int Status;
     private String message;
 
-    public MyException(int code) {
+    public MyException(int Status) {
         super();
-        this.code = code;
+        this.Status = Status;
     }
     public MyException(ResultEnum resultEnum){
         super();
-        this.code = resultEnum.getCode();
+        this.Status = resultEnum.getStatus();
         this.message = resultEnum.getMsg();
     }
 
     @Override
     public String toString() {
         return "MyException{" +
-                "code=" + code +
+                "Status=" + Status +
                 ", message='" + message + '\'' +
                 '}';
     }
 
-    public MyException(int code, String message) {
+    public MyException(int Status, String message) {
         super();
-        this.code = code;
+        this.Status = Status;
         this.message = message;
     }
 
@@ -41,12 +41,12 @@ public class MyException extends Exception {
         super();
     }
 
-    public int getCode() {
-        return code;
+    public int getStatus() {
+        return Status;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public void setStatus(int Status) {
+        this.Status = Status;
     }
 
     @Override

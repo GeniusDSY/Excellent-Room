@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -26,9 +27,6 @@ import java.util.List;
 @Service("Project")
 public class ProjectServiceImpl implements IProjectService {
 
-    @Autowired
-    private ProjectDao projectDao;
-  
     @Resource
     private ProjectDao projectDao;
 
@@ -43,11 +41,11 @@ public class ProjectServiceImpl implements IProjectService {
     }
     @Override
     public Result newProject(Project project) {
-        Boolean flag = projectDao.addProject(project.getProjectId(), project.getProvince(), project.getDistrict(), project.getName(), project.getTel(), project.getQRcodeName());
+        Boolean flag = projectDao.addProject(project.getProjectId(), project.getProvince(), project.getDistrict(), project.getName(), project.getTel(), project.getQRStatusName());
         if (flag){
             return ResultUtil.success();
         }
-        return ResultUtil.error(ResultEnum.UNKNOWN_ERROR);
+        return ResultUtil.error(ResultEnum.ERROR);
     }
 
     @Override
@@ -56,7 +54,7 @@ public class ProjectServiceImpl implements IProjectService {
         try {
             flag = projectDao.deleteProject(id.getProjectId());
             if (!flag){
-                throw new MyException(401,"删除失败，无匹配项");
+                throw new MyException(ResultEnum.NOTEXIST);
             }
         } catch (MyException e) {
             e.printStackTrace();
@@ -70,7 +68,7 @@ public class ProjectServiceImpl implements IProjectService {
          list = projectDao.searchProjectByOne(provinceOrName);
         boolean flag = list.isEmpty();
         if (!flag){
-            throw new MyException(401,"无匹配项");
+            throw new MyException(ResultEnum.NOTEXIST);
         }
         return list;
     }
@@ -81,22 +79,22 @@ public class ProjectServiceImpl implements IProjectService {
         list = projectDao.searchProjectByTwo(province,district);
         boolean flag = list.isEmpty();
         if (flag){
-            throw new MyException(401,"无匹配项");
+            throw new MyException(ResultEnum.NOTEXIST);
         }
         return list;
     }
 
     @Override
     public Result updateProject(Project project) throws MyException {
-        int i = projectDao.updateProject(project.getProjectId(),project.getProvince(),project.getDistrict(),project.getName(),project.getTel(),project.getQRcodeName());
+        int i = projectDao.updateProject(project.getProjectId(),project.getProvince(),project.getDistrict(),project.getName(),project.getTel(),project.getQRStatusName());
         if (i == 0){
-            throw new MyException(401,"无匹配项");
+            throw new MyException(ResultEnum.NOTEXIST);
         }
         return ResultUtil.success(projectDao.searchProjectByOne(project.getName()));
     }
 
     @Override
-    public String QRcodeUpload(MultipartFile file,HttpServletRequest request) {
+    public String QRStatusUpload(MultipartFile file,HttpServletRequest request) {
         String url = "";
         String projectId = "";
         boolean flag = false;
@@ -104,9 +102,9 @@ public class ProjectServiceImpl implements IProjectService {
             url = UploadUtil.pic(file,request);
             //projectId = GetUtil.getProjectId(request);
             projectId = "123";
-            flag = projectDao.QRcodeUpload(projectId,url);
+            flag = projectDao.QRStatusUpload(projectId,url);
             if (!flag){
-                throw  new MyException(401,"更新失败，无匹配项");
+                throw  new MyException(ResultEnum.NOTEXIST);
             }
         } catch (MyException e) {
             e.printStackTrace();

@@ -15,7 +15,7 @@ public class UserDto {
     private String userName;
     @ApiModelProperty(name = "password",value = "管理员密码",dataType = "string")
     private String password;
-    @ApiModelProperty(name = "verifyCode",value = "验证码",dataType = "string")
-    private String verifyCode;
+    @ApiModelProperty(name = "verifyStatus",value = "验证码",dataType = "string")
+    private String verifyStatus;
 
 }

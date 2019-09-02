@@ -68,7 +68,7 @@ public class ProjectServiceImplTest {
 
     @Transactional
     @Test
-    public void QRcodeUploadTest() {
+    public void QRStatusUploadTest() {
         MockHttpServletRequest request = new MockHttpServletRequest();
         File file = new File("D:\\英雄时刻\\ac4_Wallpaper3_1280x720.jpg");
         FileInputStream fileInputStream = null;
@@ -76,7 +76,7 @@ public class ProjectServiceImplTest {
             fileInputStream = new FileInputStream(file);
             MultipartFile multipartFile = new MockMultipartFile(file.getName(), file.getName(),
                     ContentType.APPLICATION_OCTET_STREAM.toString(), fileInputStream);
-            System.out.println(projectService.QRcodeUpload(multipartFile,request));
+            System.out.println(projectService.QRStatusUpload(multipartFile,request));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

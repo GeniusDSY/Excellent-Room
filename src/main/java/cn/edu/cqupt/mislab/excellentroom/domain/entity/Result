@@ -4,7 +4,7 @@ import lombok.Data;
 
 import java.util.Map;
 @Data
-public class ResultJson<T> {
+public class Result<T> {
 
 
     private Integer status;

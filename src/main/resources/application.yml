@@ -11,7 +11,7 @@ spring:
     url: jdbc:mysql://localhost:3306/room?serverTimezone=UTC&characterEncoding=utf-8&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password:
+    password: hansiyue1!
   redis:
     password:
     host: 127.0.0.1

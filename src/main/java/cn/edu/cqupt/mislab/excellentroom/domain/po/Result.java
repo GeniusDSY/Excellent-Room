@@ -1,8 +1,10 @@
 package cn.edu.cqupt.mislab.excellentroom.domain.po;
 
+import lombok.Data;
 
+@Data
 public class Result<T> {
-    private Integer code;
+    private Integer Status;
     private String msg;
     private T data;
 
@@ -10,18 +12,18 @@ public class Result<T> {
         super();
     }
 
-    public Result(Integer code, String msg, T data) {
-        this.code = code;
+    public Result(Integer Status, String msg, T data) {
+        this.Status = Status;
         this.msg = msg;
         this.data = data;
     }
 
-    public Integer getCode() {
-        return code;
+    public Integer getStatus() {
+        return Status;
     }
 
-    public void setCode(Integer code) {
-        this.code = code;
+    public void setStatus(Integer Status) {
+        this.Status = Status;
     }
 
     public String getMsg() {
@@ -40,12 +42,5 @@ public class Result<T> {
         this.data = data;
     }
 
-    @Override
-    public String toString() {
-        return "Result{" +
-                "code=" + code +
-                ", msg='" + msg + '\'' +
-                ", data=" + data +
-                '}';
-    }
+
 }

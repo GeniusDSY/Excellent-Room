@@ -1,6 +1,6 @@
 package cn.edu.cqupt.mislab.excellentroom.controller;
 
-import cn.edu.cqupt.mislab.excellentroom.domain.entity.ResultJson;
+import cn.edu.cqupt.mislab.excellentroom.domain.po.Result;
 import cn.edu.cqupt.mislab.excellentroom.domain.entity.RoomType;
 import cn.edu.cqupt.mislab.excellentroom.service.RoomTypeService;
 import cn.edu.cqupt.mislab.excellentroom.util.FileUtil;
@@ -35,7 +35,7 @@ public class RoomTypeController {
 
     @PostMapping("addRoomType")
     @ApiOperation("增加户型")
-    public ResultJson addRoomType(HttpServletRequest request, @RequestParam Integer type){
+    public Result addRoomType(HttpServletRequest request, @RequestParam Integer type){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (projectId==null||type == null){
@@ -56,7 +56,7 @@ public class RoomTypeController {
 
     @DeleteMapping("deleteRoomType")
     @ApiOperation("删除户型")
-    public ResultJson deleteRoomTypeById(HttpServletRequest request, @RequestParam Integer id){
+    public Result deleteRoomTypeById(HttpServletRequest request, @RequestParam Integer id){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (projectId==null||id == null){
@@ -77,7 +77,7 @@ public class RoomTypeController {
 
     @PostMapping("updateRoomType")
     @ApiOperation("切换户型")
-    public ResultJson updateRoomType(HttpServletRequest request, @RequestParam Integer type){
+    public Result updateRoomType(HttpServletRequest request, @RequestParam Integer type){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (type==null||projectId==null){
@@ -95,7 +95,7 @@ public class RoomTypeController {
 
     @PostMapping("addSimplePic")
     @ApiOperation("增加样板间图片")
-    public ResultJson addSimplePic(HttpServletRequest request, @RequestParam(value = "file") MultipartFile imageFile){
+    public Result addSimplePic(HttpServletRequest request, @RequestParam(value = "file") MultipartFile imageFile){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             Integer type = (Integer) request.getSession().getAttribute("RoomType");
@@ -118,7 +118,7 @@ public class RoomTypeController {
 
     @DeleteMapping("deleteSimplePic")
     @ApiOperation("删除样板间图片")
-    public ResultJson deleteSimplePicById(HttpServletRequest request,@RequestParam Integer id){
+    public Result deleteSimplePicById(HttpServletRequest request,@RequestParam Integer id){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (projectId==null||id==null){
@@ -139,7 +139,7 @@ public class RoomTypeController {
 
     @PostMapping("updateLayout")
     @ApiOperation("修改户型图片")
-    public ResultJson updateLayout(HttpServletRequest request,@RequestParam(value = "file") MultipartFile imageFile){
+    public Result updateLayout(HttpServletRequest request,@RequestParam(value = "file") MultipartFile imageFile){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             Integer type = (Integer) request.getSession().getAttribute("RoomType");
@@ -158,7 +158,7 @@ public class RoomTypeController {
 
     @PostMapping("updatePanorama")
     @ApiOperation("修改全景图图片")
-    public ResultJson updatePanorama(HttpServletRequest request, @RequestParam(value = "file") MultipartFile vrFile){
+    public Result updatePanorama(HttpServletRequest request, @RequestParam(value = "file") MultipartFile vrFile){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             Integer type = (Integer) request.getSession().getAttribute("RoomType");
@@ -177,7 +177,7 @@ public class RoomTypeController {
 
     @GetMapping("getSimplePic")
     @ApiOperation("展示样板间图片")
-    public ResultJson selectSimplePicById(HttpServletRequest request, @RequestParam Integer id){
+    public Result selectSimplePicById(HttpServletRequest request, @RequestParam Integer id){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (id==null||projectId==null){

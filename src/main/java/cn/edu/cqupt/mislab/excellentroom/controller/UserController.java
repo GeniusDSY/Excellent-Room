@@ -2,7 +2,7 @@ package cn.edu.cqupt.mislab.excellentroom.controller;
 
 import cn.edu.cqupt.mislab.excellentroom.constant.ResultEnum;
 import cn.edu.cqupt.mislab.excellentroom.domain.dto.UserDto;
-import cn.edu.cqupt.mislab.excellentroom.domain.entity.ResultJson;
+import cn.edu.cqupt.mislab.excellentroom.domain.po.Result;
 import cn.edu.cqupt.mislab.excellentroom.domain.po.UserPo;
 import cn.edu.cqupt.mislab.excellentroom.service.UserService;
 import cn.edu.cqupt.mislab.excellentroom.util.ResultUtil;
@@ -32,14 +32,14 @@ public class UserController {
 
     @PostMapping("login")
     @ApiOperation("用户登陆")
-    public ResultJson login(HttpServletRequest request, @RequestBody UserDto userDto) {
+    public Result login(HttpServletRequest request, @RequestBody UserDto userDto) {
         try {
             if (userDto.getUserName() == null || userDto.getPassword() == null || userDto
-                    .getVerifyCode() == null) {
+                    .getVerifyStatus() == null) {
                 return ResultUtil.isNull();
             }
-            String verifyCode = (String)request.getSession().getAttribute("verifyCode");
-            if (verifyCode.equals(userDto.getVerifyCode())){
+            String verifyStatus = (String)request.getSession().getAttribute("verifyStatus");
+            if (verifyStatus.equals(userDto.getVerifyStatus())){
                 UserPo userPo = userService.login(userDto);
                 request.getSession().setAttribute("userId",userPo.getId());
                 return ResultUtil.success(userPo);
@@ -54,10 +54,10 @@ public class UserController {
 
     @PostMapping("addUser")
     @ApiOperation("添加管理员")
-    public ResultJson addUser(@RequestBody UserDto userDto){
+    public Result addUser(@RequestBody UserDto userDto){
         try {
             if (userDto.getUserName()==null || userDto.getPassword()==null || userDto
-                .getVerifyCode()==null) {
+                .getVerifyStatus()==null) {
             return ResultUtil.isNull();
         }
            Boolean result = userService.addUser(userDto);
@@ -74,7 +74,7 @@ public class UserController {
     @DeleteMapping("deleteUser")
     @ApiOperation("删除管理员")
     @ApiImplicitParam(name = "userName",value = "用户名",dataType = "string",required = true)
-    public ResultJson deleteUserByuserName(String userName) {
+    public Result deleteUserByuserName(String userName) {
         try {
             if (userName==null) {
                 return ResultUtil.isNull();

@@ -3,11 +3,7 @@ package cn.edu.cqupt.mislab.excellentroom.domain.entity;
 import lombok.Data;
 import org.apache.tomcat.jni.File;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
+import org.springframework.data.annotation.Id;
 /**
  *项目的实体类
  *
@@ -15,27 +11,25 @@ import javax.persistence.Id;
  * @date 2019/8/4
  */
 @Data
-@Entity
 public class Project {
     @Id
-    @GeneratedValue
     private String projectId;
     private String province;
     private String district;
     private String name;
     private String tel;
-    private String QRcodeName;
-    private String projectId;
+    private String QRStatusName;
+
 
     public Project(){}
 
-    public Project(String projectId,String province, String district, String name, String tel, String QRcodeName) {
+    public Project(String projectId,String province, String district, String name, String tel, String QRStatusName) {
         this.projectId = projectId;
         this.province = province;
         this.district = district;
         this.name = name;
         this.tel = tel;
-        this.QRcodeName = QRcodeName;
+        this.QRStatusName = QRStatusName;
     }
 
     public String getProjectId() {
@@ -78,12 +72,12 @@ public class Project {
         this.tel = tel;
     }
 
-    public String getQRcodeName() {
-        return QRcodeName;
+    public String getQRStatusName() {
+        return QRStatusName;
     }
 
-    public void setQRcodeName(String QRcodeName) {
-        this.QRcodeName = QRcodeName;
+    public void setQRStatusName(String QRStatusName) {
+        this.QRStatusName = QRStatusName;
     }
 
     @Override
@@ -94,7 +88,7 @@ public class Project {
                 ", district='" + district + '\'' +
                 ", name='" + name + '\'' +
                 ", tel='" + tel + '\'' +
-                ", QRcodeName='" + QRcodeName + '\'' +
+                ", QRStatusName='" + QRStatusName + '\'' +
                 '}';
     }
 }

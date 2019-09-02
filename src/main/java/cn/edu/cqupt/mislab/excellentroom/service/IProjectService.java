@@ -4,6 +4,7 @@ import cn.edu.cqupt.mislab.excellentroom.domain.dto.ProjectId;
 import cn.edu.cqupt.mislab.excellentroom.domain.entity.Project;
 import cn.edu.cqupt.mislab.excellentroom.domain.po.Result;
 import cn.edu.cqupt.mislab.excellentroom.exception.MyException;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,6 +59,13 @@ public interface IProjectService {
      * @param file
      * @return
      */
-    String QRcodeUpload(MultipartFile file,HttpServletRequest request);
+    String QRStatusUpload(MultipartFile file,HttpServletRequest request);
+
+    /**
+     * 通过项目ID查询项目
+     * @param projectId 项目ID
+     * @return true
+     */
+    Project selectProjectById(@Param("projectId") String projectId);
 
 }

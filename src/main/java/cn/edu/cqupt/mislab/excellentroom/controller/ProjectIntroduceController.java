@@ -1,7 +1,7 @@
 package cn.edu.cqupt.mislab.excellentroom.controller;
 
 import cn.edu.cqupt.mislab.excellentroom.domain.entity.ClientWant;
-import cn.edu.cqupt.mislab.excellentroom.domain.entity.ResultJson;
+import cn.edu.cqupt.mislab.excellentroom.domain.po.Result;
 import cn.edu.cqupt.mislab.excellentroom.domain.po.ProjectIntroducePo;
 import cn.edu.cqupt.mislab.excellentroom.service.ClientWantService;
 import cn.edu.cqupt.mislab.excellentroom.service.ProjectIntroduceService;
@@ -43,7 +43,7 @@ public class ProjectIntroduceController {
 
     @PostMapping("updateBkground")
     @ApiOperation("修改项目介绍背景图片")
-    public ResultJson updateProjectIntroduceBkground(HttpServletRequest request, @RequestParam(value = "file") MultipartFile imageFile) {
+    public Result updateProjectIntroduceBkground(HttpServletRequest request, @RequestParam(value = "file") MultipartFile imageFile) {
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (imageFile.isEmpty()||projectId==null) {
@@ -63,7 +63,7 @@ public class ProjectIntroduceController {
 
     @GetMapping("getBkground")
     @ApiOperation("展示项目介绍背景图片")
-    public ResultJson selectProjectIntroduceBkgroundById(HttpServletRequest request) {
+    public Result selectProjectIntroduceBkgroundById(HttpServletRequest request) {
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (projectId == null) {
@@ -80,7 +80,7 @@ public class ProjectIntroduceController {
     @PostMapping("updateText")
     @ApiOperation("修改项目介绍文字描述")
     @ApiImplicitParam(name = "text", value = "文字描述", dataType = "string", required = true)
-    public ResultJson updateProjectIntroduceText(@RequestParam String text,HttpServletRequest request) {
+    public Result updateProjectIntroduceText(@RequestParam String text,HttpServletRequest request) {
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (text==null|| projectId==null) {
@@ -99,7 +99,7 @@ public class ProjectIntroduceController {
 
     @GetMapping("getText")
     @ApiOperation("展示项目介绍文字描述")
-    public ResultJson selectProjectIntroduceTextById(HttpServletRequest request) {
+    public Result selectProjectIntroduceTextById(HttpServletRequest request) {
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (projectId == null) {
@@ -116,7 +116,7 @@ public class ProjectIntroduceController {
     @PostMapping("updateTitel")
     @ApiOperation("修改项目介绍标题")
     @ApiImplicitParam(name = "titel", value = "标题", dataType = "string", required = true)
-    public ResultJson updateProjectIntroduceTitel(@RequestParam String titel,HttpServletRequest request) {
+    public Result updateProjectIntroduceTitel(@RequestParam String titel,HttpServletRequest request) {
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (titel==null||projectId==null) {
@@ -135,7 +135,7 @@ public class ProjectIntroduceController {
 
     @GetMapping("getTitel")
     @ApiOperation("展示项目介绍标题")
-    public ResultJson selectProjectIntroduceTitelById(HttpServletRequest request) {
+    public Result selectProjectIntroduceTitelById(HttpServletRequest request) {
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (projectId == null) {
@@ -156,7 +156,7 @@ public class ProjectIntroduceController {
             @ApiImplicitParam(name = "price", value = "意向价格", dataType = "integer"),
             @ApiImplicitParam(name = "type", value = "户型", dataType = "integer")
     })
-    public ResultJson addClientWant(HttpServletRequest request, String tel, Integer price, Integer type){
+    public Result addClientWant(HttpServletRequest request, String tel, Integer price, Integer type){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (projectId == null||tel==null) {
@@ -176,7 +176,7 @@ public class ProjectIntroduceController {
 
     @GetMapping("getClientWant")
     @ApiOperation("展示所有意向")
-    public ResultJson findAll(HttpServletRequest request){
+    public Result findAll(HttpServletRequest request){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (projectId == null) {

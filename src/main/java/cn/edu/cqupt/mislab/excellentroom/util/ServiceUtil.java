@@ -20,7 +20,7 @@ public class ServiceUtil {
      */
     public static void updateSuccess(boolean flag) throws MyException {
         if(!flag){
-            throw new MyException(ResultEnum.UPDATE_ERROR);
+            throw new MyException(ResultEnum.NOTEXIST);
         }
     }
 
@@ -31,7 +31,7 @@ public class ServiceUtil {
      */
     public static void deleteSuccess(boolean flag) throws MyException {
         if(!flag){
-            throw new MyException(ResultEnum.DELETE_ERROR);
+            throw new MyException(ResultEnum.NOTEXIST);
         }
     }
 
@@ -42,7 +42,7 @@ public class ServiceUtil {
      */
     public static void insertSuccess(boolean flag) throws MyException {
         if(!flag){
-            throw new MyException(ResultEnum.ADD_ERROR);
+            throw new MyException(ResultEnum.ISEXIST);
         }
     }
 

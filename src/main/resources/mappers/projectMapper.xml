@@ -3,12 +3,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.cqupt.mislab.excellentroom.dao.ProjectDao">
     <sql id="project">
-        projectId,province,district,name,tel,QRcodename
+        projectId,province,district,name,tel,QRStatusname
     </sql>
 
     <insert id="addProject" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.Project">
-        INSERT INTO t_project_information(projectId,province,district,name,tel,QRcodename)
-        VALUE (#{projectId},#{province},#{district},#{name},#{tel},#{QRcodename});
+        INSERT INTO t_project_information(projectId,province,district,name,tel,QRStatusname)
+        VALUE (#{projectId},#{province},#{district},#{name},#{tel},#{QRStatusname});
     </insert>
 
     <delete id="deleteProject" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.dto.ProjectId" >
@@ -34,14 +34,21 @@
 
     <update id="updateProject" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.Project" >
         UPDATE t_project_information
-        SET province = #{province},district = #{district},name = #{name},tel = #{tel},QRcodename = #{QRcodename}
+        SET province = #{province},district = #{district},name = #{name},tel = #{tel},QRStatusname = #{QRStatusname}
         WHERE projectId = #{projectId}
     </update>
 
-    <update id="QRcodeUpload" parameterType="string">
+    <update id="QRStatusUpload" parameterType="string">
         UPDATE t_project_information
-        SET QRcode = #{QRcode}
+        SET QRStatus = #{QRStatus}
         WHERE projectId = #{projectId}
     </update>
+
+    <select id="selectProjectById" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.Project">
+        select projectId
+        from t_project_information
+        where projectId = #{projectId}
+    </select>
+
 
 </mapper>

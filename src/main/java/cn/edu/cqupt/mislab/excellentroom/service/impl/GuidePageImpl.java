@@ -34,7 +34,7 @@ public class GuidePageImpl implements IGuidePageService {
             return ResultUtil.success(map);
         } catch (MyException e) {
             e.printStackTrace();
-            return ResultUtil.error(ResultEnum.UPDATE_ERROR);
+            return ResultUtil.error(ResultEnum.NOTEXIST);
         }
 
     }
@@ -46,12 +46,12 @@ public class GuidePageImpl implements IGuidePageService {
             String bkground = guidePageDao.searchGuidePageBkground(projectId);
             map.put("bkground",bkground);
             if (bkground == null){
-                throw new MyException(ResultEnum.SEARCH_ERROR);
+                throw new MyException(ResultEnum.NOTEXIST);
             }
             return ResultUtil.success(map);
         } catch (MyException e) {
             e.printStackTrace();
-            return ResultUtil.error(ResultEnum.SEARCH_ERROR);
+            return ResultUtil.error(ResultEnum.NOTEXIST);
         }
 
     }
@@ -65,7 +65,7 @@ public class GuidePageImpl implements IGuidePageService {
             return ResultUtil.success(map);
         } catch (MyException e) {
             e.printStackTrace();
-            return ResultUtil.error(ResultEnum.UPDATE_ERROR);
+            return ResultUtil.error(ResultEnum.NOTEXIST);
         }
 
     }
@@ -75,12 +75,12 @@ public class GuidePageImpl implements IGuidePageService {
         try {
             String bkground = guidePageDao.searchGuidePageLogo(projectId);
             if (bkground == null){
-                throw new MyException(ResultEnum.SEARCH_ERROR);
+                throw new MyException(ResultEnum.NOTEXIST);
             }
             return ResultUtil.success(bkground);
         } catch (MyException e) {
             e.printStackTrace();
-            return ResultUtil.error(ResultEnum.SEARCH_ERROR);
+            return ResultUtil.error(ResultEnum.NOTEXIST);
         }
 
     }
@@ -97,7 +97,7 @@ public class GuidePageImpl implements IGuidePageService {
             return ResultUtil.success(map);
         } catch (MyException e) {
             e.printStackTrace();
-            return ResultUtil.error(ResultEnum.UPDATE_ERROR);
+            return ResultUtil.error(ResultEnum.NOTEXIST);
         }
 
     }
@@ -107,12 +107,12 @@ public class GuidePageImpl implements IGuidePageService {
         try {
             GuidePage info = guidePageDao.searchGuidePageInfo(projectId);
             if (info == null){
-                throw new MyException(ResultEnum.SEARCH_ERROR);
+                throw new MyException(ResultEnum.NOTEXIST);
             }
             return ResultUtil.success(info);
         } catch (MyException e) {
             e.printStackTrace();
-            return ResultUtil.error(ResultEnum.SEARCH_ERROR);
+            return ResultUtil.error(ResultEnum.NOTEXIST);
         }
 
     }

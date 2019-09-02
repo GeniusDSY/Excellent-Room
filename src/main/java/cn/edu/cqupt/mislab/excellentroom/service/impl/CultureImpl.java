@@ -32,7 +32,7 @@ public class CultureImpl implements ICultureService {
             return ResultUtil.success(map);
         } catch (MyException e) {
             e.printStackTrace();
-            return ResultUtil.error(ResultEnum.UPDATE_ERROR);
+            return ResultUtil.error(ResultEnum.NOTEXIST);
         }
 
     }
@@ -42,12 +42,12 @@ public class CultureImpl implements ICultureService {
         try {
             String bkground = cultureDao.searchCultureBkground(projectId);
             if (bkground == null){
-                throw new MyException(ResultEnum.SEARCH_ERROR);
+                throw new MyException(ResultEnum.NOTEXIST);
             }
             return ResultUtil.success(bkground);
         } catch (MyException e) {
             e.printStackTrace();
-            return ResultUtil.error(ResultEnum.SEARCH_ERROR);
+            return ResultUtil.error(ResultEnum.NOTEXIST);
         }
 
     }
@@ -61,7 +61,7 @@ public class CultureImpl implements ICultureService {
             return ResultUtil.success(map);
         } catch (MyException e) {
             e.printStackTrace();
-            return ResultUtil.error(ResultEnum.UPDATE_ERROR);
+            return ResultUtil.error(ResultEnum.NOTEXIST);
         }
 
 
@@ -74,12 +74,12 @@ public class CultureImpl implements ICultureService {
             Map<String, String> map = new HashMap<>(2);
             map.put("pic",pic);
             if (pic == null){
-                throw new MyException(ResultEnum.SEARCH_ERROR);
+                throw new MyException(ResultEnum.NOTEXIST);
             }
             return ResultUtil.success(map);
         } catch (MyException e) {
             e.printStackTrace();
-            return ResultUtil.error(ResultEnum.SEARCH_ERROR);
+            return ResultUtil.error(ResultEnum.NOTEXIST);
         }
 
     }
@@ -95,7 +95,7 @@ public class CultureImpl implements ICultureService {
             return ResultUtil.success(map);
         } catch (MyException e) {
             e.printStackTrace();
-            return ResultUtil.error(ResultEnum.ADD_ERROR);
+            return ResultUtil.error(ResultEnum.ISEXIST);
         }
 
     }
@@ -111,7 +111,7 @@ public class CultureImpl implements ICultureService {
             return ResultUtil.success(map);
         } catch (MyException e) {
             e.printStackTrace();
-            return ResultUtil.error(ResultEnum.DELETE_ERROR);
+            return ResultUtil.error(ResultEnum.NOTEXIST);
         }
 
     }
@@ -122,12 +122,12 @@ public class CultureImpl implements ICultureService {
             List<Culture> list;
             list = cultureDao.searchCulture(projectId);
             if (list.isEmpty()){
-                throw new MyException(ResultEnum.SEARCH_ERROR);
+                throw new MyException(ResultEnum.NOTEXIST);
             }
             return ResultUtil.success(list);
         } catch (MyException e) {
             e.printStackTrace();
-            return ResultUtil.error(ResultEnum.SEARCH_ERROR);
+            return ResultUtil.error(ResultEnum.NOTEXIST);
         }
 
     }

@@ -2,7 +2,7 @@ package cn.edu.cqupt.mislab.excellentroom.controller;
 
 import cn.edu.cqupt.mislab.excellentroom.util.ResultUtil;
 import cn.edu.cqupt.mislab.excellentroom.util.VerifyUtil;
-import cn.edu.cqupt.mislab.excellentroom.domain.entity.ResultJson;
+import cn.edu.cqupt.mislab.excellentroom.domain.po.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
@@ -23,16 +23,16 @@ import java.util.Map;
 @RestController
 public class VerifyController {
 
-    @PostMapping("createVerifyCode")
+    @PostMapping("createVerifyStatus")
     @ApiOperation("生成验证码")
-    public ResultJson verifycode(HttpSession session, HttpServletRequest request,
+    public Result verifyStatus(HttpSession session, HttpServletRequest request,
                                    HttpServletResponse response)throws Exception{
         try {
             Object[] objects = VerifyUtil.createImage();
-            request.getSession().setAttribute("verifyCode",objects[0]);
+            request.getSession().setAttribute("verifyStatus",objects[0]);
             Map map = new HashMap<>();
             map.put("base64","data:image/png;base64,"+ VerifyUtil.getbase64(objects[1]));
-            map.put("verifycode",objects[0]);
+            map.put("verifyStatus",objects[0]);
             return ResultUtil.success(map);
         }catch (Exception e){
             e.printStackTrace();

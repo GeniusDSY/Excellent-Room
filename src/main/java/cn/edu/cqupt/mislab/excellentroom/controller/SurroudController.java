@@ -2,7 +2,7 @@ package cn.edu.cqupt.mislab.excellentroom.controller;
 
 import cn.edu.cqupt.mislab.excellentroom.domain.entity.Landscape;
 import cn.edu.cqupt.mislab.excellentroom.domain.entity.PublicUtility;
-import cn.edu.cqupt.mislab.excellentroom.domain.entity.ResultJson;
+import cn.edu.cqupt.mislab.excellentroom.domain.po.Result;
 import cn.edu.cqupt.mislab.excellentroom.service.SurroundService;
 import cn.edu.cqupt.mislab.excellentroom.util.FileUtil;
 import cn.edu.cqupt.mislab.excellentroom.util.ResultUtil;
@@ -35,7 +35,7 @@ public class SurroudController {
 
     @PostMapping("addLandscape")
     @ApiOperation("增加园林景观图片")
-    public ResultJson addLandscape(HttpServletRequest request,@RequestParam(value = "file") MultipartFile imageFile, @RequestParam String text) {
+    public Result addLandscape(HttpServletRequest request, @RequestParam(value = "file") MultipartFile imageFile, @RequestParam String text) {
         try {
             String projectId = (String) request.getSession().getAttribute("projectId");
             if (projectId == null || imageFile.isEmpty() || text == null) {
@@ -57,7 +57,7 @@ public class SurroudController {
 
     @DeleteMapping("deleteLandscape")
     @ApiOperation("删除园林景观图片")
-    public ResultJson deleteLandscapeById(HttpServletRequest request,@RequestParam Integer id){
+    public Result deleteLandscapeById(HttpServletRequest request,@RequestParam Integer id){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (projectId==null||id==null){
@@ -78,7 +78,7 @@ public class SurroudController {
 
     @PostMapping("addPublicUtility")
     @ApiOperation("增加公共设施图片")
-    public ResultJson addPublicUtility(HttpServletRequest request, @RequestParam(value = "file") MultipartFile imageFile, @RequestParam String text) {
+    public Result addPublicUtility(HttpServletRequest request, @RequestParam(value = "file") MultipartFile imageFile, @RequestParam String text) {
         try {
             String projectId = (String) request.getSession().getAttribute("projectId");
             if (projectId == null || imageFile.isEmpty() || text == null) {
@@ -100,7 +100,7 @@ public class SurroudController {
 
     @DeleteMapping("deletePublicUtility")
     @ApiOperation("删除公共设施图片")
-    public ResultJson deletePublicUtilityById(HttpServletRequest request,@RequestParam Integer id){
+    public Result deletePublicUtilityById(HttpServletRequest request,@RequestParam Integer id){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (projectId==null||id==null){
@@ -121,7 +121,7 @@ public class SurroudController {
 
     @GetMapping("findAllLandscape")
     @ApiOperation("展示所有园林景观图片")
-    public ResultJson findAllLandscape(HttpServletRequest request){
+    public Result findAllLandscape(HttpServletRequest request){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (projectId==null){
@@ -138,7 +138,7 @@ public class SurroudController {
 
     @GetMapping("findAllPublicUtility")
     @ApiOperation("展示所有公共设施图片")
-    public ResultJson findAllPublicUtility(HttpServletRequest request){
+    public Result findAllPublicUtility(HttpServletRequest request){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (projectId==null){

@@ -34,12 +34,12 @@ public class CompanyImpl implements ICompanyService {
                 map.put("pic",p);
             }
             if (pic.isEmpty()){
-                throw new MyException(ResultEnum.SEARCH_ERROR);
+                throw new MyException(ResultEnum.NOTEXIST);
             }
             return ResultUtil.success(map);
         }catch (MyException e) {
             e.printStackTrace();
-            return ResultUtil.error(ResultEnum.SEARCH_ERROR);
+            return ResultUtil.error(ResultEnum.NOTEXIST);
         }
 
 
@@ -67,7 +67,7 @@ public class CompanyImpl implements ICompanyService {
             return ResultUtil.success(map);
         } catch (MyException e) {
             e.printStackTrace();
-            return ResultUtil.error(ResultEnum.DELETE_ERROR);
+            return ResultUtil.error(ResultEnum.NOTEXIST);
         }
 
     }
@@ -91,12 +91,12 @@ public class CompanyImpl implements ICompanyService {
             HashMap<String, String> map = new HashMap<>(2);
             map.put("text",text);
             if (text == null){
-                throw new MyException(ResultEnum.SEARCH_ERROR);
+                throw new MyException(ResultEnum.NOTEXIST);
             }
             return ResultUtil.success(map);
         } catch (MyException e) {
             e.printStackTrace();
-            return ResultUtil.error(ResultEnum.SEARCH_ERROR);
+            return ResultUtil.error(ResultEnum.NOTEXIST);
         }
 
     }
@@ -111,7 +111,7 @@ public class CompanyImpl implements ICompanyService {
         } catch (MyException e) {
             e.printStackTrace();
         }
-        return ResultUtil.error(ResultEnum.UPDATE_ERROR);
+        return ResultUtil.error(ResultEnum.NOTEXIST);
 
     }
 
@@ -122,12 +122,12 @@ public class CompanyImpl implements ICompanyService {
             HashMap<String, String> map = new HashMap<>(2);
             map.put("video",video);
             if (video == null){
-                throw new MyException(ResultEnum.SEARCH_ERROR);
+                throw new MyException(ResultEnum.NOTEXIST);
             }
             return ResultUtil.success(map);
         } catch (MyException e) {
             e.printStackTrace();
-            return ResultUtil.error(ResultEnum.SEARCH_ERROR);
+            return ResultUtil.error(ResultEnum.NOTEXIST);
         }
 
 

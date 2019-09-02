@@ -3,7 +3,6 @@ package cn.edu.cqupt.mislab.excellentroom.dao;
 import cn.edu.cqupt.mislab.excellentroom.domain.dto.ProjectId;
 import cn.edu.cqupt.mislab.excellentroom.domain.entity.Project;
 import cn.edu.cqupt.mislab.excellentroom.util.GetUtil;
-import org.apache.http.entity.ContentType;
 import cn.edu.cqupt.mislab.excellentroom.domain.entity.Project;
 import org.junit.Assert;
 import org.junit.Test;
@@ -82,13 +81,13 @@ public class ProjectDaoTest {
 
     @Transactional
     @Test
-    public void QRcodeUpload(){
+    public void QRStatusUpload(){
         String projectId = "123";
-        String QRcode = "D:\\英雄时刻\\ac4_Wallpaper3_1280x720.jpg";
-        boolean flag = projectDao.QRcodeUpload(projectId,QRcode);
+        String QRStatus = "D:\\英雄时刻\\ac4_Wallpaper3_1280x720.jpg";
+        boolean flag = projectDao.QRStatusUpload(projectId,QRStatus);
 
     }
-}
+
     @Test
     public void selectProjectById() {
         Project project = projectDao.selectProjectById("123");

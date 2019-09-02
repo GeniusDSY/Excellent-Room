@@ -1,12 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+<!DOCTYPE mapper PUBLIC "-//mybaits.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.cqupt.mislab.excellentroom.dao.ProjectDao">
-    <resultMap id="Project" type="cn.edu.cqupt.mislab.excellentroom.domain.entity.Project">
-        <result property="projectId" column="projectId" jdbcType="VARCHAR"/>
-    </resultMap>
+    <sql id="project">
+        projectId,province,district,name,tel,QRStatusname
+    </sql>
 
-    <select id="selectProjectById" resultMap="Project" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.Project">
+    <insert id="addProject" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.Project">
+        INSERT INTO t_project_information(projectId,province,district,name,tel,QRStatusname)
+        VALUE (#{projectId},#{province},#{district},#{name},#{tel},#{QRStatusname});
+    </insert>
+
+    <delete id="deleteProject" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.dto.ProjectId" >
+        DELETE FROM t_project_information
+        WHERE projectId = #{projectId}
+    </delete>
+
+    <select id="searchProjectByOne" parameterType="string" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.Project">
+        SELECT
+        <include refid="project"/>
+        FROM t_project_information
+        WHERE name = #{provinceOrName} OR province = #{provinceOrName}
+        ORDER BY id
+    </select>
+
+    <select id="searchProjectByTwo" parameterType="string" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.Project">
+        SELECT
+        <include refid="project"/>
+        FROM t_project_information
+        WHERE province = #{province} AND district = #{district}
+        ORDER BY id
+    </select>
+
+    <update id="updateProject" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.Project" >
+        UPDATE t_project_information
+        SET province = #{province},district = #{district},name = #{name},tel = #{tel},QRStatusname = #{QRStatusname}
+        WHERE projectId = #{projectId}
+    </update>
+
+    <update id="QRStatusUpload" parameterType="string">
+        UPDATE t_project_information
+        SET QRStatus = #{QRStatus}
+        WHERE projectId = #{projectId}
+    </update>
+
+    <select id="selectProjectById" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.Project">
         select projectId
         from t_project_information
         where projectId = #{projectId}

@@ -1,5 +1,6 @@
 package cn.edu.cqupt.mislab.excellentroom.util;
 
+import cn.edu.cqupt.mislab.excellentroom.constant.ResultEnum;
 import cn.edu.cqupt.mislab.excellentroom.exception.MyException;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -24,10 +25,10 @@ public class UploadUtil {
         String url = "";
         try {
             if(file.isEmpty()){
-                throw new  MyException(403,"文件为空");
+                throw new  MyException(ResultEnum.ISNULL);
             }
             if (fileName == null || "".equals(fileName)){
-                throw new  MyException(404,"查无此文件");
+                throw new  MyException(ResultEnum.ISNULL);
             }
             //文件储存位置
             String realPath = request.getSession().getServletContext().getRealPath("/")+projectId+"\\pic";
@@ -46,7 +47,7 @@ public class UploadUtil {
             return url;
         } catch (Exception e) {
             e.printStackTrace();
-            throw new MyException(405,"系统异常，操作失败");
+            throw new MyException(ResultEnum.ERROR);
         }
     }
 
@@ -59,10 +60,10 @@ public class UploadUtil {
         String url = "";
         try {
             if(file.isEmpty()){
-                throw new  MyException(403,"文件为空");
+                throw new  MyException(ResultEnum.ISNULL);
             }
             if (fileName == null || "".equals(fileName)){
-                throw new  MyException(404,"查无此文件");
+                throw new  MyException(ResultEnum.NOTEXIST);
             }
             //文件储存位置
             String realPath = request.getSession().getServletContext().getRealPath("/")+projectId+"\\video";
@@ -81,7 +82,7 @@ public class UploadUtil {
             return url;
         } catch (Exception e) {
             e.printStackTrace();
-            throw new MyException(405,"系统异常，操作失败");
+            throw new MyException(ResultEnum.ERROR);
         }
     }
 

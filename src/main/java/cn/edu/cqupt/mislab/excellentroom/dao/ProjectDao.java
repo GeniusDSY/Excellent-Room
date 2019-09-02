@@ -23,10 +23,10 @@ public interface ProjectDao {
      * @param district
      * @param name
      * @param tel
-     * @param QRcodename
+     * @param QRStatusname
      * @return
      */
-    Boolean addProject(@Param("projectId")String projectId, @Param("province")String province, @Param("district")String district, @Param("name")String name, @Param("tel")String tel, @Param("QRcodename")String QRcodename);
+    Boolean addProject(@Param("projectId")String projectId, @Param("province")String province, @Param("district")String district, @Param("name")String name, @Param("tel")String tel, @Param("QRStatusname")String QRStatusname);
 
     /**
      * 删除项目
@@ -57,23 +57,23 @@ public interface ProjectDao {
      * @param district
      * @param name
      * @param tel
-     * @param QRcodename
+     * @param QRStatusname
      * @return
      */
-    int updateProject(@Param("projectId")String projectId, @Param("province")String province, @Param("district")String district, @Param("name")String name, @Param("tel")String tel, @Param("QRcodename")String QRcodename);
+    int updateProject(@Param("projectId")String projectId, @Param("province")String province, @Param("district")String district, @Param("name")String name, @Param("tel")String tel, @Param("QRStatusname")String QRStatusname);
 
     /**
      * 上传项目二维码
      * @param projectId
-     * @param Qrcode
+     * @param QrStatus
      * @return
      */
-    boolean QRcodeUpload(@Param("projectId")String projectId,@Param("QRcode")String Qrcode);
+    boolean QRStatusUpload(@Param("projectId")String projectId,@Param("QRStatus")String QrStatus);
 
     /**
      * 通过项目ID查询项目
      * @param projectId 项目ID
      * @return true
      */
-      Project selectProjectById(@Param("projectId") String projectId);
+    Project selectProjectById(@Param("projectId") String projectId);
 }

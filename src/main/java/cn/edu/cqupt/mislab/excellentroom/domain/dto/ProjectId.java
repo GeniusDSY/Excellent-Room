@@ -1,8 +1,6 @@
 package cn.edu.cqupt.mislab.excellentroom.domain.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.springframework.data.annotation.Id;
 
 /**
  * @program: Excellent-Room-sl-dev
@@ -10,10 +8,9 @@ import javax.persistence.Id;
  * @author: 宋丽
  * @create: 2019-08-16 06:50
  **/
-@Entity
+
 public class ProjectId {
     @Id
-    @GeneratedValue
     private String id;
 
     public ProjectId(String projectId) {

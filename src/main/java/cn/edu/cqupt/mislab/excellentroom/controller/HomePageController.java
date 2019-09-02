@@ -1,9 +1,9 @@
 package cn.edu.cqupt.mislab.excellentroom.controller;
 
+import cn.edu.cqupt.mislab.excellentroom.domain.po.Result;
 import cn.edu.cqupt.mislab.excellentroom.util.FileUtil;
 import cn.edu.cqupt.mislab.excellentroom.domain.po.HomePagePo;
 import cn.edu.cqupt.mislab.excellentroom.util.ResultUtil;
-import cn.edu.cqupt.mislab.excellentroom.domain.entity.ResultJson;
 import cn.edu.cqupt.mislab.excellentroom.service.HomePageService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -35,7 +35,7 @@ public class HomePageController {
 
     @PostMapping("updateBkground")
     @ApiOperation("修改首页背景图片")
-    public ResultJson updateHomePageBkground(HttpServletRequest request,@RequestParam(value = "file") MultipartFile imageFile){
+    public Result updateHomePageBkground(HttpServletRequest request, @RequestParam(value = "file") MultipartFile imageFile){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (imageFile.isEmpty()||projectId==null){
@@ -55,7 +55,7 @@ public class HomePageController {
 
     @PostMapping("updateLogo")
     @ApiOperation("修改首页Logo")
-    public ResultJson updateHomePageLogo(HttpServletRequest request,@RequestParam(value = "file") MultipartFile imageFile){
+    public Result updateHomePageLogo(HttpServletRequest request,@RequestParam(value = "file") MultipartFile imageFile){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (imageFile.isEmpty()||projectId==null){
@@ -75,7 +75,7 @@ public class HomePageController {
 
     @PostMapping("updateIcon")
     @ApiOperation("修改首页Icon")
-    public ResultJson updateHomePageIcon(HttpServletRequest request,@RequestParam(value = "file")MultipartFile imageFile){
+    public Result updateHomePageIcon(HttpServletRequest request,@RequestParam(value = "file")MultipartFile imageFile){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (imageFile.isEmpty()||projectId==null){
@@ -95,7 +95,7 @@ public class HomePageController {
 
     @GetMapping("getBkground")
     @ApiOperation("展示首页背景图片")
-    public ResultJson selectHomePageBkgroundById(HttpServletRequest request){
+    public Result selectHomePageBkgroundById(HttpServletRequest request){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (projectId == null){
@@ -111,7 +111,7 @@ public class HomePageController {
 
     @GetMapping("getLogo")
     @ApiOperation("展示首页Logo")
-    public ResultJson selectHomePageLogoById(HttpServletRequest request){
+    public Result selectHomePageLogoById(HttpServletRequest request){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (projectId == null){
@@ -127,7 +127,7 @@ public class HomePageController {
 
     @GetMapping("getIcon")
     @ApiOperation("展示首页Icon")
-    public ResultJson selectHomePageIconById(HttpServletRequest request,@RequestParam String id){
+    public Result selectHomePageIconById(HttpServletRequest request,@RequestParam String id){
         try {
             String projectId =(String) request.getSession().getAttribute("projectId");
             if (projectId == null){
