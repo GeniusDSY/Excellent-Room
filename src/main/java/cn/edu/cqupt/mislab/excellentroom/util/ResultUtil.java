@@ -1,19 +1,40 @@
 package cn.edu.cqupt.mislab.excellentroom.util;
 
-import cn.edu.cqupt.mislab.excellentroom.domain.entity.ResultJson;
 import cn.edu.cqupt.mislab.excellentroom.constant.ResultEnum;
+import cn.edu.cqupt.mislab.excellentroom.domain.po.Result;
+import cn.edu.cqupt.mislab.excellentroom.domain.entity.ResultJson;
 
 public class ResultUtil {
-    /**
-     * 状态码记录
-     * 0----成功
-     * 1----参数错误
-     * 2----无对应内容
-     * 3----已存在
-     * 4----参数为空
-     */
 
-    public static ResultJson success(Object object) {
+    /**成功且带数据**/
+    public static Result success(Object object){
+        Result result = new Result();
+        result.setCode(ResultEnum.SUCCESS.getCode());
+        result.setMsg(ResultEnum.SUCCESS.getMsg());
+        result.setData(object);
+        return result;
+    }
+    /**成功但不带数据**/
+    public static Result success(){
+
+        return success(null);
+    }
+    /**失败**/
+    public static Result error(Integer code,String msg){
+        Result result = new Result();
+        result.setCode(code);
+        result.setMsg(msg);
+        return result;
+    }
+
+    /**失败使用枚举**/
+    public static Result error(ResultEnum resultEnum){
+        Result result = new Result();
+        result.setCode(resultEnum.getCode());
+        result.setMsg(resultEnum.getMsg());
+        return result;
+    }
+  public static ResultJson success(Object object) {
         ResultJson resultJson = new ResultJson();
         resultJson.setStatus(ResultEnum.SUCCESS.getStatus());
         resultJson.setMsg(ResultEnum.SUCCESS.getMsg());

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybaits.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.cqupt.mislab.excellentroom.dao.ProjectDao">
+    <sql id="project">
+        projectId,province,district,name,tel,QRcodename
+    </sql>
+
+    <insert id="addProject" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.Project">
+        INSERT INTO t_project_information(projectId,province,district,name,tel,QRcodename)
+        VALUE (#{projectId},#{province},#{district},#{name},#{tel},#{QRcodename});
+    </insert>
+
+    <delete id="deleteProject" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.dto.ProjectId" >
+        DELETE FROM t_project_information
+        WHERE projectId = #{projectId}
+    </delete>
+
+    <select id="searchProjectByOne" parameterType="string" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.Project">
+        SELECT
+        <include refid="project"/>
+        FROM t_project_information
+        WHERE name = #{provinceOrName} OR province = #{provinceOrName}
+        ORDER BY id
+    </select>
+
+    <select id="searchProjectByTwo" parameterType="string" resultType="cn.edu.cqupt.mislab.excellentroom.domain.entity.Project">
+        SELECT
+        <include refid="project"/>
+        FROM t_project_information
+        WHERE province = #{province} AND district = #{district}
+        ORDER BY id
+    </select>
+
+    <update id="updateProject" parameterType="cn.edu.cqupt.mislab.excellentroom.domain.entity.Project" >
+        UPDATE t_project_information
+        SET province = #{province},district = #{district},name = #{name},tel = #{tel},QRcodename = #{QRcodename}
+        WHERE projectId = #{projectId}
+    </update>
+
+    <update id="QRcodeUpload" parameterType="string">
+        UPDATE t_project_information
+        SET QRcode = #{QRcode}
+        WHERE projectId = #{projectId}
+    </update>
+
+</mapper>

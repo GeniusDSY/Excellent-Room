@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybaits.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.cqupt.mislab.excellentroom.dao.CultureDao">
+    <!-- 修改企业文化背景（无删除）-->
+    <update id="updateCultureBkground" parameterType="string">
+        UPDATE  t_project_information
+        SET brandCultureBkground = #{pic}
+        WHERE projectId = #{projectId}
+    </update>
+    <!-- 查找企业文化背景（无删除）-->
+    <select id="searchCultureBkground" parameterType="string" resultType="java.lang.String">
+        SELECT brandCultureBkground
+        FROM t_project_information
+        WHERE projectId = #{projectId}
+    </select>
+    <!-- 修改企业文化图片（无删除）-->
+    <update id="updateCulturePic" parameterType="string">
+        UPDATE t_project_information
+        SET brandCulturePic = #{pic}
+        WHERE projectId = #{projectId}
+    </update>
+    <!-- 查找企业文化图片（无删除）-->
+    <select id="searchCulturePic" parameterType="string" resultType="java.lang.String">
+        SELECT brandCulturePic
+        FROM t_project_information
+        WHERE projectId = #{projectId}
+    </select>
+    <!-- 查找企业文化（无修改）-->
+    <sql id="culture">
+        title,text
+    </sql>
+    <select id="searchCulture" parameterType="string" resultType="cn.edu.cqupt.mislab.excellentroom.domain.po.Culture">
+        SELECT
+          <include refid="culture"/>
+        FROM t_brand_culture
+        WHERE projectId = #{projectId}
+        ORDER BY id
+    </select>
+    <!-- 删除指定企业文化（无修改）-->
+    <delete id="deleteCulture" parameterType="string">
+        DELETE FROM t_brand_culture
+        WHERE projectId = #{projectId} AND title = #{title} AND text = #{text}
+    </delete>
+    <!-- 增加文化-->
+    <insert id="addCulture" parameterType="string" >
+        INSERT INTO t_brand_culture(projectId,title,text)
+        VALUE (#{projectId},#{title},#{text})
+    </insert>
+    
+    
+    
+    
+</mapper>
